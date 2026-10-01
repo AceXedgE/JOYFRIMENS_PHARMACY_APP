@@ -1,0 +1,11 @@
+{
+  "name": "@joyfrimens/backend", "version": "0.1.0", "private": true, "type": "module",
+  "scripts": {
+    "dev": "node --watch --experimental-strip-types src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/*.test.ts"
+  },
+  "dependencies": { "fastify": "^5.6.2" }
+}
