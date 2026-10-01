@@ -9,3 +9,5 @@ coverage/
 *.tsbuildinfo
 playwright-report/
 test-results/
+.data/
+*.dump

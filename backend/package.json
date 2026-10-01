@@ -1,11 +1,25 @@
 {
-  "name": "@joyfrimens/backend", "version": "0.1.0", "private": true, "type": "module",
+  "name": "@joyfrimens/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "node --watch --experimental-strip-types src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test test/*.test.ts"
+    "test": "node --experimental-strip-types --test --test-concurrency=1 test/*.test.ts",
+    "db:migrate": "node --experimental-strip-types src/cli.ts migrate",
+    "db:bootstrap": "node --experimental-strip-types src/cli.ts bootstrap",
+    "setup:dev": "node --experimental-strip-types src/cli.ts seed:dev"
   },
-  "dependencies": { "fastify": "^5.6.2" }
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@fastify/cookie": "^11.1.2",
+    "fastify": "^5.6.2",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1"
+  }
 }

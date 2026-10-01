@@ -1,6 +1,6 @@
 # Delivery sprints
 
-Work through these in order, reviewing the running result at the end of each sprint. Only Sprint 1 is in the current implementation scope. Subsequent sprints are planned, not completed features. A sprint is done when its acceptance checks pass and its limitations are documented.
+Work through these in order, reviewing the running result at the end of each sprint. Sprints 1 and 2 are implemented. Subsequent sprints are planned, not completed features. A sprint is done when its acceptance checks pass and its limitations are documented.
 
 ## Sprint 1 — Project foundation
 
@@ -14,15 +14,17 @@ Acceptance:
 - [x] Dependency installation, type checks, API tests, and production builds pass.
 - [x] Local HTTP integration smoke check passes.
 
-Sprint 1 complete: both TypeScript checks, two API tests, both production builds, and the built frontend/API proxy smoke check passed locally. The Windows sandbox blocked Vite's parent-directory reads; the build and smoke check passed outside the sandbox. Browser interaction and real-phone visual checks have not yet been performed. Next: Sprint 2.
+Sprint 1 complete: both TypeScript checks, two API tests, both production builds, and the built frontend/API proxy smoke check passed locally. The Windows sandbox blocked Vite's parent-directory reads; the build and smoke check passed outside the sandbox. Browser workflow coverage was added in Sprint 2; physical phone checks remain planned.
 
 Not included: authentication, database, actual shops, catalogue, sales, installable PWA, or offline storage. Database readiness is not implied by the liveness endpoint.
 
 ## Sprint 2 — Accounts, shops, and database
 
-Add PostgreSQL migrations, user authentication and session handling, admin bootstrap without default passwords, roles and explicit permissions, two configured shops, shop-scoped access, and shared main-storage ownership. Implement validated environment configuration and audit events. Determine currency, shop timezone, device platform, and staff approval powers before finalizing related schema.
+Add PostgreSQL migrations, user authentication and session handling, admin bootstrap without default passwords, roles and explicit permissions, two configured shops, shop-scoped access, and shared main-storage ownership. Implement validated environment configuration and audit events. Confirmed configuration: Tomjoy Pharmacy and Joyfrimens Pharmacy, GHS, GMT (`Etc/GMT`), web frontend. Refund/withdrawal/stock-adjustment approvals remain deferred to their relevant sprints; price permission does not imply them.
 
 Acceptance: staff cannot request another unauthorized shop's data through an API; employees cannot grant themselves permissions; admins can grant/revoke price permission; auth/session lifecycle works; shared storage is not assigned arbitrarily to a shop. Test migrations against a fresh database. Provide safe development seed data distinct from production setup.
+
+Sprint 2 implemented and verified locally: 16 database/API checks, TypeScript checks, production builds, HTTP smoke test, and one end-to-end browser workflow covering admin and employee behavior. Migrations were tested on fresh embedded PostgreSQL, including repeat application. Headless Edge passed desktop and 390px viewport interactions. CI additionally defines PostgreSQL 17 and Chromium checks; those hosted jobs have not been run locally. Deployment-specific PostgreSQL permissions and physical iPhone/Android testing remain release checks. Setup and limitations are documented in [ACCOUNTS.md](ACCOUNTS.md).
 
 ## Sprint 3 — Drug catalogue and price lookup
 

@@ -12,12 +12,12 @@ References: [Apple web push](https://developer.apple.com/documentation/usernotif
 
 ## Code boundaries
 
-- `frontend/`: React + TypeScript, built with Vite. Responsive UI and API client now; catalogue, drafts, local transaction database, and service worker later.
-- `backend/`: Fastify + TypeScript on Node 24. Health endpoint now; authentication, authorization, validation, domain operations, and persistence later.
-- PostgreSQL is the planned server database from Sprint 2; it is not installed or required by Sprint 1.
+- `frontend/`: React + TypeScript, built with Vite. Sign-in, account management, server-backed shop selection, and permissions now; catalogue, drafts, local transaction database, and service worker later.
+- `backend/`: Fastify + TypeScript on Node 24. PostgreSQL persistence, cookie sessions, authorization, validated routes, and account audit events are implemented in Sprint 2.
+- PostgreSQL is the deployment database. PGlite provides embedded PostgreSQL for local development and isolated tests, using the same SQL migration and query layer. Production configuration requires an external PostgreSQL connection. See [accounts and setup](ACCOUNTS.md) and [PGlite documentation](https://pglite.dev/docs/).
 - Local transactional browser storage is planned for Sprint 7. Cache Storage will hold app assets, not be the financial transaction database.
 
-Development proxies `/api` through Vite to `127.0.0.1:3001`. Production should serve frontend assets over HTTPS and reverse-proxy `/api` to the backend on the same origin. Do not expose production business endpoints until authentication and authorization exist. Avoid permissive cross-origin defaults. Public health returns liveness only, not database readiness or sync completeness.
+Development proxies `/api` through Vite to `127.0.0.1:3001`. Production should serve frontend assets over HTTPS and reverse-proxy `/api` to the backend on the same origin. Avoid permissive cross-origin defaults. Public health returns liveness only, not ongoing database readiness or sync completeness. Sessions are server-side and permission checks read current database state, so a session cannot preserve revoked shop access.
 
 ## Core invariants for later sprints
 

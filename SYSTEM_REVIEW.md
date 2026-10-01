@@ -1,6 +1,8 @@
 # Pharmacy money, pricing, and stock controls
 
-Updated after reviewing readme.md and the owner's clarifications on 2026-10-01. No application code is present. These are design requirements, not confirmed code vulnerabilities or completed software fixes. Original brainstorming remains in the README, followed by confirmed operating rules that take precedence.
+Updated after reviewing the owner's clarifications on 2026-10-01. Original brainstorming is preserved in docs/OWNER_NOTES.md; the project README now describes setup and implementation. Sprints 1 and 2 implement the foundation, accounts, shop access, permission management, and account audit records. Other controls below remain requirements until their scheduled sprints are implemented and tested; this document is not a claim that all controls are complete.
+
+Confirmed configuration: Tomjoy Pharmacy and Joyfrimens Pharmacy; Ghanaian cedi (GHS); GMT (`Etc/GMT`). The initial client is a responsive web app, with installable/offline features planned later. Weekday and calendar date are display choices separate from timezone.
 
 ## Specific corrections to the README design
 
@@ -259,7 +261,7 @@ For a small shop where independent approval is unavailable, explicitly mark such
 
 ## Details needed from the owner
 
-- Currency, shop timezone/business-day boundary, and device platform (browser, desktop, or mobile).
+- The business-day boundary (currency GHS, timezone GMT, and web client are confirmed).
 - Number of selling devices per shop, drawer/device assignments, and acceptable offline authorization duration.
 - Who may approve refunds, disburse withdrawals, adjust stock, and review daily counts.
 - Return rules and exact pack/strip/container/base-unit conversions.

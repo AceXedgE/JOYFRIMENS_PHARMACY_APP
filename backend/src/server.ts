@@ -1,16 +1,21 @@
 import { buildApp } from './app.ts';
+import { readConfig } from './config.ts';
+import { openDatabase } from './database.ts';
+import { requireSchema } from './migrate.ts';
 
-const app = buildApp({ logger: true });
-const port = Number(process.env.PORT ?? 3001);
-if (!Number.isInteger(port) || port < 1 || port > 65535) {
-  throw new Error('PORT must be an integer between 1 and 65535.');
-}
+const config = readConfig();
+const db = await openDatabase(config);
+try { await requireSchema(db); }
+catch { await db.close(); throw new Error('Database is not ready. Run npm run db:migrate -w backend, then bootstrap an admin.'); }
+const app = buildApp({ logger: true, db, config });
+app.addHook('onClose', () => db.close());
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, async () => { await app.close(); });
 }
 try {
-  await app.listen({ port, host: process.env.HOST ?? '127.0.0.1' });
+  await app.listen({ port: config.port, host: config.host });
 } catch (error) {
   app.log.error(error);
+  await app.close();
   process.exitCode = 1;
 }

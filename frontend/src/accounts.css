@@ -1,0 +1,58 @@
+.login-shell { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 70px; max-width: 1100px; padding: 60px 35px; }
+.login-intro .brand-mark { margin-bottom: 45px; background: #173e36; width: 52px; height: 57px; font-size: 30px; }
+.login-intro h1 { font-size: 46px; line-height: 1.2; }
+.login-intro p:not(.eyebrow) { color: #66796b; line-height: 1.8; margin-top: 25px; }
+.login-intro small { color: #66796b; }
+.panel { border: 1px solid #dce3d6; border-radius: 12px; background: #fff; padding: 28px; }
+.login-form { display: grid; gap: 20px; }
+.login-form h2, .form-grid h2, .form-grid h3 { margin: 0; }
+.login-form p { margin: 0; color: #68796d; font-size: 14px; }
+.login-form label, .form-grid > label { display: grid; gap: 8px; font-size: 13px; font-weight: 600; }
+input:not([type=checkbox]) { width: 100%; border: 1px solid #cbd6cd; border-radius: 7px; padding: 12px; background: #fff; color: #243c35; font: inherit; font-size: 16px; }
+input:focus-visible { outline: 3px solid #cf872c; outline-offset: 2px; }
+input[type=checkbox] { width: 18px; height: 18px; accent-color: #245440; flex-shrink: 0; }
+.primary-button, .secondary-button { border-radius: 7px; padding: 12px 18px; font-weight: 600; font-size: 13px; cursor: pointer; min-height: 44px; }
+.primary-button { border: 1px solid #173e36; background: #173e36; color: #fff; }
+.secondary-button { border: 1px solid #bacab9; background: #f3f6ee; color: #234a39; }
+button:disabled { opacity: .55; cursor: wait; }
+.error-message, .success-message { padding: 15px; border-radius: 7px; line-height: 1.7; font-size: 13px; overflow-wrap: anywhere; }
+.error-message, .login-form .error-message { background: #fbece7; color: #8f3322; }
+.success-message { background: #e8f2e3; color: #305a35; }
+.login-form small, .form-grid small { font-size: 12px; color: #738074; font-weight: 400; line-height: 1.6; }
+.header-actions { display: flex; gap: 22px; align-items: center; }
+.sidebar nav button { border: 0; text-align: left; color: inherit; background: transparent; padding: 15px 12px; border-radius: 7px; cursor: pointer; font-size: 13px; }
+.sidebar nav button:hover, .sidebar nav button.nav-active { background: #2b5147; }
+.form-grid { display: grid; gap: 20px; max-width: 720px; margin: 24px 0; }
+.form-grid p { margin: 0; font-size: 13px; line-height: 1.7; }
+fieldset { border: 1px solid #d8e1d4; border-radius: 8px; padding: 16px; margin: 0; min-width: 0; }
+legend { font-size: 12px; font-weight: 600; padding: 0 5px; }
+.access-row { display: flex; justify-content: space-between; gap: 15px; padding: 9px 0; flex-wrap: wrap; }
+.access-row label, .check-label, .form-grid > .check-label { display: flex; align-items: center; gap: 9px; font-size: 12px; line-height: 1.7; }
+.staff-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.staff-card { border: 1px solid #dce3d6; background: white; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+.staff-card h3 { margin: 0; font-size: 17px; }
+.staff-card p { color: #69786d; font-size: 12px; line-height: 1.8; margin: 7px 0 0; }
+.staff-card .status-button { align-self: flex-start; padding: 8px 0; min-height: 40px; margin-top: auto; color: #785d42; }
+.audit-list { border: 1px solid #dce3d6; background: #fff; border-radius: 9px; overflow: hidden; }
+.audit-list article { padding: 17px 22px; display: grid; gap: 7px; border-bottom: 1px solid #e8ece3; font-size: 12px; }
+.audit-list time, .audit-list span { color: #778271; }
+.audit-list summary { cursor: pointer; color: #38694e; padding: 6px 0; }
+.audit-list pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; }
+.shared-panel { margin-top: 24px; }
+.shared-panel h2 { font-size: 20px; }
+.shared-panel p { font-size: 13px; color: #74816c; }
+.shared-panel .branches { text-align: center; }
+.summary h2 { overflow-wrap: anywhere; }
+@media(max-width:1050px) { .staff-grid { grid-template-columns: 1fr; } .header-actions { gap: 12px; } }
+@media(max-width:760px) {
+  .login-shell { grid-template-columns: 1fr; gap: 30px; padding: 30px 20px; }
+  .login-intro .brand-mark { margin-bottom: 25px; }
+  .login-intro h1 { font-size: 36px; }
+  .sidebar nav { display: flex; gap: 5px; margin-top: 18px; flex-wrap: wrap; }
+  .sidebar nav button { padding: 10px; font-size: 12px; }
+  .topbar { flex-wrap: wrap; gap: 15px; }
+  .header-actions { width: 100%; justify-content: space-between; }
+  .shop-picker { flex-direction: column; align-items: flex-start; }
+  .shop-picker select { max-width: 240px; }
+  .panel { padding: 22px; }
+}
