@@ -1,6 +1,6 @@
 # Pharmacy money, pricing, and stock controls
 
-Updated after reviewing the owner's clarifications on 2026-10-01. Original brainstorming is preserved in docs/OWNER_NOTES.md; the project README now describes setup and implementation. Sprints 1 and 2 implement the foundation, accounts, shop access, permission management, and account audit records. Other controls below remain requirements until their scheduled sprints are implemented and tested; this document is not a claim that all controls are complete.
+Updated with the owner's clarifications through 2026-10-16. Original brainstorming is preserved in docs/OWNER_NOTES.md; the project README now describes setup and implementation. Sprints 1–4 implement the foundation, accounts, shop access, permission management, drug catalogue, shared prices, batch inventory, receiving, transfers, counted adjustments, and corresponding audit records. Inventory behavior and remaining limits are documented in docs/INVENTORY.md. Other controls below remain requirements until their scheduled sprints are implemented and tested; this document is not a claim that all controls are complete.
 
 Confirmed configuration: Tomjoy Pharmacy and Joyfrimens Pharmacy; Ghanaian cedi (GHS); GMT (`Etc/GMT`). The initial client is a responsive web app, with installable/offline features planned later. Weekday and calendar date are display choices separate from timezone.
 
@@ -59,6 +59,8 @@ Switching shops displays only the selected shop's operational stock and storeroo
 
 Moving goods from a shop's storeroom to its retail location is a recorded internal transfer, not a sale or a new supplier delivery. Moving goods to another shop is an explicit inter-shop transfer with dispatch and receipt records. Preserve both shops and locations on the transfer, and include stock in transit once in combined inventory.
 
+Direct transfers between Tomjoy Pharmacy's shelves and Joyfrimens Pharmacy's shelves are supported in both directions, without passing through either storeroom. Deduct from the actual source shelf at dispatch and add to the destination shelf only on confirmed receipt; neither storeroom balance changes. Record the drug/batch, quantity, dispatching and receiving employees, timestamps, and any discrepancy. These transfers create no sales revenue or drawer cash movement.
+
 Preserve the supplier's promised/invoiced quantities separately from actual received quantities. A mismatch needs a discrepancy record and reason; the confirmation screen must not overwrite the original receipt to make it appear correct. Attach the supplier reference and record who received and approved the delivery.
 
 Direct-to-retail deliveries must still enter the stock ledger at the retail location. Otherwise stock can disappear without an expected balance to compare against. A sale deducts from its actual source location, including sales fulfilled directly from storage.
@@ -89,9 +91,9 @@ Dates must include a configured shop timezone, business date, and actual timesta
 
 Customer checkout accepts cash only. Require cash tendered to cover the sale and calculate change; the drawer increases by tendered minus change. No credit or electronic-payment checkout is in scope. Owner handovers and bank deposits remain recorded movements of business funds, not customer payment methods.
 
-All admins can change prices. Employees need an explicit price-change permission scoped to authorized shops. Only admins grant/revoke that permission, online, with an audit trail. Price permission does not grant discount, refund, stock adjustment, or withdrawal authority. Proposed default: prices belong to a shop; an admin may explicitly update both shops in one audited operation. Do not silently propagate an employee's price edit to the other shop.
+Confirmed on 2026-10-16: the same drug and selling unit always have one shared price across both pharmacies. All admins can change prices. Employees need an explicit price-change permission in an authorized shop and a listing for the unit there. Their approved edit changes the shared price for both shops; the permission and editing screens must clearly state that scope. Only admins grant/revoke the permission, online, with an audit trail. Price permission does not grant discount, refund, availability, stock adjustment, or withdrawal authority. Availability remains shop-specific.
 
-Save old/new price, product and selling unit, shop scope, actor, reason, version, and server effective time. Use version checks so concurrent price edits cannot silently overwrite each other. All price edits require connectivity and server acknowledgment, including admin edits. Offline sales use their downloaded approved price version; label it as potentially stale. Uploads preserve the price actually charged and flag stale prices or invalid authority for review rather than rewriting receipts or losing the sale. Record and surface large reductions and repeated price changes to the owner.
+Save old/new shared price, product and selling unit, initiating shop, both-shop effect, actor, reason, version, and server effective time. Use version checks so concurrent price edits cannot silently overwrite each other. All price edits require connectivity and server acknowledgment, including admin edits. Offline sales use their downloaded approved price version; label it as potentially stale. Uploads preserve the price actually charged and flag stale prices or invalid authority for review rather than rewriting receipts or losing the sale. Record and surface large reductions and repeated price changes to the owner.
 
 ### 10. Durable offline sales and synchronization
 
@@ -157,7 +159,7 @@ For a browser app, request persistent storage and handle denial/quota failures. 
 - A mixed shelf/storeroom basket deducts only the specified source quantities; supplying either shop from main storage creates no sales revenue.
 - Drawer A's shortage remains visible even if drawer B has an equal overage; B's initial float is not counted as revenue.
 - Cash tendered minus change equals the sale total; unsupported payment methods and credit checkout are rejected.
-- All admins and explicitly permitted employees can change prices within authorized shop scopes; an ordinary employee cannot. Offline edits cannot activate a new price.
+- All admins and explicitly permitted employees can edit the shared price through authorized shop listings; an ordinary employee cannot. Both shops observe the same new price. Offline edits cannot activate a new price.
 - A restart after local sale commit preserves the receipt, stock consumption, cash movement, and pending upload together.
 - A server commit followed by a lost acknowledgment and repeated uploads produces one posting. Reusing its ID with altered contents raises a conflict.
 - Storage failure never produces a false saved receipt; logout and updates preserve pending operations.
@@ -236,7 +238,7 @@ Price lookup assists staff with prices; it does not provide clinical prescribing
 | Role | Typical permissions |
 | --- | --- |
 | Cashier | Look up prices, record sales, print receipts, and submit refund or adjustment requests. |
-| Employee with price permission | Cashier capabilities plus audited online price changes for authorized shops. No permission grants or historical receipt edits. |
+| Employee with price permission | Cashier capabilities plus audited online edits of shared prices through authorized shop listings. Both pharmacies are affected; no permission grants or historical receipt edits. |
 | Stock clerk | Receive stock, inspect batches, and submit stock adjustments. No unrestricted cash access. |
 | Admin | Change prices, grant/revoke employee price permission, and manage authorized shops. Other sensitive powers remain explicit permissions. |
 | Manager | Approve permitted discounts, refunds, expenses, and stock adjustments; review shifts. Cannot approve their own controlled requests. |
@@ -265,6 +267,6 @@ For a small shop where independent approval is unavailable, explicitly mark such
 - Number of selling devices per shop, drawer/device assignments, and acceptable offline authorization duration.
 - Who may approve refunds, disburse withdrawals, adjust stock, and review daily counts.
 - Return rules and exact pack/strip/container/base-unit conversions.
-- Whether approved selling prices should always match across shops; the current proposed default allows explicit shop-scoped prices.
+- Shared prices across both shops are confirmed; any future exception would need an explicit policy change.
 
 Start implementation with the product/price catalogue, authenticated roles, stock ledger, sales and payment ledger, recorded outflows, and daily reconciliation. Add supplier balances, purchasing, expiry alerts, and further reports once the core balances reconcile reliably.

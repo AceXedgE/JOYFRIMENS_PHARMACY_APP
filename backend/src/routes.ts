@@ -4,14 +4,13 @@ import type { Database, Sql } from './database.ts';
 import type { Config } from './config.ts';
 import { audit } from './setup.ts';
 import { digest, equalTokens, hashPassword, newToken, SESSION_SECONDS, verifyPassword } from './security.ts';
+import { HttpError } from './http.ts';
+import { registerCatalogueRoutes } from './catalogue.ts';
+import { registerInventoryRoutes } from './inventory.ts';
 
 interface User { id: string; username: string; display_name: string; role: 'admin' | 'employee'; active: boolean; shared_storage_access: boolean; }
 interface Actor extends User { token_hash: string; csrf_token: string; }
 declare module 'fastify' { interface FastifyRequest { actor: Actor | null; } }
-class HttpError extends Error {
-  statusCode: number;
-  constructor(statusCode: number, message: string) { super(message); this.statusCode = statusCode; }
-}
 const denied = () => new HttpError(403, 'You do not have permission for this action.');
 const unauthenticated = () => new HttpError(401, 'Please sign in again.');
 const string = (minLength = 1, maxLength = 100) => ({ type: 'string', minLength, maxLength });
@@ -45,9 +44,24 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
   const cookieName = config.production ? '__Host-joyfrimens' : 'joyfrimens_session';
   const cookieOptions = { path: '/', httpOnly: true, secure: config.production, sameSite: 'strict' as const };
   app.decorateRequest('actor', null);
-  app.setErrorHandler((error, _request, reply) => {
+  app.setErrorHandler((error, request, reply) => {
     const err = error as Error & { statusCode?: number; code?: string; validation?: unknown };
-    if (err.validation) return reply.code(400).send({ message: 'Please check the submitted fields.' });
+    if (err.validation) {
+      if (request.method === 'POST' && request.routeOptions.url === '/api/admin/users') {
+        const validation = err.validation as { instancePath?: string; params?: { missingProperty?: string } }[];
+        const field = validation[0]?.instancePath?.split('/')[1] || validation[0]?.params?.missingProperty;
+        const messages: Record<string, string> = {
+          username: 'Username must be 3–64 characters: letters, numbers, dots, underscores or hyphens, with no spaces.',
+          name: 'Enter the staff member’s full name (1–100 characters).',
+          password: 'Initial password must contain 12–128 characters.',
+          role: 'Choose Employee or Administrator as the account role.',
+          memberships: 'Check the selected shops, then try again. Refresh the page if the shop list has changed.',
+          sharedStorageAccess: 'Check the shared-storage access setting, then try again.',
+        };
+        return reply.code(400).send({ message: field && messages[field] ? messages[field] : 'The staff form contains unexpected fields. Refresh the page and try again.' });
+      }
+      return reply.code(400).send({ message: 'Please check the submitted fields.' });
+    }
     if (err.code === '23505') return reply.code(409).send({ message: 'That account or record already exists.' });
     if (err.statusCode && err.statusCode < 500) return reply.code(err.statusCode).send({ message: err.message });
     app.log.error({ code: err.code, name: err.name }, 'Request failed');
@@ -226,4 +240,6 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
     return { events: (await db.query(`SELECT a.id,a.action,a.target_id,a.details,a.occurred_at,u.display_name AS actor_name
       FROM audit_events a LEFT JOIN users u ON u.id=a.actor_id ORDER BY a.id DESC LIMIT 100`)).rows };
   });
+  registerCatalogueRoutes(app, db);
+  registerInventoryRoutes(app, db);
 }

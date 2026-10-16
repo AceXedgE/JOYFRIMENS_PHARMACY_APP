@@ -3,7 +3,7 @@ import test from 'node:test';
 import { randomUUID } from 'node:crypto';
 import { openDatabase } from '../src/database.ts';
 import { readConfig } from '../src/config.ts';
-import { migrate } from '../src/migrate.ts';
+import { migrate, SCHEMA_VERSION } from '../src/migrate.ts';
 import { bootstrap } from '../src/setup.ts';
 import { buildApp } from '../src/app.ts';
 import { digest, newToken } from '../src/security.ts';
@@ -44,7 +44,7 @@ test('Sprint 2 database and access controls', async t => {
   let employee: Awaited<ReturnType<typeof login>>;
 
   await t.test('migrations and bootstrap preserve an existing installation', async () => {
-    assert.equal((await db.query('SELECT * FROM schema_migrations')).rows.length, 1);
+    assert.equal((await db.query('SELECT * FROM schema_migrations')).rows.length, SCHEMA_VERSION);
     assert.equal(shops.length, 2);
     assert.equal(shops[0].name, 'Tomjoy Pharmacy');
     assert.ok(shops.every(shop => shop.currency === 'GHS' && shop.timezone === 'Etc/GMT'));
@@ -77,6 +77,15 @@ test('Sprint 2 database and access controls', async t => {
     assert.equal((await app.inject({ url: `/api/shops/${shops[1].id}`, headers: employee })).statusCode, 404);
     assert.equal((await app.inject({ url: '/api/storage/shared', headers: employee })).statusCode, 403);
     assert.equal((await app.inject({ url: '/api/admin/audit', headers: employee })).statusCode, 403);
+  });
+  await t.test('staff creation identifies invalid fields without echoing passwords or creating accounts', async () => {
+    const valid = { username: 'validation.staff', name: 'Validation Staff', password: newToken(), role: 'employee', memberships: [], sharedStorageAccess: false };
+    for (const [patch, message] of [[{ username: 'two words' }, /Username must/], [{ name: '' }, /full name/], [{ password: 'tiny' }, /12–128/]] as const) {
+      const response = await app.inject({ method: 'POST', url: '/api/admin/users', headers: admin, payload: { ...valid, ...patch } });
+      assert.equal(response.statusCode, 400, response.body); assert.match(response.json().message, message);
+      assert.ok(!response.body.includes(valid.password)); assert.ok(!response.body.includes('tiny'));
+    }
+    assert.equal((await db.query('SELECT id FROM users WHERE username=$1', [valid.username])).rows.length, 0);
   });
   await t.test('employees cannot grant themselves access or create administrators', async () => {
     assert.equal((await app.inject({ method: 'PUT', url: `/api/admin/users/${employeeId}/access`, headers: employee,

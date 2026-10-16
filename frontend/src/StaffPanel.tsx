@@ -8,7 +8,7 @@ function AccessFields({ shops, value, setValue, disabled = false }: { shops: Sho
       <label><input type="checkbox" checked={!!member} onChange={event => setValue(event.target.checked ? [...value, { shopId: shop.id, canChangePrices: false }] : value.filter(item => item.shopId !== shop.id))} />{shop.name}</label>
       <label><input type="checkbox" disabled={!member || disabled} checked={member?.canChangePrices ?? false} onChange={event => setValue(value.map(item => item.shopId === shop.id ? { ...item, canChangePrices: event.target.checked } : item))} />May change prices</label>
     </div>;
-  })}</fieldset>;
+  })}<p className="form-hint">Price permission allows editing the shared price from that shop. Every approved change affects both pharmacies.</p></fieldset>;
 }
 
 function StaffCard({ staff, shops, currentId, save, busy }: { staff: Staff; shops: Shop[]; currentId: string; save: (path: string, method: string, body: unknown) => Promise<void>; busy: boolean }) {
@@ -53,10 +53,17 @@ export function StaffPanel({ session, shops, onExpired }: { session: Session; sh
   }
   async function create(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); const form = event.currentTarget; const data = new FormData(form);
+    const username = String(data.get('username') ?? '').trim().toLowerCase();
+    const name = String(data.get('name') ?? '').trim();
+    const password = String(data.get('password') ?? '');
+    setError(''); setSuccess('');
+    if (!name || name.length > 100) { setError('Enter the staff member’s full name (1–100 characters).'); form.elements.namedItem('name') instanceof HTMLInputElement && (form.elements.namedItem('name') as HTMLInputElement).focus(); return; }
+    if (!/^[a-z0-9._-]{3,64}$/.test(username)) { setError('Username must be 3–64 characters: letters, numbers, dots, underscores or hyphens, with no spaces.'); (form.elements.namedItem('username') as HTMLInputElement).focus(); return; }
+    if (password.length < 12 || password.length > 128) { setError('Initial password must contain 12–128 characters.'); (form.elements.namedItem('password') as HTMLInputElement).focus(); return; }
     setBusy(true); setError(''); setSuccess('');
     try {
       await api('/admin/users', { method: 'POST', csrf: session.csrfToken, body: {
-        username: String(data.get('username')).trim().toLowerCase(), name: String(data.get('name')).trim(), password: data.get('password'), role,
+        username, name, password, role,
         memberships: role === 'admin' ? [] : members, sharedStorageAccess: role === 'admin' || shared,
       } });
       form.reset(); setMembers([]); setRole('employee'); setShared(false);
@@ -67,7 +74,7 @@ export function StaffPanel({ session, shops, onExpired }: { session: Session; sh
     {error && <p role="alert" className="error-message">{error}</p>}{success && <p role="status" className="success-message">{success}</p>}
     <form className="panel form-grid" onSubmit={create}><h3>Create a staff account</h3>
       <label>Full name<input name="name" required maxLength={100} autoComplete="off" disabled={busy} /></label>
-      <label>Username<input name="username" required minLength={3} maxLength={64} pattern="[a-zA-Z0-9._-]+" autoComplete="off" disabled={busy} /></label>
+      <label>Username<input name="username" required minLength={3} maxLength={64} pattern="[a-zA-Z0-9._\-]+" title="Use 3–64 letters, numbers, dots, underscores or hyphens. No spaces." autoCapitalize="none" spellCheck={false} autoComplete="off" disabled={busy} /><small>For example: ama.mensah. No spaces; 3–64 characters.</small></label>
       <label>Initial password<input name="password" type="password" required minLength={12} maxLength={128} autoComplete="new-password" disabled={busy} /><small>At least 12 characters. Never reuse your own password.</small></label>
       <label>Account role<select value={role} onChange={event => setRole(event.target.value)} disabled={busy}><option value="employee">Employee</option><option value="admin">Administrator — all shops and staff access</option></select></label>
       {role === 'employee' ? <><AccessFields shops={shops} value={members} setValue={setMembers} disabled={busy} /><label className="check-label"><input type="checkbox" checked={shared} onChange={event => setShared(event.target.checked)} disabled={busy} />Access to shared main storage</label></> : <p className="notice">Administrators can create accounts and change permissions and prices across both shops.</p>}

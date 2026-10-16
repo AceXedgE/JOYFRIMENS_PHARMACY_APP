@@ -15,6 +15,10 @@ test('administrator configures staff access and employee uses only the assigned 
   await page.getByRole('button', { name: 'Staff & permissions', exact: true }).click();
   const create = page.locator('form').filter({ has: page.getByRole('heading', { name: 'Create a staff account' }) });
   await create.getByLabel('Full name').fill('Browser Staff');
+  await create.getByLabel('Username').fill('two words');
+  expect(await create.getByLabel('Username').evaluate(input => (input as HTMLInputElement).validity.patternMismatch)).toBe(true);
+  await create.getByLabel('Username').fill('browser-staff');
+  expect(await create.getByLabel('Username').evaluate(input => (input as HTMLInputElement).validity.valid)).toBe(true);
   await create.getByLabel('Username').fill('browser.staff');
   await create.getByLabel('Initial password').fill(employeePassword);
   await create.getByLabel('Tomjoy Pharmacy', { exact: true }).check();

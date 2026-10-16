@@ -12,14 +12,18 @@ References: [Apple web push](https://developer.apple.com/documentation/usernotif
 
 ## Code boundaries
 
-- `frontend/`: React + TypeScript, built with Vite. Sign-in, account management, server-backed shop selection, and permissions now; catalogue, drafts, local transaction database, and service worker later.
+- `frontend/`: React + TypeScript, built with Vite. Sign-in, account management, shop selection, and a mobile-first drug catalogue with shared-price editing and history, plus mobile stock receiving/transfers, are implemented. Sales drafts, local transaction database, and service worker come later.
 - `backend/`: Fastify + TypeScript on Node 24. PostgreSQL persistence, cookie sessions, authorization, validated routes, and account audit events are implemented in Sprint 2.
 - PostgreSQL is the deployment database. PGlite provides embedded PostgreSQL for local development and isolated tests, using the same SQL migration and query layer. Production configuration requires an external PostgreSQL connection. See [accounts and setup](ACCOUNTS.md) and [PGlite documentation](https://pglite.dev/docs/).
 - Local transactional browser storage is planned for Sprint 7. Cache Storage will hold app assets, not be the financial transaction database.
 
 Development proxies `/api` through Vite to `127.0.0.1:3001`. Production should serve frontend assets over HTTPS and reverse-proxy `/api` to the backend on the same origin. Avoid permissive cross-origin defaults. Public health returns liveness only, not ongoing database readiness or sync completeness. Sessions are server-side and permission checks read current database state, so a session cannot preserve revoked shop access.
 
-## Core invariants for later sprints
+## Inventory boundary
+
+Sprint 4 adds batch/location balances, an immutable stock ledger, supplier receipt reviews, and dispatched/in-transit/received transfers. Source authorization and destination receipt authorization are independent. Direct shelf transfers between both shops bypass storerooms. Requests carry retry keys; transactions lock batches before changing balances. Counts require an unchanged balance version. See [INVENTORY.md](INVENTORY.md) for the implemented contract and limits.
+
+## Core invariants
 
 1. A completed sale belongs to one shop and drawer session forever; stock sources belong to that shop. Shared main storage supplies shops through transfers.
 2. All customer payments are cash. Tender minus change is the sale amount.
@@ -29,5 +33,6 @@ Development proxies `/api` through Vite to `127.0.0.1:3001`. Production should s
 6. Sale IDs survive retries. Database transactions post all related ledger effects together.
 7. Offline completed sales keep actual prices and original session/date. Server receipt time is separate.
 8. Authoritative server checks are required for access, prices, units, quantities, and totals. Client UI checks are not authorization.
+9. One shared price exists per drug selling unit across both pharmacies. Shop availability is independent. A price-permitted employee edits the shared value through an authorized shop listing; the interface explicitly explains that both shops are affected.
 
 Full requirements and edge cases are in [SYSTEM_REVIEW.md](../SYSTEM_REVIEW.md). Original owner notes are preserved in [OWNER_NOTES.md](OWNER_NOTES.md); later confirmed rules override early brainstorming.

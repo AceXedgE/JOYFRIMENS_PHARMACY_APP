@@ -1,0 +1,21 @@
+.inventory { max-width: 1100px; }
+.inventory h2 { margin-top: 28px; }
+.inventory h3 { margin-top: 0; overflow-wrap: anywhere; }
+.stock-toolbar { display: flex; align-items: end; gap: 12px; margin: 20px 0; }
+.stock-toolbar label { flex: 1; min-width: 0; }
+.inventory label { display: grid; gap: 7px; font-weight: 600; }
+.inventory input,.inventory select,.inventory textarea { width: 100%; min-width: 0; min-height: 44px; padding: 10px; font: inherit; border: 1px solid #b9c9c0; border-radius: 8px; background: white; color: #173e30; }
+.inventory textarea { min-height: 80px; resize: vertical; }
+.inventory button { min-height: 44px; white-space: normal; }
+.stock-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,310px),1fr)); gap: 14px; }
+.stock-cards .panel { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.stock-form { margin-top: 18px; max-width: 640px; }
+.stock-form fieldset { display: grid; gap: 15px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.stock-form p { margin: 0; }
+.allocation { display: grid; gap: 12px; border-left: 3px solid #629c80; padding-left: 12px; }
+.receipt-lines { padding-left: 24px; }
+.receipt-lines li { padding: 12px 0; border-bottom: 1px solid #d9e3dc; overflow-wrap: anywhere; }
+.receipt-lines p { margin: 8px 0; }
+.inventory .duplicate-confirm { display: flex; align-items: center; gap: 10px; }
+.inventory .duplicate-confirm input { width: 24px; min-height: 24px; flex: 0 0 24px; }
+@media(max-width:600px) { .stock-toolbar { flex-direction: column; align-items: stretch; } .inventory .heading h1 { font-size: 27px; } .inventory .panel { padding: 16px; } .inventory input,.inventory select,.inventory textarea { font-size: 16px; } }

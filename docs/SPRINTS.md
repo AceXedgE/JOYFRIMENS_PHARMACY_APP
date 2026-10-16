@@ -1,6 +1,6 @@
 # Delivery sprints
 
-Work through these in order, reviewing the running result at the end of each sprint. Sprints 1 and 2 are implemented. Subsequent sprints are planned, not completed features. A sprint is done when its acceptance checks pass and its limitations are documented.
+Work through these in order, reviewing the running result at the end of each sprint. Sprints 1–4 are implemented. Subsequent sprints are planned, not completed features. A sprint is done when its acceptance checks pass and its limitations are documented.
 
 ## Sprint 1 — Project foundation
 
@@ -28,15 +28,29 @@ Sprint 2 implemented and verified locally: 16 database/API checks, TypeScript ch
 
 ## Sprint 3 — Drug catalogue and price lookup
 
-Add product strength/form, units and pack conversions, shop prices, availability, search with ranked spelling suggestions, price history and authorized price editing. Resolve whether prices should always match across shops.
+Add product strength/form, units and pack conversions, shared prices, shop-specific availability, search with ranked spelling suggestions, price history and authorized price editing. Owner clarification on 2026-10-16: both shops always use the same price for the same selling unit, and the client is primarily used on mobile phones.
 
 Acceptance: exact matches rank first, long names are searchable, suggestions never automatically substitute a drug, unauthorized price edits fail, concurrent edits are detected, and old price versions remain available. Use integer minor currency units with explicit rounding.
+
+Implemented: shared product/unit definitions, one price per selling unit, shop listings, immutable price history, audited price/availability edits, permission rechecks, optimistic versions, safe decimal-to-pesewa conversion, ranked search and pagination, and mobile cards/forms with a persistent shop selector. Product identity/conversions are immutable; no stock or sales workflows are included. See [CATALOGUE.md](CATALOGUE.md) for behavior, limits, and upgrade instructions.
+
+Verification: 29 backend checks passed, including migration from Sprint 2 without resetting accounts/storage. Two browser workflows cover accounts and catalogue, with catalogue checks at 390px and 320px. Type checks and production builds passed. Headless Edge and embedded PostgreSQL were used locally; hosted PostgreSQL CI and physical-phone checks remain separate.
 
 ## Sprint 4 — Receiving, storage, and transfers
 
 Implement both shared main-storage rooms, both shops' shelf/storeroom locations, supplier receipt versus actual receipt, split receiving, batches/expiry, stock ledger, counted adjustments, and dispatched/in-transit/received transfers.
 
+Direct shelf-to-shelf transfers must work in both directions: Tomjoy Pharmacy to Joyfrimens Pharmacy and Joyfrimens Pharmacy to Tomjoy Pharmacy. Neither shop's storeroom is involved in these movements. Record the actual source shelf, destination shelf, drug/batch, quantity, dispatching employee, receiving employee, and timestamps. Dispatch removes stock from the source into transit; confirmed receipt makes the received quantity available on the destination shelf. Preserve shortages or other receipt discrepancies for review; these movements generate no sale or cash entry.
+
 Acceptance: quantities are conserved, direct-to-shelf deliveries are recorded, transfer retries do not duplicate stock, recipient discrepancies persist, and unauthorized location access fails. Verify carton-to-base-unit calculations and concurrent stock deductions.
+
+Verify direct shelf-to-shelf transfers in both directions leave both storeroom balances unchanged, count in-transit stock only once, block unavailable or reserved quantities, and require authorized dispatch and receipt at the respective shops.
+
+Sprint 4 implemented: migration 003, batch/location balances, immutable stock ledger, supplier versus actual receipts with split allocation and separate admin review, both direct shelf transfer directions, shared/internal routes, partial receipts, auditable transit losses, admin counts with variance/version checks, expiry checks, permission rechecks, and idempotent request recovery. The mobile interface keeps actual locations explicit. See [INVENTORY.md](INVENTORY.md) for usage, API, and current limits.
+
+Verification: 42 backend tests passed, including upgrade from Sprint 3, stock conservation, concurrent deductions, reservations, authorization, and immutable records. Three browser workflows passed, covering accounts, catalogue, and mobile inventory with a committed-but-lost dispatch response followed by reload/retry. TypeScript, production builds, and built API/frontend smoke checks passed. Local verification used PGlite and headless Edge; deployed PostgreSQL, hosted CI, and physical iOS/Android checks remain separate. Inventory writes are online-only. Full ledger exports and larger-catalogue pagination remain future work.
+
+Sprint 4 follow-up: migration 004 adds a supplier receipt header with up to 100 drug/batch lines, phone-friendly line editing and full-receipt review, atomic confirmation, document-level duplicate protection, reopening saved documents, and whole-document admin approval. Existing single-line receipts remain unchanged. The layout is provisional pending a real supplier receipt sample; uploads and invoice pricing are not implemented. Follow-up verification: 44 backend tests, three browser workflows, TypeScript checks, and production builds passed, including a 22-drug receipt and preservation of existing inventory during migration.
 
 ## Sprint 5 — Cash sales and receipts
 

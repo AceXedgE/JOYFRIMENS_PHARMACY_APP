@@ -20,6 +20,7 @@ button:disabled { opacity: .55; cursor: wait; }
 .success-message { background: #e8f2e3; color: #305a35; }
 .login-form small, .form-grid small { font-size: 12px; color: #738074; font-weight: 400; line-height: 1.6; }
 .header-actions { display: flex; gap: 22px; align-items: center; }
+.topbar { position: sticky; top: 0; z-index: 20; }
 .sidebar nav button { border: 0; text-align: left; color: inherit; background: transparent; padding: 15px 12px; border-radius: 7px; cursor: pointer; font-size: 13px; }
 .sidebar nav button:hover, .sidebar nav button.nav-active { background: #2b5147; }
 .form-grid { display: grid; gap: 20px; max-width: 720px; margin: 24px 0; }
@@ -45,14 +46,19 @@ legend { font-size: 12px; font-weight: 600; padding: 0 5px; }
 .summary h2 { overflow-wrap: anywhere; }
 @media(max-width:1050px) { .staff-grid { grid-template-columns: 1fr; } .header-actions { gap: 12px; } }
 @media(max-width:760px) {
+  .sidebar { padding: 14px 20px; }
+  .sidebar .brand-mark { width: 30px; height: 32px; }
   .login-shell { grid-template-columns: 1fr; gap: 30px; padding: 30px 20px; }
   .login-intro .brand-mark { margin-bottom: 25px; }
   .login-intro h1 { font-size: 36px; }
-  .sidebar nav { display: flex; gap: 5px; margin-top: 18px; flex-wrap: wrap; }
+  .sidebar nav { display: flex; gap: 5px; margin-top: 12px; flex-wrap: wrap; }
   .sidebar nav button { padding: 10px; font-size: 12px; }
-  .topbar { flex-wrap: wrap; gap: 15px; }
+  .topbar { flex-wrap: wrap; gap: 10px; padding: 12px 20px; }
+  .topbar > span { display: none; }
   .header-actions { width: 100%; justify-content: space-between; }
-  .shop-picker { flex-direction: column; align-items: flex-start; }
-  .shop-picker select { max-width: 240px; }
+  .header-actions .shop-picker { flex: 1; min-width: 0; }
+  .header-actions .text-button { flex-shrink: 0; }
+  .shop-picker { flex-direction: column; align-items: flex-start; font-size: 0; }
+  .shop-picker select { max-width: 240px; width: 100%; min-height: 44px; font-size: 13px; }
   .panel { padding: 22px; }
 }

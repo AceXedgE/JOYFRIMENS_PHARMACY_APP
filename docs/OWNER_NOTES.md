@@ -92,3 +92,7 @@ Offline operation:
 - Before offline selling, assign each drawer session to one device and allocate exclusive stock quantities to that device. Other devices cannot sell or transfer those quantities until released safely. Never assume two offline devices share a live stock balance.
 - Offline closing counts are provisional until all participating devices sync and conflicts are reviewed. Record late uploads under the original sale session/date, not the upload date.
 - Detailed offline controls and verification cases are in SYSTEM_REVIEW.md. Background sync and exact closed-app warning delivery depend on the platform and cannot be assumed.
+
+Owner clarifications, 2026-10-16 (override earlier price-scope assumptions):
+- The app will primarily be used on mobile phones, so catalogue lookup and price editing must be mobile-first.
+- Both pharmacies always use the same drug price. A selling unit has one shared approved price across both shops; authorized edits affect both.

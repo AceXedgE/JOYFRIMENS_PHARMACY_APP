@@ -1,0 +1,65 @@
+.catalogue { max-width: 920px; margin: 0 auto; }
+.catalogue-heading { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 24px; }
+.catalogue-heading h1 { font-size: 32px; }
+.catalogue-heading p:not(.eyebrow) { color: #627568; line-height: 1.7; font-size: 14px; }
+.catalogue-search { background: #f5f6f2; padding: 12px 0 18px; }
+.catalogue label, .unit-editor label { display: grid; gap: 8px; font-size: 13px; font-weight: 600; }
+.catalogue label.check-label { display: flex; font-size: 12px; }
+.catalogue-search input[type=search] { min-height: 52px; border: 1px solid #7c9983; background: #fff; font-size: 16px; box-shadow: 0 2px 8px #173e3608; }
+.search-options { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 15px; flex-wrap: wrap; }
+.catalogue-meta { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: #5e7264; margin: 10px 0 18px; flex-wrap: wrap; }
+.drug-list { display: grid; gap: 20px; }
+.drug-card { border: 1px solid #d5dfd3; border-radius: 12px; background: white; padding: 24px; overflow-wrap: anywhere; }
+.drug-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.drug-title h2 { font-size: 21px; margin: 0; line-height: 1.4; }
+.drug-title > span { border-radius: 6px; background: #edf2e5; color: #3e5739; padding: 6px 10px; font-size: 13px; flex-shrink: 0; }
+.drug-generic { font-size: 13px; color: #637367; margin: 10px 0 20px; line-height: 1.7; }
+mark { background: #e6edbf; color: inherit; border-radius: 2px; }
+.suggestion-label { margin: 0 0 15px; padding: 10px; border-radius: 6px; background: #fff3d9; color: #775a20; font-size: 12px; line-height: 1.6; }
+.selling-unit { border-top: 1px solid #e4e9df; padding: 18px 0 0; margin-top: 18px; }
+.unit-summary { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.unit-summary p { font-size: 12px; line-height: 1.6; margin: 7px 0; color: #5d7163; }
+.unit-summary small { font-size: 11px; color: #687969; }
+.unit-price { display: grid; gap: 8px; text-align: right; flex-shrink: 0; }
+.unit-price strong { font-size: 22px; letter-spacing: -.5px; }
+.available, .unavailable { font-size: 11px; padding: 5px 8px; border-radius: 5px; }
+.available { background: #e9f2e5; color: #3e6538; }
+.unavailable { background: #f3ede5; color: #805c3a; }
+.unit-actions, .catalogue-actions, .catalogue-pagination { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+.unit-actions .text-button { min-height: 44px; padding: 10px; font-size: 12px; }
+.unit-actions .secondary-button { font-size: 12px; }
+.unit-editor { margin-top: 20px; padding: 20px; background: #f2f6ed; border: 1px solid #cbdabc; border-radius: 8px; display: grid; gap: 15px; }
+.unit-editor h3 { margin: 0; font-size: 17px; }
+.unit-editor p { font-size: 13px; line-height: 1.7; margin: 0; }
+.scope-notice { padding: 12px; background: #e4ecd9; border-radius: 6px; }
+.price-history { background: #f8faf5; padding: 18px; border: 1px solid #dce6d2; margin-top: 20px; border-radius: 8px; }
+.price-history h3 { margin: 0 0 14px; font-size: 16px; }
+.price-history article { padding: 14px 0; border-top: 1px solid #dde5d4; font-size: 13px; }
+.price-history p { line-height: 1.7; }
+.price-history small { color: #5e7161; font-size: 11px; line-height: 1.8; }
+.price-history .catalogue-actions, .catalogue-pagination { justify-content: space-between; font-size: 12px; }
+.catalogue-form { display: grid; gap: 20px; }
+.catalogue-form .section-heading { margin: 0; }
+.catalogue-form p { margin: 0; line-height: 1.7; font-size: 13px; }
+.product-fields, .unit-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.form-hint { color: #607260; font-size: 12px; line-height: 1.8; }
+.empty-catalogue h2 { font-size: 21px; }
+.empty-catalogue p { font-size: 14px; line-height: 1.8; color: #687969; }
+@media(max-width:760px) {
+  .catalogue-heading { align-items: flex-start; }
+  .catalogue-heading .eyebrow { display: none; }
+  .catalogue-heading { margin-bottom: 10px; }
+  .catalogue-heading p:not(.eyebrow) { margin: 8px 0 0; font-size: 13px; line-height: 1.6; }
+  .catalogue-heading h1 { font-size: 28px; }
+  .catalogue-heading .primary-button { white-space: nowrap; padding: 12px; }
+  .drug-card { padding: 18px; }
+  .drug-title { flex-wrap: wrap; }
+  .drug-title h2 { font-size: 20px; }
+  .product-fields, .unit-fields { grid-template-columns: 1fr; }
+  .catalogue-form { padding: 18px; }
+  .unit-editor { padding: 15px; }
+  .unit-editor .catalogue-actions > button { width: 100%; }
+  .unit-price strong { font-size: 20px; }
+  .catalogue-meta { flex-direction: column; gap: 4px; margin: 8px 0 12px; }
+  .catalogue-pagination { padding: 10px 0; }
+}
