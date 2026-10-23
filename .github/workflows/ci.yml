@@ -13,6 +13,8 @@ jobs:
       - run: npm run check
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - run: node scripts/test-sales.mjs
+      - run: node scripts/test-cash.mjs
   postgres:
     runs-on: ubuntu-latest
     services:

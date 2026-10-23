@@ -1,6 +1,8 @@
 # Delivery sprints
 
-Work through these in order, reviewing the running result at the end of each sprint. Sprints 1–4 are implemented. Subsequent sprints are planned, not completed features. A sprint is done when its acceptance checks pass and its limitations are documented.
+2026-10-21 owner correction: before further sprints, the sales workflow now treats shelf stock as availability-only, shows storeroom hints, and uses a separate daily remittance count and final shop lock-up balance. The next opening carries actual final cash. Receiving UI is deferred while this corrected sales/cash flow is reviewed.
+
+Work through these in order, reviewing the running result at the end of each sprint. Sprints 1-6 are implemented. Subsequent sprints are planned, not completed features. A sprint is done when its acceptance checks pass and its limitations are documented.
 
 ## Sprint 1 — Project foundation
 
@@ -52,17 +54,29 @@ Verification: 42 backend tests passed, including upgrade from Sprint 3, stock co
 
 Sprint 4 follow-up: migration 004 adds a supplier receipt header with up to 100 drug/batch lines, phone-friendly line editing and full-receipt review, atomic confirmation, document-level duplicate protection, reopening saved documents, and whole-document admin approval. Existing single-line receipts remain unchanged. The layout is provisional pending a real supplier receipt sample; uploads and invoice pricing are not implemented. Follow-up verification: 44 backend tests, three browser workflows, TypeScript checks, and production builds passed, including a 22-drug receipt and preservation of existing inventory during migration.
 
+Main-storage follow-up: positive additions of the same product to both main rooms require explicit duplicate confirmation, including different batches, supplier receipts, transfer receipts, and admin counts. Product locking prevents concurrent bypass. Verification: 46 backend tests and an isolated mobile checkbox regression passed. Demo data has ten medicines per location across all six locations, with no overlap between the two main rooms.
+
 ## Sprint 5 — Cash sales and receipts
 
 Implement shop-bound drafts, source location per sale line, shelf/storeroom mixed baskets, location warning/confirmation, cash tender/change, unique receipts, atomic stock/cash/sale posting, idempotency, and controlled returns/refunds. Create drawer sessions and their opening floats.
 
 Acceptance: changing shops cannot move a draft, underpayment/noncash checkout fails, sold quantities are deducted once, historical prices remain intact, retries cannot duplicate sales, and cumulative refunds cannot exceed the original receipt. Online flow only until Sprint 7.
 
+Sprint 5 implemented: migration 005 adds shop-bound saved baskets, mixed shelf/storeroom sources, location warnings and confirmation, drawer opening floats, atomic cash/stock/receipt posting, retry recovery and admin-only original-price refunds. Receipt, cash and refund history are immutable; quarantined returns do not enter sellable stock. See [SALES.md](SALES.md) for operating instructions, API and limitations.
+
+Verification: all 56 backend tests passed, plus the focused sales suite after final drawer protections. Type checks, production builds, the HTTP smoke test and all three existing browser workflows passed. The isolated browser regression verifies mobile mixed-source checkout, shop-switch parking, lost-response retry without duplication, quarantine refunds and 320px layout. Actual phone and hosted PostgreSQL checks remain release work. Cash closing and offline selling are still deferred to Sprints 6 and 7.
+
 ## Sprint 6 — Cash closing and owner review
+
+Pre-sprint owner-notes corrections: supplier documents now accept 100 detailed lines within a 512 KiB request limit; inventory shows pack/loose-unit equivalents; operational timestamps include GMT weekdays; sales search reuses catalogue ranking and labels spelling suggestions. All 60 backend tests and production builds passed. Wrong-shop geographic matching still requires shop coordinates; manual confirmation remains active. See [OWNER_NOTES_REVIEW.md](OWNER_NOTES_REVIEW.md).
 
 Implement expenses, staff advances, owner withdrawals, approvals, A/B drawer switch, cash denomination counts, float transfers, handovers, shop/category reports, shortages/overages, manual exception days, and reviewable audit history.
 
 Acceptance: counts never overwrite expected amounts, opposite drawer variances do not cancel unnoticed, transfers are not revenue, post-count sales stay on their original business date, and category reports include all physical cash in reconciliation. Backfilled manual sales must not duplicate totals.
+
+Sprint 6 implemented: migration 006, separate payment request/approval/disbursement, flagged emergencies, paired float transfers, immutable count cutoffs and denomination submissions, admin review/closing, recipient acknowledgments, unique retained-float reuse, stale-day checkout blocking, sale-category snapshots, owner/shop/category reports and approved manual days with unique paper references. No automatic itemized backfill or count-correction workflow is claimed. See [CASH_CONTROL.md](CASH_CONTROL.md) for operating instructions and limits.
+
+Verification: 71 backend checks, type checks, production builds, all three existing browser workflows and the isolated mobile cash-control regression passed. The latter covers lost-response recovery, a preserved shortage, review/closing, retained float and recipient acknowledgment at phone sizes down to 320px. Hosted PostgreSQL CI and physical-device/pilot checks remain separate.
 
 ## Sprint 7 — Offline selling and installable PWA
 
@@ -75,3 +89,5 @@ Acceptance: loss of connectivity or app restart does not lose a committed local 
 Exercise end-to-end roles, real shop processes, accessibility/mobile usability, deployment over HTTPS, backup/restore, recovery exports, monitoring, reconciliation, and security controls. Use a limited pilot and compare app figures against independently counted stock and cash before routine use.
 
 Acceptance: restore/reconciliation drill passes; no unresolved critical authorization or data-loss issues; real-device offline scenarios pass; operators can recover from a lost device using the agreed procedure. Record remaining risks and operating instructions. Release only the features proven in the pilot.
+
+Sprint 7 progress, 2026-10-23: app-shell caching, IndexedDB request queue, cached catalogue search, offline reload, automatic foreground retries, original-actor binding, uploaded audit evidence, explicit conflict errors and 20:30 GMT warning are implemented. Mobile browser regression covers multiple offline sales and lost responses without duplicate posting. This is not completion of the full Sprint 7 acceptance: device stock allocations, closed-day correction, bounded offline authorization, install prompts and real iOS/Android validation remain outstanding. See OFFLINE_SALES.md.

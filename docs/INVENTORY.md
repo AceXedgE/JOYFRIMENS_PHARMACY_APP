@@ -1,5 +1,23 @@
 # Stock receiving and transfers
 
+## Current storeroom workflow (2026-10-23)
+
+This section supersedes the historical Sprint 4 descriptions below wherever they mention counted shelves, supplier prices, or the old navigation.
+
+Open **Storerooms** in the navigation bar. It is separate from Counter and contains a room selector, **Receive delivery**, **Add stock manually**, and expandable sections for supplier deliveries, room medicines, transfers, receipts and history. Room medicines can be searched; pack equivalents and loose units remain visible. History is limited to the latest 100 entries per location; the supplier inbox requests 20 deliveries per page.
+
+Only storeroom balances change. A dispatch from a storeroom decreases it; a confirmed receipt into another storeroom increases that destination. Shelf movements retain their quantities in the movement ledger but do not change a remaining shelf balance. Legacy shelf rows remain untouched for historical preservation and are excluded from the location stock response. Shelf physical counts are rejected. Choose a shelf in the location selector to record outgoing goods even without an old batch/balance record. No stock movement clears its unavailable mark.
+
+**Add stock manually** records existing catalogue medicines with their pack quantity, batch and expiry directly into the selected authorised storeroom, without a fictional supplier receipt. Retries use the same request key; each addition records its actor. Receiving or adding a medicine into both main rooms requires the duplicate checkbox. Staff access remains limited to assigned shop locations and, when granted, shared main rooms. Destination names alone do not grant receiving or balance access.
+
+**Supplier deliveries > Supplier links** lets an admin create a private link for one supplier delivery to the selected room. Send that link manually to the supplier. The separate `/supplier` page accepts up to 100 medicine lines, pack sizes and quantities, without prices. Supplier submission does not post stock. Links expire after 30 days, can be revoked, and store only a token hash on the server; the token travels in the URL fragment and authorization header rather than the API URL. An identical retry returns the saved submission. A different submission needs a new link.
+
+Authorised receiving staff open the submission, match each line to a catalogue medicine/pack, and enter actual quantities, batch and expiry. They then review allocations, choose **All to [room]** or custom per-medicine splits, and confirm the whole receipt atomically. Every submitted line and original quantity must remain accounted for, including zero arrivals. The original supplier text remains immutable alongside the received document. Receipts cannot be posted twice for one submission.
+
+The supplier page is part of the local app; suppliers outside the local network need the app deployed at a reachable HTTPS address. No hosting or automatic link messages are configured here. Supplier submission and inventory writes require connectivity. The supplier's input draft is saved in that browser; staff receipt drafts remain unsaved until confirmed, so keep the form open while checking a delivery. The API preserves pending write retries separately from unsubmitted form drafts.
+
+Migration 018 adds supplier links and submissions without deleting stock or historical records. Verify with `npm test`, `npm run build`, and `node scripts/test-storerooms.mjs` (isolated mobile browser test).
+
 Sprint 4 adds online inventory workflows. Cash sales, refunds, drawer accounting, offline allocations, and device synchronization remain later sprints. Inventory records do not create income or cash transactions.
 
 ## Upgrade
@@ -89,3 +107,15 @@ The receiving dropdown loads shared catalogue definitions but never another shop
 Backend integration tests cover upgrade from Sprint 3, preserved catalogue/accounts, carton conversion, split allocations, immutable supplier discrepancies, approval authorization, duplicate references, retry keys, both shelf directions, shared/internal routes, partial receipts, explicit transit losses, stock conservation, reservations, concurrent deductions, stale counts, expiry, CSRF, access revocation, and immutable records. Tests support both isolated PGlite and the existing PostgreSQL CI job. Browser coverage exercises phone-width receiving, an interrupted committed dispatch and reload/retry, shelf transfers in both directions, discrepancy history, and 320px overflow checks. Physical iOS/Android and deployed PostgreSQL remain release validation steps.
 
 Multi-drug verification adds a 22-drug receipt, rollback of an invalid final line, duplicate reference/retry protection, unauthorized allocation/document reads, duplicate drug/batch rejection, different batches of one drug, all-line approval, concurrent duplicate submissions, and migration preservation of existing inventory records. The mobile browser workflow covers multiple drugs, line editing, the review screen, reopening the document, and complete-receipt approval.
+
+## Main-storeroom duplicate confirmation
+
+The same catalogue medicine may be stocked normally across shop shelves and shop storerooms. Adding positive stock to a main storeroom is blocked if that medicine already has positive stock in the other main storeroom, including a different batch or expiry. This compares the existing product identity, not just the drug name or batch. Normal restocking within a single main room is allowed while the other room has none. Zero-stock history does not count as duplication.
+
+To intentionally stock it in both main rooms, tick **Allow duplicate in main storerooms** on the supplier drug line, incoming transfer receipt, or admin physical count. The server requires an explicit boolean `forceDuplicate: true` on that operation (per line for multi-drug receipts), and records the confirmation with the audited request. The checkbox never creates extra stock by itself or relaxes quantity, expiry, permission, or receipt retry checks. Transfer dispatch remains a movement into transit; the duplication check applies when the destination receives it.
+
+Product locks serialize additions across different batches so simultaneous receipts cannot both bypass the rule. Earlier records are retained, not removed. Existing duplicated main-room stock, if any, needs confirmation again for further positive additions.
+
+Verification: 46 backend tests passed, including different batches, positive counts, transfer receipts, and concurrent main-room arrivals. After building, run `node scripts/test-main-room-duplicate.mjs` for the isolated 390px browser regression (ports 4189 plus an automatically assigned API port). This uses temporary in-memory data and does not change the local demo inventory.
+
+Owner-notes follow-up: supplier documents accept up to 100 lines within a 512 KiB request limit. Inventory cards show configured pack equivalents and loose remainders alongside exact base-unit balances. Operational timestamps include GMT weekday/date.

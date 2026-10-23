@@ -13,4 +13,4 @@ const config = readConfig({ NODE_ENV: 'test', APP_ORIGINS: 'http://127.0.0.1:417
 const app = buildApp({ db, config });
 app.addHook('onClose', () => db.close());
 for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => { void app.close(); });
-await app.listen({ host: '127.0.0.1', port: 3001 });
+await app.listen({ host: '127.0.0.1', port: 3002 });

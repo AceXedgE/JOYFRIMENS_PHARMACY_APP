@@ -70,13 +70,13 @@ test('Sprint 3 catalogue, shared prices, and migration upgrade', async t => {
     const box = product.units.find((unit: { label: string }) => unit.label === 'box');
     unitId = single.id; boxId = box.id;
     assert.equal(single.priceMinor, 125); assert.equal(box.priceMinor, 1500); assert.equal(box.baseQuantity, 14);
-    assert.equal((await listing(secondBase)).total, 0);
+    assert.equal((await listing(secondBase)).total, 1);
     assert.equal((await db.query('SELECT * FROM price_history')).rows.length, 2);
   });
-  await t.test('ordinary staff cannot create products, edit prices, or manage availability', async () => {
+  await t.test('ordinary staff cannot create products or edit prices but can mark shelf availability', async () => {
     assert.equal((await app.inject({ method: 'POST', url: base, headers: staff, payload: { ...sample, name: 'Unauthorized' } })).statusCode, 403);
     assert.equal((await app.inject({ method: 'PUT', url: priceUrl(), headers: staff, payload: { priceMinor: 1, expectedVersion: 1, reason: 'Unauthorized reduction' } })).statusCode, 403);
-    assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: staff, payload: { available: false, expectedVersion: 1, reason: 'Unauthorized status' } })).statusCode, 403);
+    assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: staff, payload: { available: false, expectedVersion: 1, reason: 'Shelf ran out' } })).statusCode, 200);
     assert.equal((await app.inject({ url: secondBase, headers: staff })).statusCode, 404);
     assert.equal((await app.inject({ url: `${base}?includeUnlisted=true`, headers: staff })).statusCode, 403);
     assert.equal((await app.inject({ url: `${secondBase}/units/${unitId}/history`, headers: staff })).statusCode, 404);
@@ -95,21 +95,25 @@ test('Sprint 3 catalogue, shared prices, and migration upgrade', async t => {
   });
   await t.test('listing the same drug in shop 2 uses the existing shared price', async () => {
     const unlisted = await app.inject({ url: `${secondBase}?includeUnlisted=true`, headers: admin });
-    assert.equal(unlisted.json().products[0].units[0].available, null);
-    const response = await app.inject({ method: 'PUT', url: `${secondBase}/units/${unitId}/availability`, headers: admin, payload: { available: true, expectedVersion: 0, reason: 'Offer at second shop' } });
+    assert.equal(unlisted.json().products[0].units[0].available, true);
+    const response = await app.inject({ method: 'PUT', url: `${secondBase}/units/${unitId}/availability`, headers: admin, payload: { available: false, expectedVersion: 1, reason: 'Temporarily unavailable at second shop' } });
     assert.equal(response.statusCode, 200, response.body);
+    await app.inject({ method: 'PUT', url: `${secondBase}/units/${unitId}/availability`, headers: admin, payload: {available:true,expectedVersion:2,reason:'Replenished second shop shelf'} });
     assert.equal((await listing(secondBase)).products[0].units[0].priceMinor, 125);
     assert.equal((await db.query('SELECT * FROM unit_prices WHERE unit_id=$1', [unitId])).rows.length, 1);
   });
-  await t.test('authorized employee changes one shared price and cannot alter shop availability', async () => {
+  await t.test('authorized employee changes shared prices and restores shelf availability', async () => {
     const grant = await app.inject({ method: 'PUT', url: `/api/admin/users/${staffId}/access`, headers: admin, payload: { memberships: [{ shopId: shop1, canChangePrices: true }], sharedStorageAccess: false } });
     assert.equal(grant.statusCode, 200);
-    const response = await app.inject({ method: 'PUT', url: priceUrl(), headers: staff, payload: { priceMinor: 135, expectedVersion: 1, reason: 'Approved supplier price review' } });
+    const response = await app.inject({ method: 'PUT', url: priceUrl(), headers: staff, payload: { priceMinor: 135, expectedVersion: 1 } });
     assert.equal(response.statusCode, 200); assert.equal(response.json().priceScope, 'both_shops');
     assert.equal((await current()).priceMinor, 135);
     assert.equal((await listing(secondBase)).products[0].units[0].priceMinor, 135);
-    assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: staff, payload: { available: false, expectedVersion: 1, reason: 'Attempted availability change' } })).statusCode, 403);
-    const history = (await app.inject({ url: `${base}/units/${unitId}/history`, headers: staff })).json().history;
+    assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: staff, payload: { available: true, expectedVersion: 2, reason: 'Shelf replenished' } })).statusCode, 200);
+    assert.equal((await app.inject({url:`${base}/units/${unitId}/history`,headers:staff})).statusCode,403);
+    assert.equal((await app.inject({url:'/api/admin/price-history',headers:staff})).statusCode,403);
+    const report=await app.inject({url:'/api/admin/price-history',headers:admin});assert.equal(report.statusCode,200,report.body);assert.ok(report.json().entries.some((e:any)=>e.actor_name==='Catalogue Staff'));
+    const history = (await app.inject({ url: `${base}/units/${unitId}/history`, headers: admin })).json().history;
     assert.equal(history[0].old_price_minor, 125); assert.equal(history[0].price_minor, 135); assert.equal(history[1].price_minor, 125);
     assert.equal(history[0].changed_by, 'Catalogue Staff');
   });
@@ -122,7 +126,7 @@ test('Sprint 3 catalogue, shared prices, and migration upgrade', async t => {
   });
   await t.test('availability affects only its shop and never rewrites the price or past records', async () => {
     const before = await current();
-    assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: admin, payload: { available: false, expectedVersion: 1, reason: 'Temporarily not offered' } })).statusCode, 200);
+    assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: admin, payload: { available: false, expectedVersion: 3, reason: 'Temporarily not offered' } })).statusCode, 200);
     assert.equal((await current()).available, false);
     assert.equal((await listing(secondBase)).products[0].units[0].available, true);
     assert.equal((await current()).priceVersion, before.priceVersion);

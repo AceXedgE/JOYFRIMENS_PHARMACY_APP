@@ -12,7 +12,7 @@ References: [Apple web push](https://developer.apple.com/documentation/usernotif
 
 ## Code boundaries
 
-- `frontend/`: React + TypeScript, built with Vite. Sign-in, account management, shop selection, and a mobile-first drug catalogue with shared-price editing and history, plus mobile stock receiving/transfers, are implemented. Sales drafts, local transaction database, and service worker come later.
+- `frontend/`: React + TypeScript, built with Vite. Sign-in, account management, shop selection, and a mobile-first drug catalogue with shared-price editing and history, plus mobile stock receiving/transfers, are implemented. Shop-bound cash-sale drafts, receipts and admin refunds are implemented. The offline transaction database and service worker come in Sprint 7.
 - `backend/`: Fastify + TypeScript on Node 24. PostgreSQL persistence, cookie sessions, authorization, validated routes, and account audit events are implemented in Sprint 2.
 - PostgreSQL is the deployment database. PGlite provides embedded PostgreSQL for local development and isolated tests, using the same SQL migration and query layer. Production configuration requires an external PostgreSQL connection. See [accounts and setup](ACCOUNTS.md) and [PGlite documentation](https://pglite.dev/docs/).
 - Local transactional browser storage is planned for Sprint 7. Cache Storage will hold app assets, not be the financial transaction database.
@@ -23,7 +23,13 @@ Development proxies `/api` through Vite to `127.0.0.1:3001`. Production should s
 
 Sprint 4 adds batch/location balances, an immutable stock ledger, supplier receipt reviews, and dispatched/in-transit/received transfers. Source authorization and destination receipt authorization are independent. Direct shelf transfers between both shops bypass storerooms. Requests carry retry keys; transactions lock batches before changing balances. Counts require an unchanged balance version. See [INVENTORY.md](INVENTORY.md) for the implemented contract and limits.
 
+## Sales boundary
+
+Sprint 5 posts immutable sale lines, stock deductions and cash entries atomically. Drawer locks serialize cash mutations; product locks serialize stock movements; basket versions prevent stale edits. Saved drafts remain bound to their original actor and shop. Opening floats are separate from sales revenue. Original-price refunds are capped by cumulative returned quantities. Browser session storage retains pending request keys for safe retry, but does not enable offline checkout. See [SALES.md](SALES.md) for usage and remaining limits.
+
 ## Core invariants
+
+Sprint 6 adds immutable cash requests/decisions/disbursements, sequential drawer closing, denomination observations, review and settlement records. Drawer locks serialize cash movements against count cutoffs; paired transfers conserve cash. Settlements distribute physically counted cash while preserving the original variance, and retained-float claims are unique. Categories are snapshotted on sale lines. Manual exception days are approved before use and block normal checkout to avoid duplicate paper-sale entry. See [CASH_CONTROL.md](CASH_CONTROL.md).
 
 1. A completed sale belongs to one shop and drawer session forever; stock sources belong to that shop. Shared main storage supplies shops through transfers.
 2. All customer payments are cash. Tender minus change is the sale amount.

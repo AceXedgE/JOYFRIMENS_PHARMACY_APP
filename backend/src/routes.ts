@@ -1,3 +1,8 @@
+import {registerSupplierRoutes} from './suppliers.ts';
+import {registerNotificationRoutes} from './notifications.ts';
+import {registerOfflineRoutes} from './offline.ts';
+import { registerDailyCashRoutes } from './daily-cash.ts';
+import { registerCashRoutes } from './cash.ts';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import { randomUUID } from 'node:crypto';
 import type { Database, Sql } from './database.ts';
@@ -7,6 +12,7 @@ import { digest, equalTokens, hashPassword, newToken, SESSION_SECONDS, verifyPas
 import { HttpError } from './http.ts';
 import { registerCatalogueRoutes } from './catalogue.ts';
 import { registerInventoryRoutes } from './inventory.ts';
+import { registerSalesRoutes } from './sales.ts';
 
 interface User { id: string; username: string; display_name: string; role: 'admin' | 'employee'; active: boolean; shared_storage_access: boolean; }
 interface Actor extends User { token_hash: string; csrf_token: string; }
@@ -19,7 +25,7 @@ const object = (properties: Record<string, unknown>, required = Object.keys(prop
 const idParams = object({ id: uuid });
 const usernameSchema = { ...string(3, 64), pattern: '^[a-z0-9._-]+$' };
 const passwordSchema = string(12, 128);
-const memberSchema = object({ shopId: uuid, canChangePrices: { type: 'boolean' } });
+const memberSchema = object({ shopId: uuid, canChangePrices: { type: 'boolean' }, canCountCash: { type: 'boolean' } }, ['shopId','canChangePrices']);
 const membershipsSchema = { type: 'array', maxItems: 2, items: memberSchema };
 const publicUser = (user: User) => ({ id: user.id, username: user.username, name: user.display_name,
   role: user.role, active: user.active, sharedStorageAccess: user.role === 'admin' || user.shared_storage_access });
@@ -31,12 +37,12 @@ async function lockAdmin(tx: Sql, id: string) {
   if (!result.rows.length) throw denied();
 }
 
-async function setMemberships(tx: Sql, userId: string, memberships: { shopId: string; canChangePrices: boolean }[]) {
+async function setMemberships(tx: Sql, userId: string, memberships: { shopId: string; canChangePrices: boolean; canCountCash?: boolean }[]) {
   const ids = memberships.map(member => member.shopId);
   if (new Set(ids).size !== ids.length) throw new HttpError(400, 'Each shop may only be assigned once.');
   for (const id of ids) if (!(await tx.query('SELECT id FROM shops WHERE id=$1', [id])).rows.length) throw new HttpError(400, 'Unknown shop.');
   await tx.query('DELETE FROM memberships WHERE user_id=$1', [userId]);
-  for (const member of memberships) await tx.query('INSERT INTO memberships(user_id,shop_id,can_change_prices) VALUES($1,$2,$3)', [userId, member.shopId, member.canChangePrices]);
+  for (const member of memberships) await tx.query('INSERT INTO memberships(user_id,shop_id,can_change_prices,can_count_cash) VALUES($1,$2,$3,$4)', [userId, member.shopId, member.canChangePrices,member.canCountCash??false]);
 }
 
 export async function registerRoutes(app: FastifyInstance, db: Database, config: Config) {
@@ -76,6 +82,7 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
       if (origin && !config.origins.includes(origin)) throw denied();
       if (request.headers['sec-fetch-site'] === 'cross-site') throw denied();
     }
+    if (path === '/api/supplier-portal' && ['GET','POST'].includes(request.method)) return;
     if (path === '/api/auth/login' && request.method === 'POST') return;
     const token = request.cookies[cookieName];
     if (!token || !/^[a-f0-9]{64}$/.test(token)) throw unauthenticated();
@@ -86,6 +93,16 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
     if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method)) {
       const csrf = request.headers['x-csrf-token'];
       if (typeof csrf !== 'string' || !equalTokens(csrf, actor.csrf_token)) throw denied();
+    }
+  });
+
+  app.addHook('preValidation', async request => {
+    const schema=request.routeOptions.schema?.body as {properties?:Record<string,unknown>}|undefined;
+    const body=request.body as Record<string,unknown>|undefined;
+    const countAction=/\/day\/(start-count|send|close)$/.test(request.url.split('?')[0]);
+    const priceEdit=request.method==='PUT' && /\/catalogue\/units\/[^/]+\/price$/.test(request.url.split('?')[0]);
+    if (!request.url.split('?')[0].endsWith('/cash/money-out') && body && schema?.properties?.reason && (request.actor?.role==='admin'||priceEdit||countAction) && (body.reason===undefined||body.reason==='')) {
+      body.reason='Action recorded without an explanation';
     }
   });
 
@@ -162,14 +179,14 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
 
   app.get('/api/shops', async request => {
     const actor = actorOf(request);
-    const result = await db.query(`SELECT s.*, ($2='admin' OR coalesce(m.can_change_prices,false)) AS can_change_prices
+    const result = await db.query(`SELECT s.*, ($2='admin' OR coalesce(m.can_change_prices,false)) AS can_change_prices, ($2='admin' OR coalesce(m.can_count_cash,false)) AS can_count_cash
       FROM shops s LEFT JOIN memberships m ON m.shop_id=s.id AND m.user_id=$1
       WHERE $2='admin' OR m.user_id IS NOT NULL ORDER BY s.code`, [actor.id, actor.role]);
     return { shops: result.rows };
   });
   app.get<{ Params: { id: string } }>('/api/shops/:id', { schema: { params: idParams } }, async request => {
     const actor = actorOf(request);
-    const shop = (await db.query(`SELECT s.*, ($3='admin' OR coalesce(m.can_change_prices,false)) AS can_change_prices
+    const shop = (await db.query(`SELECT s.*, ($3='admin' OR coalesce(m.can_change_prices,false)) AS can_change_prices, ($3='admin' OR coalesce(m.can_count_cash,false)) AS can_count_cash
       FROM shops s LEFT JOIN memberships m ON m.shop_id=s.id AND m.user_id=$2
       WHERE s.id=$1 AND ($3='admin' OR m.user_id IS NOT NULL)`, [request.params.id, actor.id, actor.role])).rows[0];
     if (!shop) throw new HttpError(404, 'Shop not found or unavailable to your account.');
@@ -184,10 +201,10 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
   app.get('/api/admin/users', async request => {
     adminOf(request);
     const users = (await db.query<User>('SELECT id,username,display_name,role,active,shared_storage_access FROM users ORDER BY created_at')).rows;
-    const memberships = (await db.query<{ user_id: string; shop_id: string; can_change_prices: boolean }>('SELECT * FROM memberships ORDER BY shop_id')).rows;
-    return { users: users.map(user => ({ ...publicUser(user), memberships: memberships.filter(member => member.user_id === user.id).map(member => ({ shopId: member.shop_id, canChangePrices: member.can_change_prices })) })) };
+    const memberships = (await db.query<{ user_id: string; shop_id: string; can_change_prices: boolean;can_count_cash:boolean }>('SELECT * FROM memberships ORDER BY shop_id')).rows;
+    return { users: users.map(user => ({ ...publicUser(user), memberships: memberships.filter(member => member.user_id === user.id).map(member => ({ shopId: member.shop_id, canChangePrices: member.can_change_prices,canCountCash:member.can_count_cash })) })) };
   });
-  type CreateUser = { username: string; name: string; password: string; role: 'admin' | 'employee'; memberships: { shopId: string; canChangePrices: boolean }[]; sharedStorageAccess: boolean };
+  type CreateUser = { username: string; name: string; password: string; role: 'admin' | 'employee'; memberships: { shopId: string; canChangePrices: boolean; canCountCash?: boolean }[]; sharedStorageAccess: boolean };
   app.post<{ Body: CreateUser }>('/api/admin/users', { schema: { body: object({ username: usernameSchema, name: string(), password: passwordSchema,
     role: { type: 'string', enum: ['admin', 'employee'] }, memberships: membershipsSchema, sharedStorageAccess: { type: 'boolean' } }) } }, async (request, reply) => {
     const actor = adminOf(request);
@@ -204,7 +221,7 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
     });
     return reply.code(201).send({ id });
   });
-  app.put<{ Params: { id: string }; Body: { memberships: { shopId: string; canChangePrices: boolean }[]; sharedStorageAccess: boolean } }>('/api/admin/users/:id/access', {
+  app.put<{ Params: { id: string }; Body: { memberships: { shopId: string; canChangePrices: boolean; canCountCash?: boolean }[]; sharedStorageAccess: boolean } }>('/api/admin/users/:id/access', {
     schema: { params: idParams, body: object({ memberships: membershipsSchema, sharedStorageAccess: { type: 'boolean' } }) },
   }, async request => {
     const actor = adminOf(request);
@@ -213,7 +230,7 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
       const user = (await tx.query<User>('SELECT * FROM users WHERE id=$1 FOR UPDATE', [request.params.id])).rows[0];
       if (!user) throw new HttpError(404, 'Account not found.');
       if (user.role === 'admin') throw new HttpError(400, 'Admins already have access to all shops and prices.');
-      const before = (await tx.query('SELECT shop_id,can_change_prices FROM memberships WHERE user_id=$1', [user.id])).rows;
+      const before = (await tx.query('SELECT shop_id,can_change_prices,can_count_cash FROM memberships WHERE user_id=$1', [user.id])).rows;
       await setMemberships(tx, user.id, request.body.memberships);
       await tx.query('UPDATE users SET shared_storage_access=$1 WHERE id=$2', [request.body.sharedStorageAccess, user.id]);
       await audit(tx, actor.id, 'user.access_changed', user.id, { before: { memberships: before, sharedStorageAccess: user.shared_storage_access }, after: request.body });
@@ -235,11 +252,25 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
     });
     return { ok: true };
   });
-  app.get('/api/admin/audit', async request => {
+  const reportQuery={querystring:{type:'object',additionalProperties:false,properties:{date:{type:'string',format:'date'},page:{type:'string',pattern:'^[1-9][0-9]{0,5}$'}}}};
+  app.get<{Querystring:{page?:string;date?:string}}>('/api/admin/audit',{schema:reportQuery},async request=>{
     adminOf(request);
-    return { events: (await db.query(`SELECT a.id,a.action,a.target_id,a.details,a.occurred_at,u.display_name AS actor_name
-      FROM audit_events a LEFT JOIN users u ON u.id=a.actor_id ORDER BY a.id DESC LIMIT 100`)).rows };
+    return{events:(await db.query(`SELECT a.id,a.action,a.target_id,a.details,a.occurred_at,u.display_name AS actor_name
+      FROM audit_events a LEFT JOIN users u ON u.id=a.actor_id WHERE a.occurred_at >= $2::date AT TIME ZONE 'Etc/GMT' AND a.occurred_at < ($2::date+1) AT TIME ZONE 'Etc/GMT' ORDER BY a.id DESC LIMIT 100 OFFSET $1`,[(Number(request.query.page??1)-1)*100,request.query.date??new Date().toISOString().slice(0,10)])).rows};
+  });
+  app.get<{Querystring:{page?:string;date?:string}}>('/api/admin/price-history',{schema:reportQuery},async request=>{
+    adminOf(request);const page=Number(request.query.page??1),pageSize=30;
+    const entries=(await db.query(`SELECT concat(h.unit_id,':',h.version) AS id,h.old_price_minor,h.price_minor,h.changed_at,u.display_name AS actor_name,p.name,p.strength,su.label
+      FROM price_history h JOIN users u ON u.id=h.changed_by JOIN selling_units su ON su.id=h.unit_id JOIN products p ON p.id=su.product_id
+      WHERE h.changed_at >= $3::date AT TIME ZONE 'Etc/GMT' AND h.changed_at < ($3::date+1) AT TIME ZONE 'Etc/GMT' ORDER BY h.changed_at DESC,h.unit_id,h.version DESC LIMIT $1 OFFSET $2`,[pageSize,(page-1)*pageSize,request.query.date??new Date().toISOString().slice(0,10)])).rows;
+    return{entries,page,pageSize};
   });
   registerCatalogueRoutes(app, db);
+  registerNotificationRoutes(app, db);
+  registerSupplierRoutes(app, db);
   registerInventoryRoutes(app, db);
+  registerSalesRoutes(app, db);
+  registerOfflineRoutes(app, db);
+  registerCashRoutes(app, db);
+  registerDailyCashRoutes(app, db);
 }

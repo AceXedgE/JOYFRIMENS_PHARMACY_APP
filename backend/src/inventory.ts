@@ -7,7 +7,7 @@ import { audit } from './setup.ts';
 const uuid = { type: 'string', format: 'uuid' };
 const str = (maxLength: number, minLength = 1) => ({ type: 'string', minLength, maxLength });
 const integer = (minimum = 0) => ({ type: 'integer', minimum, maximum: 100000000 });
-const object = (properties: Record<string, unknown>) => ({ type: 'object', properties, required: Object.keys(properties).filter(key => key !== 'forceDuplicate'), additionalProperties: false });
+const object = (properties: Record<string, unknown>) => ({ type: 'object', properties, required: Object.keys(properties).filter(key => key !== 'forceDuplicate' && key !== 'submissionId'), additionalProperties: false });
 const reasonSchema = str(300, 3);
 const params = object({ id: uuid });
 type Actor = { id: string; role: string; shared_storage_access: boolean };
@@ -17,21 +17,21 @@ type Transfer = { id: string; batch_id: string; source_id: string; destination_i
 type Write = { requestKey: string; reason: string; forceDuplicate?: boolean };
 type Receipt = Write & { unitId: string; batchNumber: string; expiry: string; supplier: string; reference: string; expectedPacks: number; receivedPacks: number; allocations: { locationId: string; quantity: number }[] };
 type ReceiptLine = Omit<Receipt, 'requestKey' | 'supplier' | 'reference'>;
-type DocumentInput = Write & { supplier: string; reference: string; lines: ReceiptLine[] };
+type DocumentInput = Write & { submissionId?: string; supplier: string; reference: string; lines: ReceiptLine[] };
 const receiptLineSchema = object({ forceDuplicate: { type: 'boolean' }, unitId: uuid, batchNumber: str(100), expiry: { type: 'string', format: 'date' }, expectedPacks: integer(1), receivedPacks: integer(), reason: reasonSchema,
   allocations: { type: 'array', minItems: 1, maxItems: 6, items: object({ locationId: uuid, quantity: integer() }) } });
 const clean = (s: string) => s.trim().replace(/\s+/g, ' ');
 function required(s: string, minimum = 1) { const value = clean(s); if (value.length < minimum) throw new HttpError(400, 'Enter a meaningful value and reason.'); return value; }
 function quantity(packs: number, multiplier: number) { const value = packs * multiplier; if (!Number.isSafeInteger(value) || value > 100000000) throw new HttpError(400, 'Quantity exceeds the supported limit.'); return value; }
 
-async function actorOf(tx: Sql, request: FastifyRequest, write = false): Promise<Actor> {
+export async function actorOf(tx: Sql, request: FastifyRequest, write = false): Promise<Actor> {
   if (!request.actor) throw new HttpError(401, 'Please sign in again.');
   const actor = (await tx.query<Actor>(`SELECT u.id,u.role,u.shared_storage_access FROM users u JOIN sessions s ON s.user_id=u.id
     WHERE u.id=$1 AND u.active=true AND s.token_hash=$2 AND s.expires_at>now() ${write ? 'FOR UPDATE OF u FOR SHARE OF s' : ''}`, [request.actor.id, request.actor.token_hash])).rows[0];
   if (!actor) throw new HttpError(401, 'Please sign in again.');
   return actor;
 }
-async function place(tx: Sql, actor: Actor, id: string, write = false) {
+export async function place(tx: Sql, actor: Actor, id: string, write = false) {
   const location = (await tx.query<Place>('SELECT id,name,kind,shop_id FROM locations WHERE id=$1', [id])).rows[0];
   if (!location) throw new HttpError(404, 'Location not found or unavailable.');
   if (actor.role === 'admin') return location;
@@ -41,10 +41,10 @@ async function place(tx: Sql, actor: Actor, id: string, write = false) {
   } else if (actor.shared_storage_access) return location;
   throw new HttpError(404, 'Location not found or unavailable.');
 }
-async function productLock(tx: Sql, id: string) {
+export async function productLock(tx: Sql, id: string) {
   await tx.query('SELECT id FROM products WHERE id=$1 FOR UPDATE', [id]);
 }
-async function batchLock(tx: Sql, id: string, usable = false) {
+export async function batchLock(tx: Sql, id: string, usable = false) {
   const identity = (await tx.query<{ product_id: string }>('SELECT product_id FROM stock_batches WHERE id=$1', [id])).rows[0];
   if (!identity) throw new HttpError(404, 'Batch not found.');
   await productLock(tx, identity.product_id);
@@ -57,7 +57,9 @@ async function balance(tx: Sql, location: string, batch: string) {
   await tx.query('INSERT INTO stock_balances(location_id,batch_id) VALUES($1,$2) ON CONFLICT DO NOTHING', [location, batch]);
   return (await tx.query<{ quantity: number; reserved: number; version: number }>('SELECT quantity,reserved,version FROM stock_balances WHERE location_id=$1 AND batch_id=$2 FOR UPDATE', [location, batch])).rows[0];
 }
-async function change(tx: Sql, location: string, batch: string, delta: number, forceDuplicate = false) {
+export async function change(tx: Sql, location: string, batch: string, delta: number, forceDuplicate = false) {
+  // Shelf quantities are historical movements only, never remaining inventory.
+  if ((await tx.query<{kind:string}>('SELECT kind FROM locations WHERE id=$1',[location])).rows[0]?.kind === 'shelf') return;
   if (delta > 0 && !forceDuplicate) {
     const duplicate = await tx.query(`SELECT 1 FROM locations destination
       JOIN stock_batches incoming ON incoming.id=$2
@@ -72,13 +74,13 @@ async function change(tx: Sql, location: string, batch: string, delta: number, f
   if (current.quantity + delta > 100000000) throw new HttpError(409, 'Location stock exceeds the supported limit.');
   await tx.query('UPDATE stock_balances SET quantity=quantity+$3,version=version+1 WHERE location_id=$1 AND batch_id=$2', [location, batch, delta]);
 }
-async function entry(tx: Sql, operation: string, actor: Actor, batch: string, location: string | null, delta: number, kind: string, reason: string, transfer: string | null = null, receipt: string | null = null, details: unknown = {}) {
+export async function entry(tx: Sql, operation: string, actor: Actor, batch: string, location: string | null, delta: number, kind: string, reason: string, transfer: string | null = null, receipt: string | null = null, details: unknown = {}) {
   await tx.query(`INSERT INTO stock_ledger(operation_id,actor_id,batch_id,location_id,delta,kind,reason,transfer_id,receipt_id,details)
     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`, [operation, actor.id, batch, location, delta, kind, reason, transfer, receipt, JSON.stringify(details)]);
 }
 // Actor locking serializes request keys, including retries after a lost response. Batch locks
 // serialize stock mutations across actors; counts additionally require the displayed version.
-async function mutate(db: Database, request: FastifyRequest, action: string,
+export async function mutate(db: Database, request: FastifyRequest, action: string,
   work: (tx: Sql, actor: Actor, id: string, reason: string) => Promise<unknown>) {
   return db.transaction(async tx => {
     const body = request.body as Write;
@@ -124,8 +126,47 @@ async function receiveLine(tx: Sql, actor: Actor, operation: string, input: Omit
 }
 
 export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
-  app.post<{ Body: DocumentInput }>('/api/inventory/deliveries', { schema: { body: object({ requestKey: uuid, reason: reasonSchema, supplier: str(150), reference: str(100), lines: { type: 'array', minItems: 1, maxItems: 100, items: receiptLineSchema } }) } }, async request => mutate(db, request, 'supplier_document', async (tx, actor, operation, reason) => {
+  app.post<{Body:Write & {sourceId:string;destinationId:string;unitId:string;batchNumber:string;expiry:string;packs:number}}>('/api/inventory/shelf-transfer',{schema:{body:object({requestKey:uuid,reason:reasonSchema,sourceId:uuid,destinationId:uuid,unitId:uuid,batchNumber:str(100),expiry:{type:'string',format:'date'},packs:integer(1)})}},async request=>mutate(db,request,'shelf_dispatch',async(tx,actor,operation,reason)=>{
+    const input=request.body;const source=await place(tx,actor,input.sourceId,true);
+    if(source.kind!=='shelf')throw new HttpError(400,'Choose the source shelf.');
+    if(input.sourceId===input.destinationId||!(await tx.query('SELECT id FROM locations WHERE id=$1',[input.destinationId])).rows.length)throw new HttpError(400,'Choose a different destination.');
+    const unit=(await tx.query<{product_id:string;base_quantity:number}>('SELECT product_id,base_quantity FROM selling_units WHERE id=$1',[input.unitId])).rows[0];
+    if(!unit)throw new HttpError(404,'Medicine not found.');
+    if(input.expiry<=new Date().toISOString().slice(0,10))throw new HttpError(400,'Expired stock cannot be dispatched.');
+    await productLock(tx,unit.product_id);const batchNumber=required(input.batchNumber);
+    await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING',[randomUUID(),unit.product_id,batchNumber,input.expiry]);
+    const batch=(await tx.query<{id:string}>('SELECT id FROM stock_batches WHERE product_id=$1 AND batch_number=$2 AND expiry=$3',[unit.product_id,batchNumber,input.expiry])).rows[0];
+    const amount=quantity(input.packs,unit.base_quantity),id=randomUUID();
+    await tx.query('INSERT INTO stock_transfers(id,batch_id,source_id,destination_id,quantity,dispatched_by,reason) VALUES($1,$2,$3,$4,$5,$6,$7)',[id,batch.id,source.id,input.destinationId,amount,actor.id,reason]);
+    await entry(tx,operation,actor,batch.id,source.id,-amount,'dispatch',reason,id,null,{shelfMovement:true});return{id};
+  }));
+  app.post<{Body:Write & {locationId:string;unitId:string;batchNumber:string;expiry:string;packs:number}}>('/api/inventory/manual', {schema:{body:object({requestKey:uuid,reason:reasonSchema,locationId:uuid,unitId:uuid,batchNumber:str(100),expiry:{type:'string',format:'date'},packs:integer(1),forceDuplicate:{type:'boolean'}})}},async request=>mutate(db,request,'manual_stock',async(tx,actor,operation,reason)=>{
+    const input=request.body;const location=await place(tx,actor,input.locationId,true);
+    if(location.kind==='shelf')throw new HttpError(400,'Manual stock entry is for storerooms only.');
+    const unit=(await tx.query<{product_id:string;base_quantity:number}>('SELECT product_id,base_quantity FROM selling_units WHERE id=$1',[input.unitId])).rows[0];
+    if(!unit)throw new HttpError(404,'Medicine not found.');
+    if(input.expiry<=new Date().toISOString().slice(0,10))throw new HttpError(400,'Do not add expired stock to usable inventory.');
+    await productLock(tx,unit.product_id);const batchNumber=required(input.batchNumber);
+    await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING',[randomUUID(),unit.product_id,batchNumber,input.expiry]);
+    const batch=(await tx.query<{id:string}>('SELECT id FROM stock_batches WHERE product_id=$1 AND batch_number=$2 AND expiry=$3',[unit.product_id,batchNumber,input.expiry])).rows[0];
+    const amount=quantity(input.packs,unit.base_quantity);await change(tx,location.id,batch.id,amount,input.forceDuplicate);
+    await entry(tx,operation,actor,batch.id,location.id,amount,'count',reason,null,null,{manualAddition:true,unitId:input.unitId,packs:input.packs});
+    return {batchId:batch.id,added:amount};
+  }));
+  app.post<{ Body: DocumentInput }>('/api/inventory/deliveries', { bodyLimit: 512 * 1024, schema: { body: object({ submissionId:uuid, requestKey: uuid, reason: reasonSchema, supplier: str(150), reference: str(100), lines: { type: 'array', minItems: 1, maxItems: 100, items: receiptLineSchema } }) } }, async request => mutate(db, request, 'supplier_document', async (tx, actor, operation, reason) => {
     const supplier = required(request.body.supplier).toLowerCase(), reference = required(request.body.reference).toLowerCase();
+    if(request.body.submissionId){
+      const submission=(await tx.query<{location_id:string;supplier:string;reference:string;lines:{quantity:number;packSize:number}[]}>('SELECT i.location_id,i.supplier,s.reference,s.lines FROM supplier_submissions s JOIN supplier_invites i ON i.id=s.invite_id WHERE s.id=$1 FOR UPDATE OF s',[request.body.submissionId])).rows[0];
+      if(!submission)throw new HttpError(404,'Supplier submission not found.');
+      await place(tx,actor,submission.location_id,true);
+      if(request.body.lines.length!==submission.lines.length)throw new HttpError(400,'Check every supplier line, including medicines that did not arrive.');
+      for(const [i,line] of request.body.lines.entries()){
+        const unit=(await tx.query<{base_quantity:number}>('SELECT base_quantity FROM selling_units WHERE id=$1',[line.unitId])).rows[0];
+        if(!unit||line.expectedPacks*unit.base_quantity!==submission.lines[i].quantity*submission.lines[i].packSize)throw new HttpError(400,'Keep the supplier quantity on each line; enter differences in actual received.');
+      }
+      if(supplier!==submission.supplier.toLowerCase()||reference!==submission.reference.toLowerCase())throw new HttpError(400,'Keep the submitted supplier and reference.');
+      if((await tx.query('SELECT document_id FROM supplier_submission_receipts WHERE submission_id=$1',[request.body.submissionId])).rows.length)throw new HttpError(409,'This supplier submission has already been received.');
+    }
     await referenceLock(tx, supplier, reference);
     if ((await tx.query('SELECT id FROM stock_receipts WHERE supplier=$1 AND reference=$2', [supplier, reference])).rows.length) throw new HttpError(409, 'This supplier reference already has recorded stock. Review the existing receipt instead of entering it again.');
     const id = randomUUID();
@@ -148,6 +189,7 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
         throw error;
       }
     }
+    if(request.body.submissionId)await tx.query('INSERT INTO supplier_submission_receipts(submission_id,document_id) VALUES($1,$2)',[request.body.submissionId,id]);
     return { id, lineCount: lines.length };
   }));
   app.get<{ Params: { id: string } }>('/api/inventory/deliveries/:id', { schema: { params } }, async request => {
@@ -185,7 +227,7 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
     const actor = await actorOf(db, request); await place(db, actor, request.params.id);
     const stocks = (await db.query(`SELECT s.batch_id,s.quantity,s.reserved,s.version,b.batch_number,b.expiry::text,p.id AS product_id,p.name,p.strength,p.dosage_form,p.base_unit
       FROM stock_balances s JOIN stock_batches b ON b.id=s.batch_id JOIN products p ON p.id=b.product_id
-      WHERE s.location_id=$1 ORDER BY p.name,b.expiry,b.batch_number`, [request.params.id])).rows;
+      WHERE s.location_id=$1 AND EXISTS(SELECT 1 FROM locations WHERE id=$1 AND kind<>'shelf') ORDER BY p.name,b.expiry,b.batch_number`, [request.params.id])).rows;
     const transfers = (await db.query(`SELECT t.*,b.batch_number,b.expiry::text,p.name,p.strength,p.base_unit,src.name AS source_name,dst.name AS destination_name,
       u.display_name AS dispatched_by_name FROM stock_transfers t JOIN stock_batches b ON b.id=t.batch_id JOIN products p ON p.id=b.product_id
       JOIN locations src ON src.id=t.source_id JOIN locations dst ON dst.id=t.destination_id JOIN users u ON u.id=t.dispatched_by
@@ -256,7 +298,9 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
   }
   app.post<{ Body: Write & { locationId: string; batchId: string; counted: number; expectedVersion: number } }>('/api/inventory/counts', { schema: { body: object({ forceDuplicate: { type: 'boolean' }, requestKey: uuid, reason: reasonSchema, locationId: uuid, batchId: uuid, counted: integer(), expectedVersion: integer(1) }) } }, async request => mutate(db, request, 'count', async (tx, actor, operation, reason) => {
     if (actor.role !== 'admin') throw new HttpError(403, 'Only administrators can post counted adjustments.');
-    const input = request.body; await place(tx, actor, input.locationId, true); await batchLock(tx, input.batchId);
+    const input = request.body; const location=await place(tx, actor, input.locationId, true);
+    if(location.kind==='shelf') throw new HttpError(400,'Shelf quantities are not counted. Use the unavailable mark instead.');
+    await batchLock(tx, input.batchId);
     const current = await balance(tx, input.locationId, input.batchId);
     if (current.version !== input.expectedVersion) throw new HttpError(409, 'Stock changed after this count was opened. Reload and recount.');
     const delta = input.counted - current.quantity;

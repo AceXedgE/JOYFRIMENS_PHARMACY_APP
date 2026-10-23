@@ -1,0 +1,36 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {openDatabase} from '../src/database.ts';
+import {migrate} from '../src/migrate.ts';
+import {bootstrap} from '../src/setup.ts';
+import {newToken} from '../src/security.ts';
+import {buildApp} from '../src/app.ts';
+import {readConfig} from '../src/config.ts';
+test('unavailable lists are shop-specific and complete; medicine updates reach staff with independent read state',async t=>{
+ const db=await openDatabase({dataDir:'memory://'});t.after(()=>db.close());await migrate(db);
+ const password=newToken();await bootstrap(db,{username:'notice.admin',password,name:'Admin',shops:['Tomjoy','Joyfrimens'],currency:'GHS',timezone:'Etc/GMT'});
+ const app=buildApp({db,config:readConfig({NODE_ENV:'test'})});t.after(()=>app.close());
+ async function login(username:string){const r=await app.inject({method:'POST',url:'/api/auth/login',headers:{'x-requested-with':'joyfrimens'},payload:{username,password}});assert.equal(r.statusCode,200);return{'x-requested-with':'joyfrimens','x-csrf-token':r.json().csrfToken,cookie:String(r.headers['set-cookie']).split(';')[0]};}
+ const admin=await login('notice.admin'),shops=(await app.inject({url:'/api/shops',headers:admin})).json().shops;
+ for(const [i,shop] of shops.entries())assert.equal((await app.inject({method:'POST',url:'/api/admin/users',headers:admin,payload:{username:'notice.staff'+i,password,name:'Staff '+i,role:'employee',memberships:[{shopId:shop.id,canChangePrices:true}],sharedStorageAccess:false}})).statusCode,201);
+ const first=await login('notice.staff0'),second=await login('notice.staff1');
+ const base=`/api/shops/${shops[0].id}/catalogue`;
+ for(let i=0;i<23;i++)assert.equal((await app.inject({method:'POST',url:base,headers:admin,payload:{name:'Medicine '+i,baseUnit:'tube',units:[{label:'tube',baseQuantity:1,priceMinor:1000,barcode:''}]}})).statusCode,201);
+ const products=(await app.inject({url:base+'?download=true',headers:first})).json().products;assert.equal(products.length,23);
+ for(const p of products)assert.equal((await app.inject({method:'PUT',url:base+'/units/'+p.units[0].id+'/availability',headers:first,payload:{available:false,expectedVersion:1,reason:'Shelf unavailable'}})).statusCode,200);
+ const list=(await app.inject({url:base+'?unavailable=true',headers:first})).json();assert.equal(list.total,23);assert.equal(list.products.length,20);
+ assert.equal((await app.inject({url:base+'?unavailable=true&download=true',headers:first})).json().products.length,23);
+ assert.equal((await app.inject({url:`/api/shops/${shops[1].id}/catalogue?unavailable=true`,headers:second})).json().total,0);
+ assert.equal((await app.inject({url:base+'?unavailable=true',headers:second})).statusCode,404);
+ const feed=async(headers=first)=>(await app.inject({url:'/api/notifications',headers})).json();
+ assert.equal((await feed()).unread,46);assert.equal((await feed(second)).unread,23);
+ const entries=(await feed()).entries;assert.equal(entries.length,30);assert.equal(entries[0].price_minor,1000);assert.equal(entries[0].kind,'availability');assert.equal(entries[0].actor_name,undefined);assert.equal(entries[0].old_price_minor,undefined);
+ const read=()=>app.inject({method:'POST',url:'/api/notifications/read',headers:first,payload:{ids:entries.map((n:any)=>n.id)}});
+ assert.equal((await read()).statusCode,200);await read();assert.equal((await feed()).unread,16);assert.equal((await feed(second)).unread,23);
+ assert.equal((await app.inject({method:'POST',url:'/api/notifications/read',headers:second,payload:{ids:entries.filter((n:any)=>n.kind==='availability').map((n:any)=>n.id)}})).statusCode,200);assert.equal((await feed(second)).unread,23);
+ const unit=products[0].units[0];assert.equal((await app.inject({method:'PUT',url:base+'/units/'+unit.id+'/price',headers:first,payload:{priceMinor:1500,expectedVersion:1}})).statusCode,200);
+ assert.equal((await feed(second)).entries[0].price_minor,1500);assert.equal((await feed(second)).entries[0].kind,'price');
+ const before=(await feed()).next;assert.equal((await app.inject({url:'/api/notifications?before='+before,headers:first})).json().entries.length,17);
+ assert.equal((await app.inject({url:'/api/notifications'})).statusCode,401);
+ await assert.rejects(db.exec('DELETE FROM medicine_notifications'));
+});

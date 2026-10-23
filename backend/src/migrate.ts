@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import type { Database } from './database.ts';
 
-const migrations = ['001_accounts.sql', '002_catalogue.sql', '003_inventory.sql', '004_supplier_documents.sql'];
+const migrations = ['001_accounts.sql', '002_catalogue.sql', '003_inventory.sql', '004_supplier_documents.sql', '005_sales.sql', '006_cash_control.sql', '007_shelf_sales.sql', '008_daily_cash.sql', '009_sale_price_exceptions.sql', '010_sales_cutoff.sql', '011_count_permissions.sql', '012_count_sales_date.sql', '013_exception_days_cash_in.sql', '014_simple_medicine_identity.sql', '015_final_cash_submission.sql', '016_offline_records.sql', '017_medicine_notifications.sql', '018_supplier_portal.sql'];
 export const SCHEMA_VERSION = migrations.length;
 
 export async function migrate(db: Database) {

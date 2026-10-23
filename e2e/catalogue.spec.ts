@@ -8,14 +8,13 @@ test('mobile catalogue keeps prices shared, availability separate, and resolves 
   await page.getByLabel('Password', { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await expect(page.getByLabel('Active shop')).toHaveValue(/.+/);
-  await page.getByRole('button', { name: 'Drug prices', exact: true }).click();
+  await page.getByRole('button', { name: 'Account', exact: true }).click();
+  await page.getByRole('button', { name: 'Manage medicines', exact: true }).click();
   await page.getByRole('button', { name: 'Add drug', exact: true }).click();
   const form = page.getByRole('form', { name: 'Add drug', exact: true });
-  await form.getByLabel('Drug / brand name').fill('Paracetamol Test');
-  await form.getByLabel('Generic name', { exact: true }).fill('Paracetamol');
-  await form.getByLabel('Strength', { exact: true }).fill('500 mg');
-  await form.getByLabel('Dosage form', { exact: true }).fill('Tablet');
-  await form.getByLabel('Price (GHS)', { exact: true }).fill('1.25');
+  await form.getByLabel('Name', { exact: true }).fill('Paracetamol Test');
+  await expect(form.getByLabel('Other names (optional)')).toBeVisible();
+  await form.getByLabel('Price per base unit (GHS)', { exact: true }).fill('1.25');
   await form.getByRole('button', { name: 'Add box, strip, or another pack' }).click();
   const pack = form.getByRole('group', { name: 'Pack 1', exact: true });
   await pack.getByLabel('Selling unit', { exact: true }).fill('box');
@@ -30,21 +29,15 @@ test('mobile catalogue keeps prices shared, availability separate, and resolves 
   let editor = page.getByRole('form', { name: 'Edit shared price for tablet', exact: true });
   await expect(editor).toContainText('both Tomjoy and Joyfrimens');
   await editor.getByLabel('New price (GHS)').fill('2.00');
-  await editor.getByLabel('Reason', { exact: true }).fill('Approved shared price review');
   await editor.getByRole('button', { name: 'Save shared price' }).click();
   await expect(card.locator('.unit-price').first()).toContainText('2.00');
 
   await page.getByLabel('Active shop').selectOption({ label: 'Joyfrimens Pharmacy' });
   await page.getByLabel('Include drugs not listed here').check();
   await expect(card).toBeVisible();
-  await card.getByRole('button', { name: 'List tablet here', exact: true }).click();
   const availability = page.getByRole('form', { name: 'Change availability for tablet', exact: true });
-  await availability.getByLabel('Reason', { exact: true }).fill('Introduce in second shop');
-  await availability.getByRole('button', { name: 'Save availability' }).click();
-  await expect(card.locator('.unit-price').first()).toContainText('2.00');
   await expect(card.locator('.unit-price').first()).toContainText('Available here');
   await card.getByRole('button', { name: 'Mark tablet unavailable', exact: true }).click();
-  await availability.getByLabel('Reason', { exact: true }).fill('Temporarily unavailable here');
   await availability.getByRole('button', { name: 'Save availability' }).click();
   await expect(card.locator('.unit-price').first()).toContainText('Unavailable here');
 
@@ -53,7 +46,6 @@ test('mobile catalogue keeps prices shared, availability separate, and resolves 
   await card.getByRole('button', { name: 'Edit tablet price', exact: true }).click();
   editor = page.getByRole('form', { name: 'Edit shared price for tablet', exact: true });
   await editor.getByLabel('New price (GHS)').fill('3.00');
-  await editor.getByLabel('Reason', { exact: true }).fill('Review while another editor works');
   const me = await (await page.request.get('/api/auth/me')).json();
   const shops = (await (await page.request.get('/api/shops')).json()).shops;
   const shopId = shops.find((shop: { name: string }) => shop.name === 'Tomjoy Pharmacy').id;
@@ -67,10 +59,12 @@ test('mobile catalogue keeps prices shared, availability separate, and resolves 
   await expect(editor.getByRole('button', { name: 'Save shared price' })).toBeDisabled();
   await editor.getByRole('button', { name: 'Reload latest values' }).click();
   await expect(card.locator('.unit-price').first()).toContainText('2.50');
-  await card.getByRole('button', { name: 'History for tablet', exact: true }).click();
-  await expect(page.getByRole('region', { name: 'Price history for tablet' })).toContainText('Another authorized editor');
-  await expect(page.getByRole('region', { name: 'Price history for tablet' })).toContainText('1.25');
-
+  await page.getByRole('button',{name:'Account',exact:true}).click();
+  await page.getByRole('button',{name:'Activity reports',exact:true}).click();
+  await page.getByRole('button',{name:'Price changes',exact:true}).click();
+  await expect(page.locator('#main')).toContainText('Paracetamol Test');
+  await expect(page.locator('#main')).toContainText('1.25');
+  await page.getByRole('button', { name: 'Account', exact: true }).click();
   const readerPassword = randomBytes(24).toString('hex');
   const reader = await page.request.post('/api/admin/users', { headers, data: { username: 'catalogue.reader', name: 'Catalogue Reader', password: readerPassword, role: 'employee', memberships: [{ shopId, canChangePrices: false }], sharedStorageAccess: false } });
   expect(reader.status()).toBe(201);
@@ -78,9 +72,8 @@ test('mobile catalogue keeps prices shared, availability separate, and resolves 
   await page.getByLabel('Username', { exact: true }).fill('catalogue.reader');
   await page.getByLabel('Password', { exact: true }).fill(readerPassword);
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
-  await page.getByRole('button', { name: 'Drug prices', exact: true }).click();
-  await page.getByLabel('Search drugs', { exact: true }).fill('paracetmol');
-  await expect(card.getByText('Spelling suggestion — check the drug details', { exact: true })).toBeVisible();
+  await page.getByLabel('Search medicines', { exact: true }).fill('paracetmol');
+  await expect(page.getByText('Spelling suggestion', { exact: false })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Edit tablet price' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Add drug', exact: true })).toHaveCount(0);
   await expect(page.getByRole('form', { name: /Edit shared price/ })).toHaveCount(0);
