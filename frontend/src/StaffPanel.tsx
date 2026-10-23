@@ -1,12 +1,13 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { api, ApiError, messageOf, type Session, type Shop, type Staff, type Member, type AuditEvent } from './api';
+import { api, ApiError, messageOf, type Session, type Shop, type Staff, type Member } from './api';
 
 function AccessFields({ shops, value, setValue, disabled = false }: { shops: Shop[]; value: Member[]; setValue: (value: Member[]) => void; disabled?: boolean }) {
-  return <fieldset disabled={disabled}><legend>Shop access and price permissions</legend>{shops.map(shop => {
+  return <fieldset disabled={disabled}><legend>Shop access and permissions</legend>{shops.map(shop => {
     const member = value.find(item => item.shopId === shop.id);
     return <div className="access-row" key={shop.id}>
       <label><input type="checkbox" checked={!!member} onChange={event => setValue(event.target.checked ? [...value, { shopId: shop.id, canChangePrices: false }] : value.filter(item => item.shopId !== shop.id))} />{shop.name}</label>
       <label><input type="checkbox" disabled={!member || disabled} checked={member?.canChangePrices ?? false} onChange={event => setValue(value.map(item => item.shopId === shop.id ? { ...item, canChangePrices: event.target.checked } : item))} />May change prices</label>
+      <label><input type="checkbox" disabled={!member || disabled} checked={member?.canCountCash??false} onChange={event=>setValue(value.map(item=>item.shopId===shop.id?{...item,canCountCash:event.target.checked}:item))}/>May count daily cash</label>
     </div>;
   })}<p className="form-hint">Price permission allows editing the shared price from that shop. Every approved change affects both pharmacies.</p></fieldset>;
 }
@@ -27,7 +28,6 @@ function StaffCard({ staff, shops, currentId, save, busy }: { staff: Staff; shop
 
 export function StaffPanel({ session, shops, onExpired }: { session: Session; shops: Shop[]; onExpired: () => void }) {
   const [staff, setStaff] = useState<Staff[]>([]);
-  const [events, setEvents] = useState<AuditEvent[]>([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [busy, setBusy] = useState(false);
@@ -36,8 +36,7 @@ export function StaffPanel({ session, shops, onExpired }: { session: Session; sh
   const [role, setRole] = useState('employee');
   const [shared, setShared] = useState(false);
   async function refresh(signal?: AbortSignal) {
-    const [users, audit] = await Promise.all([api<{ users: Staff[] }>('/admin/users', { signal }), api<{ events: AuditEvent[] }>('/admin/audit', { signal })]);
-    setStaff(users.users); setEvents(audit.events); setLoaded(true);
+    const users=await api<{users:Staff[]}>('/admin/users',{signal});setStaff(users.users);setLoaded(true);
   }
   function fail(error: unknown) { if (error instanceof ApiError && error.status === 401) onExpired(); else setError(messageOf(error)); }
   useEffect(() => {
@@ -47,7 +46,7 @@ export function StaffPanel({ session, shops, onExpired }: { session: Session; sh
   }, []);
   async function save(path: string, method: string, body: unknown) {
     setBusy(true); setError(''); setSuccess('');
-    try { await api(path, { method, body, csrf: session.csrfToken }); await refresh(); setSuccess('Changes saved and recorded in the audit history.'); }
+    try { await api(path, { method, body, csrf: session.csrfToken }); await refresh(); setSuccess('Changes saved.'); }
     catch (error) { fail(error); }
     finally { setBusy(false); }
   }
@@ -82,7 +81,5 @@ export function StaffPanel({ session, shops, onExpired }: { session: Session; sh
     </form>
     {!loaded && !error && <p role="status">Loading staff…</p>}
     <div className="staff-grid">{staff.map(user => <StaffCard key={user.id} staff={user} shops={shops} currentId={session.user.id} save={save} busy={busy} />)}</div>
-    <div className="section-heading"><h2>Recent account activity</h2><button className="text-button" disabled={busy} onClick={() => void refresh().catch(fail)}>Refresh</button></div>
-    <div className="audit-list">{events.map(event => <article key={event.id}><strong>{event.action.replaceAll('.', ' · ').replaceAll('_', ' ')}</strong><span>{event.actor_name ?? 'Unauthenticated attempt'}</span><time dateTime={event.occurred_at}>{new Date(event.occurred_at).toLocaleString('en-GB', { timeZone: 'Etc/GMT', weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })} GMT</time><details><summary>Details</summary><pre>{JSON.stringify(event.details, null, 2)}</pre></details></article>)}</div>
   </section>;
 }

@@ -1,0 +1,17 @@
+.sales { max-width: 1000px; }
+.sales .panel { margin: 18px 0; }
+.sales label { display: grid; gap: 7px; font-weight: 600; min-width: 0; }
+.sales input,.sales select,.sales textarea { width: 100%; min-width: 0; min-height: 44px; padding: 10px; font: inherit; border: 1px solid #b9c9c0; border-radius: 8px; background: white; color: #173e30; }
+.sales textarea { min-height: 80px; }
+.sales button { min-height: 44px; white-space: normal; }
+.sales-toolbar,.sales-form fieldset { display: grid; gap: 14px; border: 0; padding: 0; min-width: 0; }
+.sales-form { margin: 18px 0; }
+.sale-basket,.sale-receipt ol { padding-left: 22px; }
+.sale-basket li,.sale-receipt li { padding: 10px 0; border-bottom: 1px solid #d9e3dc; overflow-wrap: anywhere; }
+.sales .sales-check { display: flex; align-items: center; gap: 10px; }
+.sales .sales-check input { width: 24px; min-height: 24px; flex: 0 0 24px; }
+.checkout { background: #f0f5ee; border-radius: 10px; padding: 16px; }
+.change-amount { font-size: 1.2rem; font-weight: bold; }
+.sales summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 600; }
+@media(max-width:600px) { .sales .panel { padding: 16px; } .sales input,.sales select,.sales textarea { font-size: 16px; } .sales h1 { font-size: 28px; } }
+@media print { body * { visibility: hidden; } .sale-receipt,.sale-receipt * { visibility: visible; } .sale-receipt { position: absolute; left: 0; top: 0; width: 100%; background: white; color: black; padding: 16px; } }

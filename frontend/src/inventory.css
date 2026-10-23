@@ -19,3 +19,16 @@
 .inventory .duplicate-confirm { display: flex; align-items: center; gap: 10px; }
 .inventory .duplicate-confirm input { width: 24px; min-height: 24px; flex: 0 0 24px; }
 @media(max-width:600px) { .stock-toolbar { flex-direction: column; align-items: stretch; } .inventory .heading h1 { font-size: 27px; } .inventory .panel { padding: 16px; } .inventory input,.inventory select,.inventory textarea { font-size: 16px; } }
+.storeroom-section { margin:16px 0; padding:16px; border:1px solid #dce3ee; border-radius:16px; background:#fff; }
+.storeroom-section > summary { font-size:1.05rem; font-weight:700; cursor:pointer; min-height:32px; }
+.storeroom-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.inventory input,.inventory select,.inventory textarea { color:#202733; border-color:#ccd5e2; }
+.inventory .allocation { border-color:#2563eb; }
+.inventory .stock-cards { margin-top:14px; }
+.primary-nav { grid-template-columns:repeat(5,minmax(0,1fr)); }
+@media(max-width:400px){.primary-nav button {font-size:11px;padding:8px 2px;}}
+.supplier-portal { max-width:680px; margin:0 auto; padding:24px 16px; }
+.supplier-portal fieldset { border:0; padding:0; display:grid; gap:16px; min-width:0; }
+.supplier-portal .storeroom-section { display:grid; gap:12px; }
+.supplier-delivery-row { width:100%; display:grid; text-align:left; gap:4px; background:white; border:1px solid #dce3ee; border-radius:12px; padding:12px; margin:10px 0; }
+.inventory details details > summary { cursor:pointer; padding:12px 0; }

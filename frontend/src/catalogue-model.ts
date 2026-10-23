@@ -1,12 +1,12 @@
 export interface CatalogueUnit {
   id: string; label: string; baseQuantity: number; barcode: string | null;
-  priceMinor: number; priceVersion: number; available: boolean | null; listingVersion: number;
+  priceMinor: number; priceVersion: number; available: boolean | null; listingVersion: number; storerooms?: string[];
 }
 export interface Product {
   id: string; name: string; genericName: string; strength: string; dosageForm: string; baseUnit: string;
   units: CatalogueUnit[]; match: 'exact' | 'prefix' | 'contains' | 'suggestion';
 }
-export interface CatalogueResult { products: Product[]; total: number; page: number; pageSize: number; canChangePrices: boolean; canManageCatalogue: boolean; }
+export interface CatalogueResult { offline?:boolean; products: Product[]; total: number; page: number; pageSize: number; canChangePrices: boolean; canManageCatalogue: boolean; }
 export interface PriceHistory { version: number; old_price_minor: number | null; price_minor: number; reason: string; changed_at: string; changed_by: string; }
 export const money = (minor: number) => new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }).format(minor / 100);
 export function parseMoney(value: string): number {
