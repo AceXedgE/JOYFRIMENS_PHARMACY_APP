@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {readConfig} from '../backend/dist/config.js';
 
 export async function exportDatabase(pg){
- const dump=await pgDump({pg,args:['--schema=public','--no-owner','--no-acl','--exclude-table-data=public.sessions','--exclude-table-data=public.login_limits']});
+ const dump=await pgDump({pg,args:['--schema=public','--no-owner','--no-acl','--inserts','--exclude-table-data=public.sessions','--exclude-table-data=public.login_limits']});
  const sql="DO $$ BEGIN IF EXISTS(SELECT 1 FROM pg_tables WHERE schemaname='public') THEN RAISE EXCEPTION 'Restore requires an empty public schema'; END IF; END $$;\n"+(await dump.text()).replace(/^CREATE SCHEMA public;$/m,'CREATE SCHEMA IF NOT EXISTS public;')+'\nSET search_path TO public;\n';
  const tables=(await pg.query("SELECT tablename FROM pg_tables WHERE schemaname='public' ORDER BY tablename")).rows;
  const counts={};for(const {tablename} of tables){const escaped='"'+tablename.replaceAll('"','""')+'"';counts[tablename]=['sessions','login_limits'].includes(tablename)?0:Number((await pg.query(`SELECT count(*) AS n FROM ${escaped}`)).rows[0].n);}

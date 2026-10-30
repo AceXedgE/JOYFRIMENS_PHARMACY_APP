@@ -35,7 +35,13 @@ For the existing installation, use these manual steps so the data is restored **
 
    The exporter includes accounts/password hashes, permissions, medicines, stock, cash, audit history and schema migrations. It excludes active sessions and login-throttle data, so everyone signs in again. It creates a JSON sidecar with table counts and a checksum. The SQL file is sensitive: do not commit it or put it in a public download location. An export created during development must be refreshed at final cutover if data has changed.
 
-3. Create a new, empty Render PostgreSQL 18 database on the Free plan, named `joyfrimens-db`, with database/user `joyfrimens` and region Frankfurt. Temporarily allow only the operator's public IP for external access. Obtain its **external** connection URL privately through Render. On a machine with PostgreSQL 18 client tools, restore the dump with:
+3. Create a new, empty Render PostgreSQL 18 database on the Free plan, named `joyfrimens-db`, with database/user `joyfrimens` and region Frankfurt. Temporarily allow only the operator's public IP for external access. Obtain its **external** connection URL privately through Render. For this project, put the external URL in the Git-ignored `.env.render` file as `RENDER_DATABASE_URL=...`, then restore a fresh export with the existing Node PostgreSQL client:
+
+   ```powershell
+   node --env-file=.env.render scripts/restore-for-render.mjs --apply --file "C:\path\to\joyfrimens-render.private.sql"
+   ```
+
+   The restore verifies TLS certificates, the export checksum, an empty destination and every table count within one transaction. It accepts INSERT-format exports from the current exporter. Credentials are never printed. Alternatively, with PostgreSQL 18 client tools:
 
    ```sh
    psql "$RENDER_DATABASE_URL" --single-transaction --set ON_ERROR_STOP=1 --file joyfrimens-render.private.sql
@@ -55,3 +61,7 @@ If no existing data is to be carried over, the `render.yaml` Blueprint provision
 ## Verification status
 
 The deployment still needs an actual Render account/repository connection, selected plans, a restore into Render PostgreSQL and HTTPS/device smoke tests. Local builds and embedded-database tests do not replace a real Render/PostgreSQL deployment test. No hosting credentials or purchases are included in this preparation.
+
+## Trial transfer completed ? 2026-10-30
+
+The local database was backed up and restored into Render PostgreSQL 18.6. All 60 table counts matched, including 628 products, 694 selling options and 2 users. Sessions were excluded. The local development server was stopped. The web service still needs creation and live HTTPS checks. Do not repeat the restore against this now-populated database. The private export and connection file are excluded from Git.
