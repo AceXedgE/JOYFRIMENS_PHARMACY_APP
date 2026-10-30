@@ -20,6 +20,7 @@
     "check": "npm run typecheck && npm test && npm run build && npm run smoke"
   },
   "devDependencies": {
+    "@electric-sql/pglite-tools": "^0.4.13",
     "@playwright/test": "^1.63.0",
     "@types/node": "^24.10.0",
     "concurrently": "^9.2.1",

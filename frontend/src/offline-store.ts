@@ -16,6 +16,19 @@ export async function readLocal<T>(key: string): Promise<T | undefined> {
     request.onerror = () => reject(request.error);
   });
 }
+
+// Only an explicit server-side business reset changes this revision. Ordinary
+// logout, upgrades and network failures must never clear queued business records.
+export async function acceptDataset(revision: string) {
+  const previous=await readLocal<string>('business-dataset');
+  if((previous??'initial')!==revision){
+    const db=await database();
+    await new Promise<void>((resolve,reject)=>{const tx=db.transaction('records','readwrite');tx.objectStore('records').clear();tx.objectStore('records').put(revision,'business-dataset');tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});
+    for(const storage of [localStorage,sessionStorage])for(const key of Object.keys(storage)){
+      if(/^(ticket-edit:|sales-pending:|inventory-pending:|daily-cash:|cash-pending:|money-out:|refund-pending:|category-pending:|categories:|supplier-delivery:|verified-shop$)/.test(key))storage.removeItem(key);
+    }
+  }else if(!previous)await writeLocal([['business-dataset',revision]]);
+}
 export async function writeLocal(entries: [string, unknown][], remove: string[] = []) {
   const db = await database();
   await new Promise<void>((resolve, reject) => {

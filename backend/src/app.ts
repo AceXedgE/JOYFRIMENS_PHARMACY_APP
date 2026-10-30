@@ -15,6 +15,13 @@ export function buildApp(options: { logger?: boolean; db?: Database; config?: Co
   app.get('/api/health', async () => ({
     status: 'ok', service: 'joyfrimens-api', version: '0.1.0',
   }));
+  app.get('/api/ready',async(_request,reply)=>{
+    try{
+      if(!options.db)throw new Error('Database unavailable');
+      await options.db.query('SELECT 1');
+      return {status:'ready'};
+    }catch{return reply.code(503).send({status:'unavailable'});}
+  });
   if (options.db) app.register(async scope => {
     await scope.register(cookie);
     await registerRoutes(scope, options.db!, options.config ?? readConfig());

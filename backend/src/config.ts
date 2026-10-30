@@ -21,8 +21,9 @@ export function readConfig(env: NodeJS.ProcessEnv = process.env): Config {
     const url = new URL(databaseUrl);
     if (!['postgres:', 'postgresql:'].includes(url.protocol)) throw new Error('DATABASE_URL must use PostgreSQL.');
   }
-  if (production && !env.APP_ORIGINS) throw new Error('Production requires APP_ORIGINS.');
-  const origins = (env.APP_ORIGINS ?? 'http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:4173').split(',').map(value => value.trim());
+  const configuredOrigins=env.APP_ORIGINS||(env.RENDER_EXTERNAL_URL&&env.SERVE_FRONTEND==='true'?env.RENDER_EXTERNAL_URL:undefined);
+  if (production && !configuredOrigins) throw new Error('Production requires APP_ORIGINS.');
+  const origins = (configuredOrigins ?? 'http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:4173').split(',').map(value => value.trim());
   for (const origin of origins) {
     const url = new URL(origin);
     if (url.origin !== origin || !['http:', 'https:'].includes(url.protocol) || (production && url.protocol !== 'https:')) {

@@ -2,7 +2,7 @@ import type {FastifyInstance} from 'fastify';
 import type {Database,Sql} from './database.ts';
 import {actorOf} from './inventory.ts';
 
-export async function medicineNotification(tx:Sql,unit:string,kind:'added'|'price'|'availability',shop:string|null=null,available:boolean|null=null){
+export async function medicineNotification(tx:Sql,unit:string,kind:'added'|'price'|'availability'|'updated'|'removed'|'restored',shop:string|null=null,available:boolean|null=null){
  await tx.query(`INSERT INTO medicine_notifications(shop_id,unit_id,kind,medicine,unit_label,price_minor,available)
  SELECT $2,u.id,$3,concat_ws(' ',p.name,nullif(p.strength,'')),u.label,pr.price_minor,$4
  FROM selling_units u JOIN products p ON p.id=u.product_id JOIN unit_prices pr ON pr.unit_id=u.id WHERE u.id=$1`,[unit,shop,kind,available]);

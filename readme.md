@@ -2,7 +2,7 @@
 
 A pharmacy workspace for tracking cash sales, drug prices, and stock across two shops and shared main storage.
 
-**Status: Sprint 6 - cash closing and owner review.** Staff accounts, shared prices, stock receiving/transfers, cash sales, refunds, payment approvals, drawer counts/closing, handovers, retained float, category reports and manual exception days are implemented. Prepared devices now support offline counter sales with a durable sync queue; closed-day reconciliation and real-device pilot validation remain outstanding.
+**Status: core pharmacy workflows implemented; preparing Render deployment.** Sales, offline ticket syncing, daily cash, refunds, permission-bound storerooms, supplier submissions and medicine/variation management are available. Live Render/PostgreSQL and real-device cash-close validation are still required.
 
 Configured shops: **Tomjoy Pharmacy** and **Joyfrimens Pharmacy**, using **Ghanaian cedis (GHS)** and **GMT** (`Etc/GMT`). Each shop has its own shelves and storeroom; shared main-storage rooms 1 and 2 belong to the business and supply both shops.
 
@@ -19,6 +19,12 @@ The same drug and selling unit always have **one shared price across both pharma
 - Surface shortages, missing records, incomplete synchronization, and an 8:30 p.m. connectivity/sync warning.
 
 Catalogue lookup, audited price editing, stock receiving, and transfers are available now; cash sales and refunds are also available. Cash control now supports closing and owner review. Offline counter workflows are available with the limits documented below. See [the sprint plan](docs/SPRINTS.md) for delivery order and acceptance checks.
+
+## Render hosting and new medicines
+
+See [Render deployment](docs/RENDER_DEPLOYMENT.md) for the prepared hosting settings and instructions to move the existing database and accounts. The checked-in `render.yaml` is an optional free trial template (the database expires after 30 days); no resources have been created.
+
+The add-only import from `docs/newdrugs.md` added 105 medicines and 140 selling options, preserving all 523 existing medicine records. [The import report](docs/NEWDRUGS_IMPORT_REPORT.md) lists every source line, skip, missing price and interpretation. Unlike the earlier reset import, `scripts/import-newdrugs.mjs` never clears business data.
 
 ## Repository structure
 
@@ -205,6 +211,27 @@ Admins can create private delivery links under **Storerooms > Supplier deliverie
 
 ## Unavailable medicines and updates
 
+The Tomjoy document import includes zero-price placeholders labelled **Price needed**. They remain searchable but cannot be sold until priced. Authorised staff can choose **Edit price** directly from counter search. Listed quantity deals are separate selling options (for example, 3 units for GHS10); selecting three single units does not automatically select that deal. See [import review](docs/TOMJOY_IMPORT_REVIEW.md) and [full import CSV](docs/tomjoy-catalogue-import.csv).
+
+Migration 019 permits unpriced catalogue entries and adds a business-dataset revision. An explicitly authorised database reset changes that revision, clears sessions, and clears old device drafts/caches on the next successful sign-in. Ordinary sign-out and upgrades do not clear queued sales. The destructive local-only import script requires `--replace-business-data`; back up and stop the API before using it.
+
 On Counter, **Unavailable medicines** lists shelf units marked unavailable at the active shop. **Download list** exports the complete shop list as a CSV, including GHS prices and storeroom hints. Offline lists use the saved device catalogue and are labelled accordingly.
 
 **Updates** shows medicine additions, shared price changes and relevant shop availability changes, with a personal unread count and paginated history. Updates refresh while the app is running and connected, including on reconnect; phone push notifications are not included. Detailed actor/price audit history remains admin-only. Account permissions are shown only to employees. Migration 017 adds notification records and per-user read state.
+
+
+### Medicine corrections and removal (24 October 2026)
+
+In Account > Manage medicines, admins can correct a medicine name, optional other names, base unit, selling-option labels and barcodes. Shared details apply to both shops. Unused pack conversions can be corrected; conversions already used by sales or stock must retain their original meaning. Employees with price permission can still change prices but cannot rename or remove medicines.
+
+Remove medicine hides it from active catalogue, sales and receiving choices, retaining its history. Remaining storeroom stock or goods in transit must be resolved first. Admins can use Include removed medicines to restore an entry. Changes record the acting admin and notify staff, without asking for a reason. Historical sales and stock documents retain their original medicine descriptions.
+
+Admins can also add selling units while editing an existing medicine, including medicines already used in stock or sales. Each new unit has a name, number of base units, independent GHS price and optional barcode, and is listed at both pharmacies. Existing unit prices and historical conversions remain protected. Unsaved new units can be removed before saving.
+
+### Variations (26 October 2026)
+
+Add/edit medicine includes a Variation checkbox for additional selling options. Checked options (e.g. syrup alongside inhaler) have independent stock and prices, counted as one of that option per sale, without a base-unit comparison. Unchecked packs retain their base-unit conversion. Receiving, manual additions, transfers, sales, refunds and main-storeroom duplicate checks keep variation batches separate. Shelf availability remains specific to each selling option. Existing options can be corrected before stock or sales records depend on their interpretation; recorded history is not silently reassigned. Existing options are not guessed or automatically reclassified: mark the intended options in Manage medicines.
+
+### Named options and catalogue editing
+
+A medicine can have a main option called Green and an independent variation called Blue, without entering a common unit or conversion. Stock-unit details are shown only for actual packs. The main option and price appear first; Show first changes display order without merging stock. Edit medicine includes all option prices, while quick price editing remains available outside. Price-version checks prevent an older editor overwriting a quick price update. Delete option removes a variation or pack from active use; Delete medicine removes the whole medicine from both shops. Unavailable only flags the shop shelf and leaves the option searchable. Deletion preserves historical records and checks remaining stock and transfers before removing their last active stock option.

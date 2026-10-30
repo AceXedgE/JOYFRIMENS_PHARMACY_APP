@@ -42,7 +42,8 @@ export async function place(tx: Sql, actor: Actor, id: string, write = false) {
   throw new HttpError(404, 'Location not found or unavailable.');
 }
 export async function productLock(tx: Sql, id: string) {
-  await tx.query('SELECT id FROM products WHERE id=$1 FOR UPDATE', [id]);
+  const product=(await tx.query<{archived?:boolean}>('SELECT * FROM products WHERE id=$1 FOR UPDATE',[id])).rows[0];
+  if(product?.archived)throw new HttpError(409,'This medicine has been removed. Restore it in Manage medicines before adding or moving stock.');
 }
 export async function batchLock(tx: Sql, id: string, usable = false) {
   const identity = (await tx.query<{ product_id: string }>('SELECT product_id FROM stock_batches WHERE id=$1', [id])).rows[0];
@@ -63,7 +64,7 @@ export async function change(tx: Sql, location: string, batch: string, delta: nu
   if (delta > 0 && !forceDuplicate) {
     const duplicate = await tx.query(`SELECT 1 FROM locations destination
       JOIN stock_batches incoming ON incoming.id=$2
-      JOIN stock_batches existing ON existing.product_id=incoming.product_id
+      JOIN stock_batches existing ON existing.product_id=incoming.product_id AND (to_jsonb(existing)->>'variation_unit_id') IS NOT DISTINCT FROM (to_jsonb(incoming)->>'variation_unit_id')
       JOIN stock_balances s ON s.batch_id=existing.id AND s.quantity>0
       JOIN locations other ON other.id=s.location_id AND other.kind='shared'
       WHERE destination.id=$1 AND destination.kind='shared' AND other.id<>destination.id LIMIT 1`, [location, batch]);
@@ -104,8 +105,18 @@ async function referenceLock(tx: Sql, supplier: string, reference: string) {
   await tx.query('INSERT INTO supplier_reference_locks(supplier,reference) VALUES($1,$2) ON CONFLICT DO NOTHING', [supplier, reference]);
   await tx.query('SELECT supplier FROM supplier_reference_locks WHERE supplier=$1 AND reference=$2 FOR UPDATE', [supplier, reference]);
 }
+
+async function unitBatch(tx:Sql,unit:{product_id:string;variation?:boolean;base_quantity:number},unitId:string,batchNumber:string,expiry:string){
+ const latest=(await tx.query<{base_quantity:number;variation:boolean;archived:boolean}>("SELECT coalesce((to_jsonb(u)->>'archived')::boolean,false) AS archived,base_quantity,coalesce((to_jsonb(u)->>'variation')::boolean,false) AS variation FROM selling_units u WHERE id=$1",[unitId])).rows[0];
+ if(!latest||latest.archived||latest.base_quantity!==unit.base_quantity||latest.variation!==unit.variation)throw new HttpError(409,'Selling option changed. Refresh before receiving stock.');
+ const variation=unit.variation?unitId:null;
+ if(variation)await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry,variation_unit_id) VALUES($1,$2,$3,$4,$5) ON CONFLICT DO NOTHING',[randomUUID(),unit.product_id,batchNumber,expiry,variation]);
+ else await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING',[randomUUID(),unit.product_id,batchNumber,expiry]);
+ return (await tx.query<{id:string}>("SELECT id FROM stock_batches b WHERE product_id=$1 AND batch_number=$2 AND expiry=$3 AND (to_jsonb(b)->>'variation_unit_id') IS NOT DISTINCT FROM $4::text FOR UPDATE",[unit.product_id,batchNumber,expiry,variation])).rows[0];
+}
+
 async function receiveLine(tx: Sql, actor: Actor, operation: string, input: Omit<Receipt, 'requestKey'>, reason: string) {
-    const unit = (await tx.query<{ product_id: string; base_quantity: number }>('SELECT product_id,base_quantity FROM selling_units WHERE id=$1', [input.unitId])).rows[0];
+    const unit = (await tx.query<{ product_id: string; base_quantity: number; variation:boolean }>("SELECT product_id,base_quantity,coalesce((to_jsonb(u)->>'variation')::boolean,false) AS variation FROM selling_units u WHERE id=$1", [input.unitId])).rows[0];
     if (!unit) throw new HttpError(404, 'Selling unit not found.');
     const expected = quantity(input.expectedPacks, unit.base_quantity), received = quantity(input.receivedPacks, unit.base_quantity);
     if (new Set(input.allocations.map(a => a.locationId)).size !== input.allocations.length || input.allocations.reduce((sum, a) => sum + a.quantity, 0) !== received) throw new HttpError(400, 'Allocation quantities must equal the actual received base units, with each location listed once.');
@@ -113,8 +124,7 @@ async function receiveLine(tx: Sql, actor: Actor, operation: string, input: Omit
     if (input.expiry <= new Date().toISOString().slice(0, 10)) throw new HttpError(400, 'Do not accept expired stock into available inventory.');
     await productLock(tx, unit.product_id);
     const batchNumber = required(input.batchNumber), supplier = required(input.supplier).toLowerCase(), reference = required(input.reference).toLowerCase();
-    await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING', [randomUUID(), unit.product_id, batchNumber, input.expiry]);
-    const batch = (await tx.query<{ id: string }>('SELECT id FROM stock_batches WHERE product_id=$1 AND batch_number=$2 AND expiry=$3 FOR UPDATE', [unit.product_id, batchNumber, input.expiry])).rows[0];
+    const batch = await unitBatch(tx,unit,input.unitId,batchNumber,input.expiry);
     const receipt = randomUUID();
     await tx.query(`INSERT INTO stock_receipts(id,batch_id,unit_id,supplier,reference,expected_quantity,received_quantity,reason,actor_id)
       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)`, [receipt, batch.id, input.unitId, supplier, reference, expected, received, reason, actor.id]);
@@ -130,12 +140,11 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
     const input=request.body;const source=await place(tx,actor,input.sourceId,true);
     if(source.kind!=='shelf')throw new HttpError(400,'Choose the source shelf.');
     if(input.sourceId===input.destinationId||!(await tx.query('SELECT id FROM locations WHERE id=$1',[input.destinationId])).rows.length)throw new HttpError(400,'Choose a different destination.');
-    const unit=(await tx.query<{product_id:string;base_quantity:number}>('SELECT product_id,base_quantity FROM selling_units WHERE id=$1',[input.unitId])).rows[0];
+    const unit=(await tx.query<{product_id:string;base_quantity:number;variation:boolean}>("SELECT product_id,base_quantity,coalesce((to_jsonb(u)->>'variation')::boolean,false) AS variation FROM selling_units u WHERE id=$1",[input.unitId])).rows[0];
     if(!unit)throw new HttpError(404,'Medicine not found.');
     if(input.expiry<=new Date().toISOString().slice(0,10))throw new HttpError(400,'Expired stock cannot be dispatched.');
     await productLock(tx,unit.product_id);const batchNumber=required(input.batchNumber);
-    await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING',[randomUUID(),unit.product_id,batchNumber,input.expiry]);
-    const batch=(await tx.query<{id:string}>('SELECT id FROM stock_batches WHERE product_id=$1 AND batch_number=$2 AND expiry=$3',[unit.product_id,batchNumber,input.expiry])).rows[0];
+    const batch=await unitBatch(tx,unit,input.unitId,batchNumber,input.expiry);
     const amount=quantity(input.packs,unit.base_quantity),id=randomUUID();
     await tx.query('INSERT INTO stock_transfers(id,batch_id,source_id,destination_id,quantity,dispatched_by,reason) VALUES($1,$2,$3,$4,$5,$6,$7)',[id,batch.id,source.id,input.destinationId,amount,actor.id,reason]);
     await entry(tx,operation,actor,batch.id,source.id,-amount,'dispatch',reason,id,null,{shelfMovement:true});return{id};
@@ -143,12 +152,11 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
   app.post<{Body:Write & {locationId:string;unitId:string;batchNumber:string;expiry:string;packs:number}}>('/api/inventory/manual', {schema:{body:object({requestKey:uuid,reason:reasonSchema,locationId:uuid,unitId:uuid,batchNumber:str(100),expiry:{type:'string',format:'date'},packs:integer(1),forceDuplicate:{type:'boolean'}})}},async request=>mutate(db,request,'manual_stock',async(tx,actor,operation,reason)=>{
     const input=request.body;const location=await place(tx,actor,input.locationId,true);
     if(location.kind==='shelf')throw new HttpError(400,'Manual stock entry is for storerooms only.');
-    const unit=(await tx.query<{product_id:string;base_quantity:number}>('SELECT product_id,base_quantity FROM selling_units WHERE id=$1',[input.unitId])).rows[0];
+    const unit=(await tx.query<{product_id:string;base_quantity:number;variation:boolean}>("SELECT product_id,base_quantity,coalesce((to_jsonb(u)->>'variation')::boolean,false) AS variation FROM selling_units u WHERE id=$1",[input.unitId])).rows[0];
     if(!unit)throw new HttpError(404,'Medicine not found.');
     if(input.expiry<=new Date().toISOString().slice(0,10))throw new HttpError(400,'Do not add expired stock to usable inventory.');
     await productLock(tx,unit.product_id);const batchNumber=required(input.batchNumber);
-    await tx.query('INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING',[randomUUID(),unit.product_id,batchNumber,input.expiry]);
-    const batch=(await tx.query<{id:string}>('SELECT id FROM stock_batches WHERE product_id=$1 AND batch_number=$2 AND expiry=$3',[unit.product_id,batchNumber,input.expiry])).rows[0];
+    const batch=await unitBatch(tx,unit,input.unitId,batchNumber,input.expiry);
     const amount=quantity(input.packs,unit.base_quantity);await change(tx,location.id,batch.id,amount,input.forceDuplicate);
     await entry(tx,operation,actor,batch.id,location.id,amount,'count',reason,null,null,{manualAddition:true,unitId:input.unitId,packs:input.packs});
     return {batchId:batch.id,added:amount};
@@ -173,9 +181,9 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
     await tx.query('INSERT INTO supplier_documents(id,supplier,reference,reason,actor_id) VALUES($1,$2,$3,$4,$5)', [id, supplier, reference, reason, actor.id]);
     const lines = [];
     for (const [index, line] of request.body.lines.entries()) {
-      const unit = (await tx.query<{ product_id: string }>('SELECT product_id FROM selling_units WHERE id=$1', [line.unitId])).rows[0];
+      const unit = (await tx.query<{ product_id: string;variation:boolean }>("SELECT product_id,coalesce((to_jsonb(u)->>'variation')::boolean,false) AS variation FROM selling_units u WHERE id=$1", [line.unitId])).rows[0];
       if (!unit) throw new HttpError(400, `Line ${index + 1}: choose an existing drug and pack.`);
-      const key = JSON.stringify([unit.product_id, required(line.batchNumber), line.expiry]);
+      const key = JSON.stringify([unit.product_id, unit.variation?line.unitId:null, required(line.batchNumber), line.expiry]);
       lines.push({ index, line, key });
     }
     if (new Set(lines.map(line => line.key)).size !== lines.length) throw new HttpError(400, 'Combine duplicate drug/batch/expiry lines into one line, using base units if necessary.');
@@ -199,8 +207,8 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
     const allocations = (await db.query<{ receipt_id: string; location_id: string; name: string; quantity: number }>(`SELECT l.receipt_id,l.location_id,p.name,l.delta AS quantity
       FROM supplier_document_lines dl JOIN stock_ledger l ON l.receipt_id=dl.receipt_id JOIN locations p ON p.id=l.location_id WHERE dl.document_id=$1 ORDER BY p.name`, [request.params.id])).rows;
     for (const locationId of new Set(allocations.map(a => a.location_id))) await place(db, actor, locationId);
-    const lines = (await db.query<{ id: string }>(`SELECT r.id,dl.line_number,r.expected_quantity,r.received_quantity,r.reason,p.name,p.strength,p.dosage_form,p.base_unit,b.batch_number,b.expiry::text,
-      u.label,u.base_quantity,a.created_at AS approved_at,reviewer.display_name AS approved_by,a.reason AS approval_reason
+    const lines = (await db.query<{ id: string }>(`SELECT r.id,dl.line_number,r.expected_quantity,r.received_quantity,r.reason,coalesce(r.catalogue_snapshot->>'name',p.name) AS name,coalesce(r.catalogue_snapshot->>'strength',p.strength) AS strength,coalesce(r.catalogue_snapshot->>'dosage_form',p.dosage_form) AS dosage_form,coalesce(r.catalogue_snapshot->>'base_unit',p.base_unit) AS base_unit,b.batch_number,b.expiry::text,
+      coalesce(r.catalogue_snapshot->>'label',u.label) AS label,coalesce((r.catalogue_snapshot->>'base_quantity')::integer,u.base_quantity) AS base_quantity,a.created_at AS approved_at,reviewer.display_name AS approved_by,a.reason AS approval_reason
       FROM supplier_document_lines dl JOIN stock_receipts r ON r.id=dl.receipt_id JOIN stock_batches b ON b.id=r.batch_id JOIN products p ON p.id=b.product_id
       JOIN selling_units u ON u.id=r.unit_id LEFT JOIN stock_receipt_approvals a ON a.receipt_id=r.id LEFT JOIN users reviewer ON reviewer.id=a.actor_id
       WHERE dl.document_id=$1 ORDER BY dl.line_number`, [request.params.id])).rows;
@@ -219,22 +227,22 @@ export function registerInventoryRoutes(app: FastifyInstance, db: Database) {
       OR (l.shop_id IS NULL AND $2::boolean) OR EXISTS(SELECT 1 FROM memberships m WHERE m.shop_id=l.shop_id AND m.user_id=$3) ORDER BY l.name`, [actor.role === 'admin', actor.shared_storage_access, actor.id])).rows;
     // Destination labels allow a dispatcher to choose the other shop without exposing its stock.
     const destinations = (await db.query<Place>('SELECT id,name,kind,shop_id FROM locations ORDER BY name')).rows;
-    const units = (await db.query(`SELECT u.id,u.product_id,u.label,u.base_quantity,p.name,p.strength,p.dosage_form,p.base_unit
-      FROM selling_units u JOIN products p ON p.id=u.product_id ORDER BY p.name,p.strength,u.base_quantity`)).rows;
+    const units = (await db.query(`SELECT u.id,u.product_id,u.label,u.base_quantity,coalesce((to_jsonb(u)->>'variation')::boolean,false) AS variation,p.name,p.strength,p.dosage_form,CASE WHEN coalesce((to_jsonb(u)->>'variation')::boolean,false) THEN u.label ELSE p.base_unit END AS base_unit
+      FROM selling_units u JOIN products p ON p.id=u.product_id WHERE coalesce((to_jsonb(u)->>'archived')::boolean,false)=false AND coalesce((to_jsonb(p)->>'archived')::boolean,false)=false ORDER BY p.name,p.strength,u.base_quantity`)).rows;
     return { locations, destinations, units, canAdjust: actor.role === 'admin' };
   });
   app.get<{ Params: { id: string } }>('/api/inventory/locations/:id', { schema: { params } }, async request => {
     const actor = await actorOf(db, request); await place(db, actor, request.params.id);
-    const stocks = (await db.query(`SELECT s.batch_id,s.quantity,s.reserved,s.version,b.batch_number,b.expiry::text,p.id AS product_id,p.name,p.strength,p.dosage_form,p.base_unit
-      FROM stock_balances s JOIN stock_batches b ON b.id=s.batch_id JOIN products p ON p.id=b.product_id
+    const stocks = (await db.query(`SELECT s.batch_id,s.quantity,s.reserved,s.version,b.batch_number,b.expiry::text,p.id AS product_id,(to_jsonb(b)->>'variation_unit_id') AS variation_unit_id,concat(p.name,CASE WHEN v.id IS NOT NULL THEN ' / '||v.label ELSE '' END) AS name,p.strength,p.dosage_form,coalesce(v.label,p.base_unit) AS base_unit
+      FROM stock_balances s JOIN stock_batches b ON b.id=s.batch_id JOIN products p ON p.id=b.product_id LEFT JOIN selling_units v ON v.id::text=(to_jsonb(b)->>'variation_unit_id')
       WHERE s.location_id=$1 AND EXISTS(SELECT 1 FROM locations WHERE id=$1 AND kind<>'shelf') ORDER BY p.name,b.expiry,b.batch_number`, [request.params.id])).rows;
-    const transfers = (await db.query(`SELECT t.*,b.batch_number,b.expiry::text,p.name,p.strength,p.base_unit,src.name AS source_name,dst.name AS destination_name,
+    const transfers = (await db.query(`SELECT t.*,b.batch_number,b.expiry::text,coalesce(t.catalogue_snapshot->>'name',p.name) AS name,coalesce(t.catalogue_snapshot->>'strength',p.strength) AS strength,coalesce(t.catalogue_snapshot->>'base_unit',p.base_unit) AS base_unit,src.name AS source_name,dst.name AS destination_name,
       u.display_name AS dispatched_by_name FROM stock_transfers t JOIN stock_batches b ON b.id=t.batch_id JOIN products p ON p.id=b.product_id
       JOIN locations src ON src.id=t.source_id JOIN locations dst ON dst.id=t.destination_id JOIN users u ON u.id=t.dispatched_by
       WHERE (t.source_id=$1 OR t.destination_id=$1) AND (t.received+t.lost<t.quantity OR t.id IN
         (SELECT id FROM stock_transfers WHERE (source_id=$1 OR destination_id=$1) AND received+lost=quantity ORDER BY dispatched_at DESC LIMIT 100))
       ORDER BY t.dispatched_at DESC`, [request.params.id])).rows;
-    const ledger = (await db.query(`SELECT l.id,l.batch_id,l.delta,l.kind,l.reason,l.details,l.transfer_id,l.receipt_id,l.created_at,u.display_name AS actor_name,p.name,b.batch_number,
+    const ledger = (await db.query(`SELECT l.id,l.batch_id,l.delta,l.kind,l.reason,l.details,l.transfer_id,l.receipt_id,l.created_at,u.display_name AS actor_name,coalesce(l.catalogue_snapshot->>'name',p.name) AS name,b.batch_number,
       document.document_id,r.supplier,r.reference,r.expected_quantity,r.received_quantity,approval.created_at AS approved_at,approver.display_name AS approved_by_name
       FROM stock_ledger l JOIN users u ON u.id=l.actor_id JOIN stock_batches b ON b.id=l.batch_id JOIN products p ON p.id=b.product_id
       LEFT JOIN stock_receipts r ON r.id=l.receipt_id LEFT JOIN supplier_document_lines document ON document.receipt_id=r.id LEFT JOIN stock_receipt_approvals approval ON approval.receipt_id=r.id

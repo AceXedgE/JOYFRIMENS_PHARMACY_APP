@@ -1,0 +1,7475 @@
+{
+  "sourceSha256": "83bee4cf0a47f1411f907408dd59de7a2fa4f3b27c4c326a15230dd030d7bc8e",
+  "products": [
+    {
+      "name": "AMOXICILLIN CAPS 250",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        },
+        {
+          "label": "3 units",
+          "baseQuantity": 3,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        4
+      ],
+      "sourcePrice": "1=5ghc ,3=10ghc"
+    },
+    {
+      "name": "AMOXICILLIN CAPS 500",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        5
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMOXICILLIN SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        6
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OXYTETRA/RED AND YELLOW",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        },
+        {
+          "label": "3 units",
+          "baseQuantity": 3,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        7
+      ],
+      "sourcePrice": "1=5ghc ,3=10ghc"
+    },
+    {
+      "name": "CLOXACILLIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        },
+        {
+          "label": "3 units",
+          "baseQuantity": 3,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        8
+      ],
+      "sourcePrice": "1=5ghc ,3=10ghc"
+    },
+    {
+      "name": "AMPICILLIN/RED AND BLACK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        },
+        {
+          "label": "3 units",
+          "baseQuantity": 3,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        9
+      ],
+      "sourcePrice": "1=5ghc ,3=10ghc"
+    },
+    {
+      "name": "CHLORAMPHENICOL TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        10
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "CHLORAMPHENICOL SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        11
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "CHLORDIAZEPOXIDE 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        12
+      ],
+      "sourcePrice": "1=5ghc"
+    },
+    {
+      "name": "GRISEOFLUCIN/PLUS+ 125mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "3 units",
+          "baseQuantity": 3,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        13
+      ],
+      "sourcePrice": "3=10ghc"
+    },
+    {
+      "name": "GRISEOFLUCIN/PLUS+ 500mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1500
+        }
+      ],
+      "sourceRows": [
+        14
+      ],
+      "sourcePrice": "15ghc"
+    },
+    {
+      "name": "PEN V",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "2 units",
+          "baseQuantity": 2,
+          "priceMinor": 500
+        },
+        {
+          "label": "4 units",
+          "baseQuantity": 4,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        15
+      ],
+      "sourcePrice": "2=5ghc ,4=10ghc"
+    },
+    {
+      "name": "METRONIDAZOLE 200 LETAP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "2 units",
+          "baseQuantity": 2,
+          "priceMinor": 500
+        },
+        {
+          "label": "4 units",
+          "baseQuantity": 4,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        17
+      ],
+      "sourcePrice": "2=5ghc ,4=10ghc"
+    },
+    {
+      "name": "METRONIDAZOLE 400 UK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        18
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "METRONIDAZOLE SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        19
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "METRONIDAZOLE SUSP LETAP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1500
+        }
+      ],
+      "sourceRows": [
+        20
+      ],
+      "sourcePrice": "15ghc**"
+    },
+    {
+      "name": "METRONIDAZOLE INFUSION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        21
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "METROLEX F TABLET",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        23
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "METROLEX F SUSPENSION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        24
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "SEPTRIN / CO TRIMOXAZOLE TABLET",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "2 units",
+          "baseQuantity": 2,
+          "priceMinor": 500
+        },
+        {
+          "label": "4 units",
+          "baseQuantity": 4,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        26
+      ],
+      "sourcePrice": "2=5ghc ,4=10ghc"
+    },
+    {
+      "name": "SEPTRIN / CO TRIMOXAZOLE SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        27
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        28
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ZYMAX 250",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        30
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "ZYMAX 500",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        31
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "AZIROCIN 500",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        32
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "AZITHROMYCIN SUSPENSION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        33
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "VEGA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        34
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "ZITHROMAX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        35
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CIPROFLOXACIN TABLET CIPROLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        37
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "CIPRO TZ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        38
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "NOVACIP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1500
+        }
+      ],
+      "sourceRows": [
+        39
+      ],
+      "sourcePrice": "15ghc"
+    },
+    {
+      "name": "SHALCIP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        40
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "SHALCIP TZ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        41
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "CIPROFLOXACIN INFUSION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        42
+      ],
+      "sourcePrice": "20ghc**"
+    },
+    {
+      "name": "ZYFEN 180",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 8000
+        }
+      ],
+      "sourceRows": [
+        43
+      ],
+      "sourcePrice": "80ghc"
+    },
+    {
+      "name": "FLUCLOXACIN 250 LETAP caps",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        45
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "FLUCLOXACIN 500 UK caps",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 7000
+        }
+      ],
+      "sourceRows": [
+        46
+      ],
+      "sourcePrice": "70ghc"
+    },
+    {
+      "name": "FLUCLOXACIN SUSPENSION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        47,
+        48
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "CLINDAMYCIN 150mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        50
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "CLINDAMYCIN 300mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        51
+      ],
+      "sourcePrice": "30ghc***"
+    },
+    {
+      "name": "DALACIN C",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 18000
+        }
+      ],
+      "sourceRows": [
+        52
+      ],
+      "sourcePrice": "180ghc"
+    },
+    {
+      "name": "CLINDAMYCIN suspension 250mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        53
+      ],
+      "sourcePrice": "250mg"
+    },
+    {
+      "name": "CEFIXIME 200mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        55
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "CEFUROXIME 250mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        58
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "CEFUROXIME 500mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        59
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "CEFUROXIME suspension",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        60
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "CEFUROXIME Suspension VEGA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        61
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "LEVOFLOXACIN UK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        63
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TAVANIC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        64
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FLUCONAZOLE /MYCOSTAT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        65
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "NUFLUCON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        66
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "TEVA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        67
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "ABYCOLD SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        73
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "AMCOF ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        74
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "AMCOF INFANT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        75
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "BABY COUGH SYRUP VEGA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        76
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "BENYLIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        77
+      ],
+      "sourcePrice": "120ghc"
+    },
+    {
+      "name": "BENYLIN CODEINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 20000
+        }
+      ],
+      "sourceRows": [
+        78
+      ],
+      "sourcePrice": "200ghc"
+    },
+    {
+      "name": "BENYLIN DRY COUGH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        79
+      ],
+      "sourcePrice": "120ghc"
+    },
+    {
+      "name": "BENYLIN MUCUS COUGH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        80
+      ],
+      "sourcePrice": "120ghc"
+    },
+    {
+      "name": "BENYLIN PEADIATRIC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 15000
+        }
+      ],
+      "sourceRows": [
+        81
+      ],
+      "sourcePrice": "150ghc"
+    },
+    {
+      "name": "CARBOCISTEINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        82
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "CARBOZAP ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        83
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "CARBOZAP JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        84
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "CHESTY COUGH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        85
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "COLDIRON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        86
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "COLDRELIF SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        87
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "COLDRID",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        88
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "DIPHEX INFANTS COUGH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        89
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "FLEMEX JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        90
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "KOFLET",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        91
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "KOFOF ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        92
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "KOFOF BABY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        93
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "LETALIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        94
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "LEUX COUGH SYRUPS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        95
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "LINCTUS ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        96
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "LINCTUS BABY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        97
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "LINCTUS JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        98
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "MALIN BABY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        99
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "MALIN JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2500
+        }
+      ],
+      "sourceRows": [
+        100
+      ],
+      "sourcePrice": "25ghc"
+    },
+    {
+      "name": "MENTHOX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        101
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "METHODEX SIZE/BIG",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        102
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "METHODEX SIZE/SMALL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 8000
+        }
+      ],
+      "sourceRows": [
+        103
+      ],
+      "sourcePrice": "80ghc"
+    },
+    {
+      "name": "MUCOLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        104
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "MUCOLEX ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        105
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "MUCOLEX JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        106
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "MUCOTIN ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3500
+        }
+      ],
+      "sourceRows": [
+        107
+      ],
+      "sourcePrice": "35ghc***"
+    },
+    {
+      "name": "MUCOTIN ENFANT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        108
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "NIGHT TIME COUGH AND COLD",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        109
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "POFAKOF BABY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        110
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "RHINATHIOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 9000
+        }
+      ],
+      "sourceRows": [
+        111
+      ],
+      "sourcePrice": "90ghc"
+    },
+    {
+      "name": "SALO COLD SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        112
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "SAMALIN ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        113
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "SAMALIN JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        114
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "SAMALIN JUNIOR NON DROWSY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        115
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "STOPKOF ADULT COUGH SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        116
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "STOPKOF ADULT EXPECTORANT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        117
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "STOPKOF BABY EXPECTORANT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        118
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "TIXYLIX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        119
+      ],
+      "sourcePrice": "100ghc"
+    },
+    {
+      "name": "VISCOF",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        120
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "VISCOF-D",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        121
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "VISCOF-S",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        122
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "ZUBES ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        123
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "ZUBES JUNIOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        124
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "EXEVIN NASAL DROP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        125
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "COLDRELIF TABLETS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        131
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "COLDRID TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        132
+      ],
+      "sourcePrice": "1=5ghc"
+    },
+    {
+      "name": "CONGESTYL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        133
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "FAMA COLD TABLET",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        134
+      ],
+      "sourcePrice": "1=5ghc"
+    },
+    {
+      "name": "FLUCOR DAY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        135
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "FLUCOR NIGHT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        136
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "FLUREST",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        137
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "MIXTAB",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        138
+      ],
+      "sourcePrice": "1=5ghc"
+    },
+    {
+      "name": "NIGHT NURSE (1 tablet)",
+      "baseUnit": "tablet",
+      "units": [
+        {
+          "label": "tablet",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        139
+      ],
+      "sourcePrice": "1tab=20ghc"
+    },
+    {
+      "name": "PROCOLD",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1500
+        }
+      ],
+      "sourceRows": [
+        140
+      ],
+      "sourcePrice": "15ghc"
+    },
+    {
+      "name": "RONFIT COLD",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        141
+      ],
+      "sourcePrice": "1=5ghc"
+    },
+    {
+      "name": "SALO COLD TABLETS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        142
+      ],
+      "sourcePrice": "1=5ghc1"
+    },
+    {
+      "name": "COLGATE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        148
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "COLGATE MOUTH WASH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        149
+      ],
+      "sourcePrice": "6Oghc"
+    },
+    {
+      "name": "ERNEST",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        150
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "EUTHYMOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        151
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "KAMACLOX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        152
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "KEL KIDS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        153
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "KOJACH-P",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        154
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "LISTERIN SIZE/BIG",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 14000
+        }
+      ],
+      "sourceRows": [
+        155
+      ],
+      "sourcePrice": "140ghc"
+    },
+    {
+      "name": "LISTERIN SIZE/SMALL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        156
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "LONGRICH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        157
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "LynXaCLOX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        158
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "ROYAL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        159
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "SENSODYNE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        160
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "ABYMOL FORTE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        163
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AKES TABLETS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        164
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ATAKA-5",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        165
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BASECAM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        166
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BRUFEN/IBUPROFEN 200mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "2 units",
+          "baseQuantity": 2,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        168
+      ],
+      "sourcePrice": "2=5ghc"
+    },
+    {
+      "name": "BRUFEN/IBUPROFEN 400mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "2 units",
+          "baseQuantity": 2,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        169
+      ],
+      "sourcePrice": "2=5ghc"
+    },
+    {
+      "name": "CAFAPRIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        170
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "DICLOFENAC 50mg /100mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        171
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "DIPEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        172
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FAMA CAP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        173
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FENBASE EXTRA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        174
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GEBEDOL FORTE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        175
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GEBEDOL PLUS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        176
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GOFEX 400mg UK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        177
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "IBUCAP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        178,
+        179
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "IBUGLO PLUS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        180
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LOFENAC 100mg tablets",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        181
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "PAINGAY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        182
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PAINZAP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        183
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PARACETAMOL 500mg ENTRAMOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        185
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PARACETAMOL 500mg EXETER UK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        186
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "PARACETAMOL 500mg LETAP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        },
+        {
+          "label": "2 units",
+          "baseQuantity": 2,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        187
+      ],
+      "sourcePrice": "2=5ghc"
+    },
+    {
+      "name": "PARACETAMOL 500mg UK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        188
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "PARACETAMOL SYRUP E-PANOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        189
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "PARACETAMOL SYRUP PARA UK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        190
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "PARAFENAC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        191
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PARAFENAC DS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        192
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PELADOL EXTRA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        193
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PICRON FORTE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        194
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PIROXICAM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        195
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "POCUMOL EXTRA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        196
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROCAM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        197
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "RAPINOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        198
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "RONAMOL PLUS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        199
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "RONFIT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        200
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ROXIDOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        201
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VOLFAST",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        202
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ZULU 100",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        203
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "ZULU EXTRA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        204
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "ZULU MR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        205
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "DICLO SUPP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        206
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "DICLO DENK SUPP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        207
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DOMI 10",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        208
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "DOMI 30",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        209
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "BACLOFEN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        215
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CELEBREX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 18000
+        }
+      ],
+      "sourceRows": [
+        216
+      ],
+      "sourcePrice": "180ghc"
+    },
+    {
+      "name": "CELECOXIB strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        217
+      ],
+      "sourcePrice": "30ghc=1 strip ,100ghc per box"
+    },
+    {
+      "name": "CELECOXIB box",
+      "baseUnit": "box",
+      "units": [
+        {
+          "label": "box",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        217
+      ],
+      "sourcePrice": "30ghc=1 strip ,100ghc per box"
+    },
+    {
+      "name": "CO CODAMOL strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        218
+      ],
+      "sourcePrice": "1strip= 30ghc"
+    },
+    {
+      "name": "COX-B",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        219
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "DICLO INJECTION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        220
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "DORETA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 13000
+        }
+      ],
+      "sourceRows": [
+        221
+      ],
+      "sourcePrice": "130ghc"
+    },
+    {
+      "name": "FLOTAC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 18000
+        }
+      ],
+      "sourceRows": [
+        222
+      ],
+      "sourcePrice": "180ghc"
+    },
+    {
+      "name": "LAVIGEM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        223
+      ],
+      "sourcePrice": "100GHC"
+    },
+    {
+      "name": "LYRICA (1 tablet)",
+      "baseUnit": "tablet",
+      "units": [
+        {
+          "label": "tablet",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        224
+      ],
+      "sourcePrice": "1 tab= 20ghc"
+    },
+    {
+      "name": "MORPHINE inj",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 9000
+        }
+      ],
+      "sourceRows": [
+        225,
+        319
+      ],
+      "sourcePrice": "90ghc"
+    },
+    {
+      "name": "PETHIDINE inj",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 9000
+        }
+      ],
+      "sourceRows": [
+        226,
+        321
+      ],
+      "sourcePrice": "90ghc"
+    },
+    {
+      "name": "PREGASAF/PREGABALIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 11000
+        }
+      ],
+      "sourceRows": [
+        227
+      ],
+      "sourcePrice": "110ghc"
+    },
+    {
+      "name": "PREGASAFE M75",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 15000
+        }
+      ],
+      "sourceRows": [
+        228
+      ],
+      "sourcePrice": "150ghc"
+    },
+    {
+      "name": "PRE-MECO",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 15000
+        }
+      ],
+      "sourceRows": [
+        229
+      ],
+      "sourcePrice": "150ghc"
+    },
+    {
+      "name": "TRAMAPA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 13000
+        }
+      ],
+      "sourceRows": [
+        230
+      ],
+      "sourcePrice": "130ghc"
+    },
+    {
+      "name": "NESBEN TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        236
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "NESBEN SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        237
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "VERMOX SUSPENSION",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        238
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "VERMOX TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        239
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "WORMBAT TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        240
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "WORMPLEX SUSP/TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        241
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "ZENTEL SUSP/TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        242
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "CALCIUM CARBONATE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        262
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "M2-TONE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        263,
+        502
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PREGNACARE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        264,
+        265,
+        266,
+        267
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SOLUBLE CALCIUM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        268
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SOLUBLE VIT C",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        269
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VALUPAK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        270,
+        271
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VALUPAK D3",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        272
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VALUPAK FOLIC ACID 60s/90s",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        273
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "VALUPAK MULTIVITAMIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        274
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VALUPAK VIT E",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        275
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "WELLWOMAN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        276
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "WELLWOMAN 50+",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        277
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "WELLWOMAN/WELLMAN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        278,
+        279
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CARTEF 80/480",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        288
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "COARTEM TABS 20/120",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        289
+      ],
+      "sourcePrice": "60ghc"
+    },
+    {
+      "name": "COARTEM TABS 60/360",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        290
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "COARTEM TABS 80/480",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        291
+      ],
+      "sourcePrice": "120ghc"
+    },
+    {
+      "name": "COARTEM DISPERSIBLE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        292
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LONART DISPERSIBLE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1500
+        }
+      ],
+      "sourceRows": [
+        293
+      ],
+      "sourcePrice": "15ghc"
+    },
+    {
+      "name": "LONART SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3500
+        }
+      ],
+      "sourceRows": [
+        294
+      ],
+      "sourcePrice": "35ghc"
+    },
+    {
+      "name": "LONART TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3500
+        }
+      ],
+      "sourceRows": [
+        295
+      ],
+      "sourcePrice": "35ghc"
+    },
+    {
+      "name": "LUFART SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        296
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "LUFART TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        297
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "MALAFAN TABS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        298
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "ARTESUNATE 60",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        306
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ARTESUNATE 120",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        307
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ARTESUNATE 30",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        308
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "B COMPLEX INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        309
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "BENZATHINE PENCILLIN INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        310
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "CEFTRIAXONE INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        311
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CRYSTALLINE PENICILLIN INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        312
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "DEXA INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        313
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "DICLO INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        314
+      ],
+      "sourcePrice": "5ghc"
+    },
+    {
+      "name": "EVITHER/ARTEMETHER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        315
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "HYDROCORT INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        316
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "KENALOG INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 9000
+        }
+      ],
+      "sourceRows": [
+        317
+      ],
+      "sourcePrice": "90ghc"
+    },
+    {
+      "name": "METRONIDAZOLE INF",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        318
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PARACETAMOL INF",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        320
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROCAINE PENICILLIN INJ",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        322
+      ],
+      "sourcePrice": "10ghc"
+    },
+    {
+      "name": "PROMETHAZINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        323
+      ],
+      "sourcePrice": "20ghc"
+    },
+    {
+      "name": "RHOCEPHIN 1G",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 19000
+        }
+      ],
+      "sourceRows": [
+        324
+      ],
+      "sourcePrice": "190ghc"
+    },
+    {
+      "name": "RHOCEPHIN 2G",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 27000
+        }
+      ],
+      "sourceRows": [
+        325
+      ],
+      "sourcePrice": "270ghc"
+    },
+    {
+      "name": "ROOTER MIXTURE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4000
+        }
+      ],
+      "sourceRows": [
+        329
+      ],
+      "sourcePrice": "40ghc"
+    },
+    {
+      "name": "ROOTER TYTONIC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4500
+        }
+      ],
+      "sourceRows": [
+        330
+      ],
+      "sourcePrice": "45ghc"
+    },
+    {
+      "name": "ATROPINE EYE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        353
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BLU MOTIM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        354
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CIPRO OINTMENT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        355
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "COOL EYES",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        356
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DEXA EYE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        357
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DEXA OINT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        358
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DEXATROL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        359
+      ],
+      "sourcePrice": "50"
+    },
+    {
+      "name": "EPIFENAC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        360
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FLUCONAZOLE EYE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        361
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "HYPROMELLOSE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        362
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "KLARO",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        363
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEO-HYCOLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        364
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OLOPATADINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        365
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SE CLEAR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        366
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TETRA OINT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        367
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TIMOLOL/TIMCID",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        368
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TIMOX/TIMOLOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        369
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TOBRAMICIN/TOBMENSON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        370
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMINOVA 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        375
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMITRIPTYLINE 25mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        376
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMLO-DENK 10",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        377
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMLODIPINE 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        378,
+        379
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMLODIPINE 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        380,
+        381
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ASPIRIN CARDIO",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        382
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ATENOLOL(ernest/uk)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        383
+      ],
+      "sourcePrice": "30ghc"
+    },
+    {
+      "name": "ATHROTEC(DICLO+MISOPROSTOL)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        384
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ATORVASTATIN 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        385
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ATORVASTATIN 20mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        386
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ATORVASTATIN 40mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        387
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AUGMENTIN 625mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 22000
+        }
+      ],
+      "sourceRows": [
+        388,
+        531
+      ],
+      "sourcePrice": "220"
+    },
+    {
+      "name": "AVOMINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        389
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "B CO STRONG",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        390
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BENDRO 2.5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        391
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BENDRO 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        392
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BISOPROLOL 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        393
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BISOPROLOL 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        394
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BLOOD GLUCOSE MONITORING SYSTEM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        395
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CAFERGOT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        396
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CARBIMAZOLE strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        397
+      ],
+      "sourcePrice": "1 BLISTER =100"
+    },
+    {
+      "name": "CARDIOPAT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        398
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CARVEDILOL 3.125mg BETATOP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        399
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CARVEDILOL TABLETS 12.5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        400
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CARVEDILOL TABLETS 25mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        401
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CATAFLAM 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        402
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CEBROTONIN/PIRACETAM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        403
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CHLOPROMAZINE (1 tablet)",
+      "baseUnit": "tablet",
+      "units": [
+        {
+          "label": "tablet",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        404
+      ],
+      "sourcePrice": "1 TAB =30ghc"
+    },
+    {
+      "name": "CLARITHROMYCIN 500mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        405
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CLOMID",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        406
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CONJUGATED ESTROGEN TABLET",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 45000
+        }
+      ],
+      "sourceRows": [
+        407
+      ],
+      "sourcePrice": "450ghc"
+    },
+    {
+      "name": "CRESTOR 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        408
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CRESTOR 20mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        409
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CYCLOGEST 400mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        410
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CYSTONE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        411
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DIABETONE PLUS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 28000
+        }
+      ],
+      "sourceRows": [
+        412
+      ],
+      "sourcePrice": "280ghc"
+    },
+    {
+      "name": "DONEPEZIL 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        413
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DOSTINEX 0.5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        414
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DUPHASTON (1 tablet)",
+      "baseUnit": "tablet",
+      "units": [
+        {
+          "label": "tablet",
+          "baseQuantity": 1,
+          "priceMinor": 1500
+        }
+      ],
+      "sourceRows": [
+        415
+      ],
+      "sourcePrice": "1 TAB = 15ghc"
+    },
+    {
+      "name": "ENAT 400",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        416
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ENCEPHANOL(pyritonol hydrochloride) strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        417
+      ],
+      "sourcePrice": "1 blister =100ghc"
+    },
+    {
+      "name": "EVENING PRIMOSE OIL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        418
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "EXFORGE HCT 10mg/160mg/12.5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        419
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "EXFORGE HCT 10mg/160mg/25mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        420
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "EXTRA FLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        421
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FEMISTER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        422
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FINASTERIDE 1mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        423
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FINASTERIDE 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        424
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FLOXETINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 5000
+        }
+      ],
+      "sourceRows": [
+        425
+      ],
+      "sourcePrice": "50ghc"
+    },
+    {
+      "name": "FUROSEMIDE 40mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        426
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GABAPENTIN 300mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        427
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GLICLAZIDE 80mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        428
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GLIMEPIRIDE 2mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        429
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GLIMEPIRIDE 4mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        430
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "HYDRALAZINE 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        431
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "IDEOS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 20000
+        }
+      ],
+      "sourceRows": [
+        432
+      ],
+      "sourcePrice": "200ghc"
+    },
+    {
+      "name": "IICARE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        433
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ISOSORBIDE DINITRATE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        434
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ITRACONAZOLE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 9000
+        }
+      ],
+      "sourceRows": [
+        435
+      ],
+      "sourcePrice": "90ghc"
+    },
+    {
+      "name": "IVECMERTIN (1 tablet)",
+      "baseUnit": "tablet",
+      "units": [
+        {
+          "label": "tablet",
+          "baseQuantity": 1,
+          "priceMinor": 1000
+        }
+      ],
+      "sourceRows": [
+        436
+      ],
+      "sourcePrice": "1 TAB = 10"
+    },
+    {
+      "name": "IVERMECTIN CREAM 1%",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        437
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "JOVAN T 20 TALAFIL 20mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        438
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "KETESSE 25mg(dexketoprofen trometamol)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        439
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LEVOTHYROXINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 8000
+        }
+      ],
+      "sourceRows": [
+        440,
+        506
+      ],
+      "sourcePrice": "80ghc"
+    },
+    {
+      "name": "LIBIDO LADY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        441
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LIPITOR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 45000
+        }
+      ],
+      "sourceRows": [
+        442
+      ],
+      "sourcePrice": "450ghc"
+    },
+    {
+      "name": "LIPITOR 40mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 51000
+        }
+      ],
+      "sourceRows": [
+        443
+      ],
+      "sourcePrice": "510ghc"
+    },
+    {
+      "name": "LISINOPRIL + HYDROCHLOROTHIAZIDE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        444
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LISINOPRIL 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        445
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LISINOVA 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        446
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LIVOLIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        447
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LORATADINE 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        448
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LORAZEPAM 2.5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        449
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LORAZEPAM 2mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        450
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LOSAR-DENK 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        451
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LOSARTAN 100MG",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        452
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LOSARTAN 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        453
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LOSAT 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        454
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MEDROXYPROGESTERONE 5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        455
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MENOPACE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        456
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "METHOCARBAMOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        457
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "METHYLPREDNISOLONE 4mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        458
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "METOCLOPRAMIDE 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        459
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MOTILIUM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        460
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MYOXERIL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        461
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NAPROSYN EC strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        462
+      ],
+      "sourcePrice": "1 BLISTER= 120ghc"
+    },
+    {
+      "name": "NAT B",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        463
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEUROPAT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        464
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEXIUM 20mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        465
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEXIUM 40mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        466
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OLANZAPINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 8000
+        }
+      ],
+      "sourceRows": [
+        467
+      ],
+      "sourcePrice": "80ghc"
+    },
+    {
+      "name": "ORLISTAT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        468
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OVCYST",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        469
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OXYBUTYNIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        470
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PARLODEL/BROMOCRIPTINE strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        471
+      ],
+      "sourcePrice": "1 BLISTER =120"
+    },
+    {
+      "name": "PHLEBODIA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        472
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PIOGLITAZONE 15mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        473
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PIRITON strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 7000
+        }
+      ],
+      "sourceRows": [
+        474
+      ],
+      "sourcePrice": "1 BLISTER= 70ghc"
+    },
+    {
+      "name": "PRIMOLUT N",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        475
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROPRANOLOL 40mg Letap",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        476
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROPRANOLOL 40mg TEVA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        477
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROSTACARE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        478
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROVERA G",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        479
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROVIRON (mesterolone)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        480
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "QUESTRAN LIGHT/CHOLESTYRAMINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 4500
+        }
+      ],
+      "sourceRows": [
+        481
+      ],
+      "sourcePrice": "1 = 45"
+    },
+    {
+      "name": "RESPERIDONE 2mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        482
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SALAMOL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        483
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SAMOCID",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 15000
+        }
+      ],
+      "sourceRows": [
+        484
+      ],
+      "sourcePrice": "150ghc"
+    },
+    {
+      "name": "SERETIDE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        485
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SINOCARE (disposable blood lancet)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        486
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SIRDALUD 2mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        487
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SIRDALUD 4mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        488
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SKYNOX strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        489
+      ],
+      "sourcePrice": "1 BLISTER=100"
+    },
+    {
+      "name": "SOLUBLE ASPIRIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        490
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SOMAZINA/CITICOLINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        491
+      ],
+      "sourcePrice": "1=100ghc"
+    },
+    {
+      "name": "SPIRONOLACTONE 25mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        492
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SPIRONOLACTONE 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        493
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SYMBICORT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 25000
+        }
+      ],
+      "sourceRows": [
+        494,
+        540
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TENOFOVIR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        495
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "THIAMINE 100mg strip",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "baseQuantity": 1,
+          "priceMinor": 2000
+        }
+      ],
+      "sourceRows": [
+        496
+      ],
+      "sourcePrice": "1 BLISTER = 20ghc"
+    },
+    {
+      "name": "VAROSUN(RIVAROXABAN)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 32000
+        }
+      ],
+      "sourceRows": [
+        497
+      ],
+      "sourcePrice": "320ghc"
+    },
+    {
+      "name": "VENTOLIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        498
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VOLFAST 50mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        499
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "XARELTO 20mg(Rivaroxaban)",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 70000
+        }
+      ],
+      "sourceRows": [
+        500
+      ],
+      "sourcePrice": "700ghc"
+    },
+    {
+      "name": "ZEMAN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        501
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VIVADONA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        503
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LETROZOLE 2.5mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        504
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DAFLON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        505
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OPTILIV",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        507
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VISIONACE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        508
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "URSODEOXYCHOLIC ACID",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        509
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OSTEOCARE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        510
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DIHYDROCODEINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        511
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TEGRETOL/CARBAMAZEPINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        512
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "TERBINAFINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        513
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "UDIHEP FORTE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        514
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEUROMIND",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        515
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ORELOX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        516
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BONVIVA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        517
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BIOPENTIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        518
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "JOINTACE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        519
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PROSTENAL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        520
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "OVARIA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        521
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PODOPHYLLIN CREAM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 38000
+        }
+      ],
+      "sourceRows": [
+        522
+      ],
+      "sourcePrice": "380"
+    },
+    {
+      "name": "MONTELUKAST 10mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        523
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ARGIMAN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        524
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LADY FORTE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 23000
+        }
+      ],
+      "sourceRows": [
+        525
+      ],
+      "sourcePrice": "230 ghc"
+    },
+    {
+      "name": "BONJELA ADULT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 16000
+        }
+      ],
+      "sourceRows": [
+        526
+      ],
+      "sourcePrice": "160 ghc"
+    },
+    {
+      "name": "DAKTARIN/MICONAZOLE ORAL GEL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 20000
+        }
+      ],
+      "sourceRows": [
+        527
+      ],
+      "sourcePrice": "200 ghc"
+    },
+    {
+      "name": "PROXEED WOMEN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        528
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "WARTICON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 100000
+        }
+      ],
+      "sourceRows": [
+        529
+      ],
+      "sourcePrice": "1000 ghc"
+    },
+    {
+      "name": "AUGMENTIN 1G",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        530
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LEVETIRACETAM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 40000
+        }
+      ],
+      "sourceRows": [
+        532
+      ],
+      "sourcePrice": "400ghc"
+    },
+    {
+      "name": "ZINNAT 500mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 25000
+        }
+      ],
+      "sourceRows": [
+        533
+      ],
+      "sourcePrice": "250ghc"
+    },
+    {
+      "name": "ZINNAT SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 25000
+        }
+      ],
+      "sourceRows": [
+        534
+      ],
+      "sourcePrice": "250ghc"
+    },
+    {
+      "name": "STREPSILS LOZ (1 tablet)",
+      "baseUnit": "tablet",
+      "units": [
+        {
+          "label": "tablet",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        535
+      ],
+      "sourcePrice": "1 TAB= 5ghc"
+    },
+    {
+      "name": "WELTEK NEURO",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        536
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LETROZOLE DENK",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 45000
+        }
+      ],
+      "sourceRows": [
+        537
+      ],
+      "sourcePrice": "450ghc"
+    },
+    {
+      "name": "OTRIVIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 16000
+        }
+      ],
+      "sourceRows": [
+        538
+      ],
+      "sourcePrice": "160ghc"
+    },
+    {
+      "name": "AVAMYS NASAL SPRAY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 25000
+        }
+      ],
+      "sourceRows": [
+        539
+      ],
+      "sourcePrice": "250ghc"
+    },
+    {
+      "name": "AUGMENTIN 228mg/5mL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        541
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SEPTILIN SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        542
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SEPTILIN CAPS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        543
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MORPHINE SYRUP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 25000
+        }
+      ],
+      "sourceRows": [
+        544
+      ],
+      "sourcePrice": "250ghc"
+    },
+    {
+      "name": "AMOSKICLAV 625mg",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 10000
+        }
+      ],
+      "sourceRows": [
+        545
+      ],
+      "sourcePrice": "100ghc"
+    },
+    {
+      "name": "AMOSKICLAV 1g",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        546
+      ],
+      "sourcePrice": "120ghc"
+    },
+    {
+      "name": "MAALOX PASTE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        547
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MAALOX SUSP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        548
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FORTIFERRUM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 500
+        }
+      ],
+      "sourceRows": [
+        549
+      ],
+      "sourcePrice": "1= 5ghc"
+    },
+    {
+      "name": "SUDOCREAM 60g",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        550
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ACTIVATED CHARCOAL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        551
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MYCOLEX POWDER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        552
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LEXPORIN POWDER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        553
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LEXPORIN OINT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        554
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AMINO PEP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        560
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEUTROSEC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        561
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEXTERIX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        562
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ABY CYPRO CAPS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        563
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "APETAMIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        564
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CYPRODINE CAPS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 12000
+        }
+      ],
+      "sourceRows": [
+        565
+      ],
+      "sourcePrice": "120"
+    },
+    {
+      "name": "CYPRODINE SYR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 15000
+        }
+      ],
+      "sourceRows": [
+        566
+      ],
+      "sourcePrice": "150"
+    },
+    {
+      "name": "NEXPRODINE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 6000
+        }
+      ],
+      "sourceRows": [
+        567
+      ],
+      "sourcePrice": "60"
+    },
+    {
+      "name": "CYPRORITE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        568
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "RITONIC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        569
+      ],
+      "sourcePrice": "30"
+    },
+    {
+      "name": "ASTYMIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        570
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FERRODEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        571
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MAJOR LIVEROLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        572
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CYFEN SYR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        573
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "RESCOFER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        574
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEXCOFER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        575
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FEROFIX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        576
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "HEAM UP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        577
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "NEOFERON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        578
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "MINAMINO",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 15000
+        }
+      ],
+      "sourceRows": [
+        579
+      ],
+      "sourcePrice": "150"
+    },
+    {
+      "name": "JERIFAN-2",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        580
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "AUNTY MARY",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3000
+        }
+      ],
+      "sourceRows": [
+        581
+      ],
+      "sourcePrice": "30"
+    },
+    {
+      "name": "DEXORANGE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        582
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FERROLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        583
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VITAFORCE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        584
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ODYMIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        585
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CITY BLOOD TONIC",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        586
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "APITIZOOM",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        587
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VIGORIX SYR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        588
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ZIPFERON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        589
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ZINCOVIT",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        590
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "VIROL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        591
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "DUROL",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        592
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CYPEP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        593
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PENARICH",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        594
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "HEPTOLIF",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        595
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "HEPTO PEP",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        596
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "GUDAPET",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        597
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "LEENA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        598
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ESKERON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        599
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CENTONE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        600
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "SALO APETI",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        601
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "PREEFER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        602
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BECOACTIN",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        603
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "X FERON",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        604
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "FOLIGROW",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        605
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "3FER",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        606
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BONAPLEX",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        607
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "CORORANGE",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        608
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "BIVA PLUS",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        609
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "APETA TRUST",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        610
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ABYTONE SYR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        611
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ABYVITA SYR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        612
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "ANDYVITA",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 0
+        }
+      ],
+      "sourceRows": [
+        613
+      ],
+      "sourcePrice": ""
+    },
+    {
+      "name": "APETI SYR",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "unit",
+          "baseQuantity": 1,
+          "priceMinor": 3500
+        }
+      ],
+      "sourceRows": [
+        614
+      ],
+      "sourcePrice": "35"
+    }
+  ],
+  "starred": [
+    {
+      "name": "CLINDAMYCIN 300mg",
+      "price": "30ghc***",
+      "line": 51
+    },
+    {
+      "name": "MUCOTIN ADULT",
+      "price": "35ghc***",
+      "line": 107
+    }
+  ],
+  "notes": [
+    "Row 3: AMOXICILLIN is a parent heading; its variants become medicine entries.",
+    "Row 16: METRONIDAZOLE is a parent heading; its variants become medicine entries.",
+    "Row 22: METROLEX F is a parent heading; its variants become medicine entries.",
+    "Row 25: SEPTRIN / CO TRIMOXAZOLE is a parent heading; its variants become medicine entries.",
+    "Row 29: AZITHROMYCIN is a parent heading; its variants become medicine entries.",
+    "Row 36: CIPROFLOXACIN is a parent heading; its variants become medicine entries.",
+    "Row 44: FLUCLOXACIN is a parent heading; its variants become medicine entries.",
+    "Row 48: repeated FLUCLOXACIN SUSPENSION; merged with row 47. A stated price takes precedence over a blank price.",
+    "Row 49: CLINDAMYCIN is a parent heading; its variants become medicine entries.",
+    "Row 53: “250mg” is a strength, not a price; CLINDAMYCIN suspension 250mg imported at zero.",
+    "Row 54: CEFIXIME is a parent heading; its variants become medicine entries.",
+    "Row 57: CEFUROXIME is a parent heading; its variants become medicine entries.",
+    "Row 62: LEVOFLOXACIN is a parent heading; its variants become medicine entries.",
+    "Row 67: TEVA retained exactly as named, GH₵30; the document does not explicitly identify its medicine. Please review.",
+    "Row 142: SALO COLD TABLETS “1=5ghc1” read as 1 unit = GH₵5; trailing 1 ignored.",
+    "Row 149: COLGATE MOUTH WASH “6Oghc” read as GH₵60 (letter O).",
+    "Row 167: unpriced parent BRUFEN/IBUPROFEN omitted because its named variants follow.",
+    "Row 179: repeated IBUCAP; merged with row 178. A stated price takes precedence over a blank price.",
+    "Row 184: unpriced parent PARACETAMOL omitted because its named variants follow.",
+    "Row 265: repeated PREGNACARE; merged with row 264. A stated price takes precedence over a blank price.",
+    "Row 266: repeated PREGNACARE; merged with row 264. A stated price takes precedence over a blank price.",
+    "Row 267: repeated PREGNACARE; merged with row 264. A stated price takes precedence over a blank price.",
+    "Row 271: repeated VALUPAK; merged with row 270. A stated price takes precedence over a blank price.",
+    "Row 279: repeated WELLWOMAN/WELLMAN; merged with row 278. A stated price takes precedence over a blank price.",
+    "Row 292: DISPERSIBLE retained under preceding COARTEM family, price missing.",
+    "Row 319: repeated MORPHINE INJ; merged with row 225. A stated price takes precedence over a blank price.",
+    "Row 321: repeated PETHIDINE INJ; merged with row 226. A stated price takes precedence over a blank price.",
+    "Row 379: repeated AMLODIPINE 10mg; merged with row 378. A stated price takes precedence over a blank price.",
+    "Row 381: repeated AMLODIPINE 5mg; merged with row 380. A stated price takes precedence over a blank price.",
+    "Row 502: repeated M2-TONE; merged with row 263. A stated price takes precedence over a blank price.",
+    "Row 506: repeated LEVOTHYROXINE; merged with row 440. A stated price takes precedence over a blank price.",
+    "Row 531: repeated AUGMENTIN 625mg; merged with row 388. A stated price takes precedence over a blank price.",
+    "Row 540: repeated SYMBICORT; merged with row 494. A stated price takes precedence over a blank price.",
+    "METHODEX SIZE/BIG remains GH₵50 and SIZE/SMALL GH₵80, exactly as supplied; verify the apparent size/price reversal.",
+    "Unspecified quantities are generic units, not assumed tablets, strips or bottles. Quantity deals are explicit selling options; selecting 3 single units does not automatically substitute the 3-unit deal."
+  ],
+  "sourceMedicineRows": 516
+}

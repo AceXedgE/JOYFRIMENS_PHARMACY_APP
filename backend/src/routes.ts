@@ -1,3 +1,4 @@
+import {registerCatalogueManagement} from './catalogue-management.ts';
 import {registerSupplierRoutes} from './suppliers.ts';
 import {registerNotificationRoutes} from './notifications.ts';
 import {registerOfflineRoutes} from './offline.ts';
@@ -43,6 +44,11 @@ async function setMemberships(tx: Sql, userId: string, memberships: { shopId: st
   for (const id of ids) if (!(await tx.query('SELECT id FROM shops WHERE id=$1', [id])).rows.length) throw new HttpError(400, 'Unknown shop.');
   await tx.query('DELETE FROM memberships WHERE user_id=$1', [userId]);
   for (const member of memberships) await tx.query('INSERT INTO memberships(user_id,shop_id,can_change_prices,can_count_cash) VALUES($1,$2,$3,$4)', [userId, member.shopId, member.canChangePrices,member.canCountCash??false]);
+}
+
+async function datasetRevision(db:Sql){
+  const exists=(await db.query<{name:string|null}>("SELECT to_regclass('business_dataset')::text AS name")).rows[0].name;
+  return exists?(await db.query<{revision:string}>('SELECT revision FROM business_dataset WHERE id=1')).rows[0].revision:'initial';
 }
 
 export async function registerRoutes(app: FastifyInstance, db: Database, config: Config) {
@@ -139,12 +145,12 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
       await audit(tx, found.id, 'auth.login', found.id);
     });
     reply.setCookie(cookieName, token, { ...cookieOptions, maxAge: SESSION_SECONDS });
-    return { user: publicUser(found), csrfToken: csrf };
+    return { user: publicUser(found), datasetRevision:await datasetRevision(db), csrfToken: csrf };
   });
 
   app.get('/api/auth/me', async request => {
     const actor = actorOf(request);
-    return { user: publicUser(actor), csrfToken: actor.csrf_token };
+    return { user: publicUser(actor), datasetRevision:await datasetRevision(db), csrfToken: actor.csrf_token };
   });
   app.post('/api/auth/logout', async (request, reply) => {
     const actor = actorOf(request);
@@ -266,6 +272,7 @@ export async function registerRoutes(app: FastifyInstance, db: Database, config:
     return{entries,page,pageSize};
   });
   registerCatalogueRoutes(app, db);
+  registerCatalogueManagement(app,db);
   registerNotificationRoutes(app, db);
   registerSupplierRoutes(app, db);
   registerInventoryRoutes(app, db);

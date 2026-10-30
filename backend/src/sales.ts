@@ -46,11 +46,12 @@ async function quote(tx: Sql, shopId: string, lines: Line[], locking = false, ar
   const result: Quoted[] = [];
   for (const line of lines) {
     const row = (await tx.query<{ product_id: string; base_quantity: number; description: string; label: string; batch_number: string | null; expiry: string | null; location_name: string; price_minor: number; version: number }>(`SELECT u.product_id,u.base_quantity,concat(p.name,' ',p.strength,' ',p.dosage_form) AS description,u.label,b.batch_number,b.expiry::text,l.name AS location_name,price.price_minor,price.version
-      FROM selling_units u JOIN products p ON p.id=u.product_id LEFT JOIN stock_batches b ON b.id=$2 AND b.product_id=p.id
+      FROM selling_units u JOIN products p ON p.id=u.product_id LEFT JOIN stock_batches b ON b.id=$2 AND b.product_id=p.id AND b.variation_unit_id IS NOT DISTINCT FROM (CASE WHEN u.variation THEN u.id ELSE NULL END)
       JOIN locations l ON l.id=$3 AND l.shop_id=$4 AND l.kind IN ('shelf','storeroom')
       JOIN shop_listings listed ON listed.shop_id=$4 AND listed.unit_id=u.id AND (listed.available=true OR l.kind='storeroom' OR ${archive ? 'true' : 'false'})
-      JOIN unit_prices price ON price.unit_id=u.id WHERE u.id=$1 AND ((l.kind='shelf' AND $2::uuid IS NULL) OR (l.kind='storeroom' AND b.id IS NOT NULL)) ${locking ? 'FOR SHARE OF price,listed' : ''}`, [line.unitId, line.batchId, line.locationId, shopId])).rows[0];
+      JOIN unit_prices price ON price.unit_id=u.id WHERE u.id=$1 AND (u.archived=false OR ${archive ? 'true' : 'false'}) AND (p.archived=false OR ${archive ? 'true' : 'false'}) AND ((l.kind='shelf' AND $2::uuid IS NULL) OR (l.kind='storeroom' AND b.id IS NOT NULL)) ${locking ? 'FOR SHARE OF price,listed' : ''}`, [line.unitId, line.batchId, line.locationId, shopId])).rows[0];
     if (!row) throw new HttpError(400, 'A basket line is unavailable, belongs to another shop, or has the wrong drug/batch.');
+    if(!archive&&row.price_minor===0)throw new HttpError(409,'Set a price for this medicine before selling it.');
     if (row.expiry && row.expiry <= today()) throw new HttpError(409, 'Expired stock cannot be sold. Remove the expired batch.');
     if (!archive && (row.price_minor !== line.priceMinor || row.version !== line.priceVersion)) throw new HttpError(409, 'A price changed. Refresh and explicitly update the basket prices before checkout.');
     bounded(row.base_quantity * line.quantity); bounded(row.price_minor * line.quantity);
@@ -79,14 +80,14 @@ export function registerSalesRoutes(app: FastifyInstance, db: Database) {
     const stockChoices = (await db.query<{ name: string; genericName: string; strength: string; dosageForm: string; barcode: string | null }>(`SELECT u.id AS "unitId",b.id AS "batchId",l.id AS "locationId",p.id AS "productId",p.name,p.generic_name AS "genericName",p.strength,p.dosage_form AS "dosageForm",u.barcode,concat(p.name,' ',p.strength,' ',p.dosage_form) AS description,
       u.label AS "unitLabel",u.base_quantity AS "baseQuantity",b.batch_number AS "batchNumber",b.expiry::text,l.name AS "locationName",price.price_minor AS "priceMinor",price.version AS "priceVersion",s.quantity-s.reserved AS "availableBase"
       FROM stock_balances s JOIN locations l ON l.id=s.location_id JOIN stock_batches b ON b.id=s.batch_id JOIN products p ON p.id=b.product_id
-      JOIN selling_units u ON u.product_id=p.id JOIN unit_prices price ON price.unit_id=u.id
+      JOIN selling_units u ON u.product_id=p.id AND b.variation_unit_id IS NOT DISTINCT FROM (CASE WHEN u.variation THEN u.id ELSE NULL END) JOIN unit_prices price ON price.unit_id=u.id
       JOIN shop_listings listed ON listed.unit_id=u.id AND listed.shop_id=l.shop_id 
-      WHERE l.shop_id=$1 AND l.kind='storeroom' AND s.quantity>s.reserved AND b.expiry>(now() AT TIME ZONE 'Etc/GMT')::date
+      WHERE u.archived=false AND p.archived=false AND l.shop_id=$1 AND l.kind='storeroom' AND s.quantity>s.reserved AND b.expiry>(now() AT TIME ZONE 'Etc/GMT')::date
       ORDER BY p.name,b.expiry,u.base_quantity,l.name`, [shopId])).rows;
     const shelfChoices = (await db.query<typeof stockChoices[number]>(`SELECT u.id AS "unitId",NULL::uuid AS "batchId",l.id AS "locationId",p.id AS "productId",p.name,p.generic_name AS "genericName",p.strength,p.dosage_form AS "dosageForm",u.barcode,concat(p.name,' ',p.strength,' ',p.dosage_form) AS description,
       u.label AS "unitLabel",u.base_quantity AS "baseQuantity",NULL::text AS "batchNumber",NULL::text AS expiry,l.name AS "locationName",price.price_minor AS "priceMinor",price.version AS "priceVersion",NULL::integer AS "availableBase"
       FROM shop_listings listed JOIN selling_units u ON u.id=listed.unit_id JOIN products p ON p.id=u.product_id JOIN unit_prices price ON price.unit_id=u.id JOIN locations l ON l.shop_id=listed.shop_id AND l.kind='shelf'
-      WHERE listed.shop_id=$1 AND listed.available=true ORDER BY p.name,u.base_quantity`,[shopId])).rows;
+      WHERE p.archived=false AND listed.shop_id=$1 AND listed.available=true ORDER BY p.name,u.base_quantity`,[shopId])).rows;
     const choices = [...shelfChoices, ...stockChoices].map(choice => ({ choice, rank: rankProduct({ ...choice, barcodes: choice.barcode ? [choice.barcode] : [] }, request.query.q ?? '') })).filter(item => item.rank !== null).sort((a, b) => a.rank!.score - b.rank!.score).map(({ choice, rank }) => ({ ...choice, match: rank!.match }));
     const drawers = (await db.query(`SELECT d.id,d.code,d.business_date::text,d.opening_minor,d.opening_source,coalesce(sum(c.amount_minor),0)::bigint::text AS expected_minor
       FROM drawer_sessions d LEFT JOIN cash_ledger c ON c.drawer_id=d.id WHERE d.shop_id=$1 AND d.status='open' GROUP BY d.id ORDER BY d.code DESC`, [shopId])).rows;

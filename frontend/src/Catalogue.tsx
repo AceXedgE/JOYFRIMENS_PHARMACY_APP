@@ -1,3 +1,4 @@
+import { MedicineEditor } from './MedicineEditor';
 import { useEffect, useState, type FormEvent } from 'react';
 import { api, ApiError, messageOf, type Session, type Shop } from './api';
 import { ProductForm } from './ProductForm';
@@ -20,7 +21,7 @@ function EditUnit({ selection, session, shop, onSaved, onClose, onReload, onExpi
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); const data = new FormData(event.currentTarget); setBusy(true); setError('');
     try {
-      const body = mode === 'price' ? { priceMinor: parseMoney(String(data.get('price'))), expectedVersion: unit.priceVersion }
+      const body = mode === 'price' ? { priceMinor: parseMoney(String(data.get('price')), true), expectedVersion: unit.priceVersion }
         : { available: unit.available !== true, expectedVersion: unit.listingVersion, reason: 'Update shelf availability' };
       await api(`/shops/${shop.id}/catalogue/units/${unit.id}/${mode}`, { method: 'PUT', body, csrf: session.csrfToken });
       onSaved();
@@ -42,6 +43,8 @@ function EditUnit({ selection, session, shop, onSaved, onClose, onReload, onExpi
 }
 
 export function Catalogue({ session, shop, onExpired }: { session: Session; shop: Shop; onExpired: () => void }) {
+  const [medicine, setMedicine] = useState<{product: Product; mode: 'edit' | 'removal'} | null>(null);
+  const [includeArchived, setIncludeArchived] = useState(false);
   const [query, setQuery] = useState('');
   const [includeUnlisted, setIncludeUnlisted] = useState(false);
   const [page, setPage] = useState(1);
@@ -54,19 +57,19 @@ export function Catalogue({ session, shop, onExpired }: { session: Session; shop
   useEffect(() => {
     const controller = new AbortController(); setResult(null); setError(''); setEditing(null);
     const timer = window.setTimeout(() => {
-      const params = new URLSearchParams({ q: query.trim(), page: String(page), includeUnlisted: String(includeUnlisted) });
+      const params = new URLSearchParams({ q: query.trim(), page: String(page), includeUnlisted: String(includeUnlisted), includeArchived: String(includeArchived) });
       api<CatalogueResult>(`/shops/${shop.id}/catalogue?${params}`, { signal: controller.signal }).then(setResult).catch(error => {
         if (!controller.signal.aborted) { if (error instanceof ApiError && error.status === 401) onExpired(); else setError(messageOf(error)); }
       });
     }, 200);
     return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [shop.id, query, page, includeUnlisted, reload]);
-  const refresh = () => { setEditing(null); setReload(value => value + 1); };
+  }, [shop.id, query, page, includeUnlisted, includeArchived, reload]);
+  const refresh = () => { setMedicine(null); setEditing(null); setReload(value => value + 1); };
   return <section className="catalogue" aria-label="Drug catalogue">
     <div className="catalogue-heading"><div><p className="eyebrow">{shop.name}</p><h1>Manage medicines</h1><p>One approved price for both pharmacies. Find the exact drug and selling unit.</p></div>{session.user.role === 'admin' && !creating && <button className="primary-button" onClick={() => { setCreating(true); setEditing(null); }}>Add drug</button>}</div>
     {creating ? <ProductForm session={session} shop={shop} onExpired={onExpired} onCancel={() => setCreating(false)} onSaved={() => { setCreating(false); setQuery(''); setPage(1); setSuccess('Drug saved with shared prices and listed at this shop.'); refresh(); }} /> : <>
       <div className="catalogue-search"><label htmlFor="drug-search">Search drugs<input id="drug-search" type="search" maxLength={120} value={query} onChange={event => { setQuery(event.target.value); setPage(1); setSuccess(''); }} placeholder="Name, other names, or barcode" autoComplete="off" /></label>
-        <div className="search-options">{session.user.role === 'admin' && <label className="check-label"><input type="checkbox" checked={includeUnlisted} onChange={event => { setIncludeUnlisted(event.target.checked); setPage(1); }} />Include drugs not listed here</label>}<button className="secondary-button" onClick={refresh}>Refresh prices</button></div>
+        <div className="search-options">{session.user.role === 'admin' && <label className="check-label"><input type="checkbox" checked={includeArchived} onChange={e => { setIncludeArchived(e.target.checked); setPage(1); }} />Include deleted medicines</label>}{session.user.role === 'admin' && <label className="check-label"><input type="checkbox" checked={includeUnlisted} onChange={event => { setIncludeUnlisted(event.target.checked); setPage(1); }} />Include drugs not listed here</label>}<button className="secondary-button" onClick={refresh}>Refresh prices</button></div>
       </div>
       {success && <p role="status" className="success-message">{success}</p>}
       {error ? <p role="alert" className="error-message">{error} <button className="text-button" onClick={refresh}>Retry</button></p> : !result ? <p role="status">Finding drug prices…</p> : <>
@@ -76,10 +79,11 @@ export function Catalogue({ session, shop, onExpired }: { session: Session; shop
           {product.match === 'suggestion' && <p className="suggestion-label">Spelling suggestion — check the drug details</p>}
           <div className="drug-title"><h2><Highlight value={product.name} query={query} /></h2><span>{product.strength}</span></div>
           <p className="drug-generic"><Highlight value={product.genericName} query={query} /> · {product.dosageForm}</p>
+          {session.user.role === 'admin' && <div className="catalogue-actions">{!product.archived && <button className="secondary-button" onClick={() => setMedicine({product, mode: 'edit'})}>Edit medicine</button>}<button className="secondary-button" onClick={() => setMedicine({product, mode: 'removal'})}>{product.archived ? 'Restore medicine' : 'Delete medicine'}</button>{product.archived && <strong>Removed</strong>}</div>}
           {product.units.map(unit => <div className="selling-unit" key={unit.id}>
-            <div className="unit-summary"><div><strong>{unit.label}</strong><p>1 {unit.label} = {unit.baseQuantity} {product.baseUnit}{unit.baseQuantity !== 1 ? '(s)' : ''}</p>{unit.barcode && <small>Barcode: {unit.barcode}</small>}</div><div className="unit-price"><strong>{money(unit.priceMinor)}</strong><span className={unit.available === true ? 'available' : 'unavailable'}>{unit.available === null ? 'Not listed here' : unit.available ? 'Available here' : 'Unavailable here'}</span></div></div>
-            <div className="unit-actions">{result.canChangePrices && unit.available !== null && <button className="secondary-button" onClick={() => { setEditing({ product, unit, mode: 'price' }); setSuccess(''); }}>Edit {unit.label} price</button>}
-              {result.canManageCatalogue && <button className="secondary-button" onClick={() => { setEditing({ product, unit, mode: 'availability' }); setSuccess(''); }}>{unit.available === null ? `List ${unit.label} here` : unit.available ? `Mark ${unit.label} unavailable` : `Make ${unit.label} available`}</button>}
+            <div className="unit-summary"><div><strong>{unit.label}</strong>{unit.variation ? <p>Variation - Separate stock</p> : unit.baseQuantity>1 ? <p>1 {unit.label} = {unit.baseQuantity} {product.baseUnit}{unit.baseQuantity !== 1 ? '(s)' : ''}</p> : null}{unit.barcode && <small>Barcode: {unit.barcode}</small>}</div><div className="unit-price"><strong>{money(unit.priceMinor)}</strong><span className={unit.available === true ? 'available' : 'unavailable'}>{unit.available === null ? 'Not listed here' : unit.available ? 'Available here' : 'Unavailable here'}</span></div></div>
+            <div className="unit-actions">{!product.archived && result.canChangePrices && unit.available !== null && <button className="secondary-button" onClick={() => { setEditing({ product, unit, mode: 'price' }); setSuccess(''); }}>Edit {unit.label} price</button>}
+              {!product.archived && result.canManageCatalogue && <button className="secondary-button" onClick={() => { setEditing({ product, unit, mode: 'availability' }); setSuccess(''); }}>{unit.available === null ? `List ${unit.label} here` : unit.available ? `Mark ${unit.label} unavailable` : `Make ${unit.label} available`}</button>}
 
             </div>
             {editing?.unit.id === unit.id && <EditUnit key={`${unit.id}-${editing.mode}`} selection={editing} session={session} shop={shop} onExpired={onExpired} onClose={() => setEditing(null)} onReload={refresh} onSaved={() => { setSuccess(editing.mode === 'price' ? 'Shared price updated for both pharmacies.' : 'Availability updated for this shop only.'); refresh(); }} />}
@@ -90,5 +94,6 @@ export function Catalogue({ session, shop, onExpired }: { session: Session; shop
         <p className="form-hint">Availability is an admin setting, not a physical stock count. Check physical quantities under Stock & transfers.</p>
       </>}
     </>}
+    {medicine && <MedicineEditor product={medicine.product} mode={medicine.mode} session={session} shop={shop} onClose={() => setMedicine(null)} onExpired={onExpired} onSaved={() => { setSuccess('Medicine saved for both pharmacies.'); refresh(); }} />}
   </section>;
 }

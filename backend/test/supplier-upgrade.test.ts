@@ -29,7 +29,9 @@ test('supplier-document migration preserves existing receipts, approvals, and st
   });
   const prior = (await db.query('SELECT * FROM stock_receipts')).rows;
   await migrate(db); await migrate(db);
-  assert.deepEqual((await db.query('SELECT * FROM stock_receipts')).rows, prior);
+  const upgraded=(await db.query('SELECT * FROM stock_receipts')).rows;
+  assert.deepEqual(upgraded.map(({catalogue_snapshot,...row})=>row), prior);
+  assert.equal((upgraded[0].catalogue_snapshot as {name:string}).name,'Existing Drug');
   assert.equal((await db.query('SELECT * FROM stock_receipt_approvals')).rows.length, 1);
   assert.equal((await db.query<{ quantity: number }>('SELECT quantity FROM stock_balances')).rows[0].quantity, 10);
   assert.equal((await db.query('SELECT * FROM stock_ledger')).rows.length, 1);

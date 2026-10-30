@@ -1,0 +1,2240 @@
+{
+  "source": "docs/newdrugs.md",
+  "sourceSha256": "8252df3852bf704a032bea24a005716228a2c887e9cfdab184c2d0579de085aa",
+  "mode": "add-only-existing-unchanged",
+  "entries": [
+    {
+      "sourceLine": 1,
+      "source": "Feroglobin  \tghc120  -plus\t ghc180",
+      "name": "Feroglobin",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 12000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Feroglobin plus",
+          "priceMinor": 18000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 2,
+      "source": "Polyfer \t\tghc30 –small\t ghc10",
+      "name": "Polyfer",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Polyfer small",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 3,
+      "source": "Cirotamin -syrp ghc35 -caps\t\t ghc30",
+      "name": "Cirotamin",
+      "genericName": "",
+      "baseUnit": "Cirotamin syrp",
+      "units": [
+        {
+          "label": "Cirotamin syrp",
+          "priceMinor": 3500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Cirotamin caps",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 4,
+      "source": "Abyvita caps  \t\tghc10-box, \tstrip-ghc5",
+      "name": "Abyvita caps",
+      "genericName": "",
+      "baseUnit": "box",
+      "units": [
+        {
+          "label": "box",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "strip",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 5,
+      "source": "Abytone caps \t\tghc15-box, \tghc5-strip",
+      "name": "Abytone caps",
+      "genericName": "",
+      "baseUnit": "box",
+      "units": [
+        {
+          "label": "box",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "strip",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 6,
+      "source": "Zincofer syrp \t\tghc30 caps\t\t ghc30",
+      "name": "Zincofer",
+      "genericName": "",
+      "baseUnit": "Zincofer syrp",
+      "units": [
+        {
+          "label": "Zincofer syrp",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Zincofer caps",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 7,
+      "source": "Glo power syrp ghc40",
+      "name": "Glo power syrp",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 8,
+      "source": "COA mixture ghc150 -plus ghc200",
+      "name": "COA mixture",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 15000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "COA mixture plus",
+          "priceMinor": 20000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 9,
+      "source": "Foligrow jnr syrp",
+      "name": "Foligrow jnr syrp",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 10,
+      "source": "Tres-orix small ghc50 large ghc90",
+      "name": "Tres-orix",
+      "genericName": "",
+      "baseUnit": "Tres-orix small",
+      "units": [
+        {
+          "label": "Tres-orix small",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Tres-orix large",
+          "priceMinor": 9000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 11,
+      "source": "Aptizooom",
+      "name": "Aptizooom",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": {
+        "names": [
+          "APITIZOOM"
+        ],
+        "reason": "Owner confirmed Aptizooom is the existing APITIZOOM; leave it unchanged."
+      }
+    },
+    {
+      "sourceLine": 12,
+      "source": "Super apiti -syrp ghc30 -caps ghc5",
+      "name": "Super apiti",
+      "genericName": "",
+      "baseUnit": "Super apiti syrp",
+      "units": [
+        {
+          "label": "Super apiti syrp",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Super apiti caps",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 13,
+      "source": "Antacid plus (antacid, antiflatulent) ghc40",
+      "name": "Antacid plus (antacid, antiflatulent)",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 14,
+      "source": "Luex -adult(dry), -adult(night) ghc40 -kids(chest), -kids(dry) ghc40",
+      "name": "Luex",
+      "genericName": "",
+      "baseUnit": "Luex adult (dry)",
+      "units": [
+        {
+          "label": "Luex adult (dry)",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Luex adult (night)",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        },
+        {
+          "label": "Luex kids (chest)",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 2
+        },
+        {
+          "label": "Luex kids (dry)",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 3
+        }
+      ],
+      "skip": {
+        "names": [
+          "LEUX COUGH SYRUPS"
+        ],
+        "reason": "Owner confirmed Luex is the existing LEUX COUGH SYRUPS; leave it unchanged. All four listed prices were confirmed as GHS 40, but existing entries must not be updated."
+      }
+    },
+    {
+      "sourceLine": 15,
+      "source": "X flux _flucoxacillin suspension_ ghc20",
+      "name": "X flux",
+      "genericName": "flucoxacillin suspension",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 16,
+      "source": "Amoksiklav _amoxicillin clanulanic acid_ suspension 457- ghc80 228.5- ghc60 caps 1g -ghc130 625 -ghc100",
+      "name": "Amoksiklav suspension",
+      "genericName": "amoxicillin clanulanic acid",
+      "baseUnit": "Amoksiklav suspension 457",
+      "units": [
+        {
+          "label": "Amoksiklav suspension 457",
+          "priceMinor": 8000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Amoksiklav suspension 228.5",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 17,
+      "source": "Oxynic , klovinal, amovulin _amoskiklav 625_ _amoxicillin clanulanic acid 625_ ghc60",
+      "name": "Oxynic , klovinal, amovulin",
+      "genericName": "amoskiklav 625, amoxicillin clanulanic acid 625",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": {
+        "names": [],
+        "reason": "Owner explicitly deferred Oxynic, klovinal and amovulin."
+      }
+    },
+    {
+      "sourceLine": 18,
+      "source": "Amokxinate _amoxicillin clanulanic acid_ suspension 228.5- ghc60",
+      "name": "Amokxinate suspension 228.5",
+      "genericName": "amoxicillin clanulanic acid",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 19,
+      "source": "Nugel ghc60",
+      "name": "Nugel",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 20,
+      "source": "Nugel O ghc60",
+      "name": "Nugel O",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 21,
+      "source": "Ancigel O ghc40",
+      "name": "Ancigel O",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 22,
+      "source": "Antacid(entrance) ghc40",
+      "name": "Antacid(entrance)",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 23,
+      "source": "Gastrone ghc40",
+      "name": "Gastrone",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 24,
+      "source": "Magacid ghc30",
+      "name": "Magacid",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 25,
+      "source": "Ciprolex eye drop ghc40",
+      "name": "Ciprolex eye drop",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 26,
+      "source": "Chloramphenicol eye drop ghc20",
+      "name": "Chloramphenicol eye drop",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 27,
+      "source": "ECL antacid ghc40",
+      "name": "ECL antacid",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 28,
+      "source": "Pepto bismal ghc160",
+      "name": "Pepto bismal",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 16000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 29,
+      "source": "Galvus met blister ghc90",
+      "name": "Galvus met blister",
+      "genericName": "",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "priceMinor": 9000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 30,
+      "source": "Zyfen 120 ghc80",
+      "name": "Zyfen 120",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 8000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 31,
+      "source": "Polygel",
+      "name": "Polygel",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 32,
+      "source": "Skydipin 30 _nefidipine_ ghc5",
+      "name": "Skydipin 30",
+      "genericName": "nefidipine",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 33,
+      "source": "Nifecard XL 30mg _nefidipine_ ghc80",
+      "name": "Nifecard XL 30mg",
+      "genericName": "nefidipine",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 8000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 34,
+      "source": "Morphine tab",
+      "name": "Morphine tab",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 35,
+      "source": "Addyzoa blister ghc180",
+      "name": "Addyzoa blister",
+      "genericName": "",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "priceMinor": 18000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 36,
+      "source": "Haemoglobin syrp  -green ghc15 -yellow ghc20",
+      "name": "Haemoglobin syrp",
+      "genericName": "",
+      "baseUnit": "Haemoglobin syrp green",
+      "units": [
+        {
+          "label": "Haemoglobin syrp green",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Haemoglobin syrp yellow",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 37,
+      "source": "Dynewell -syrp ghc15 -tab 2=ghc5",
+      "name": "Dynewell",
+      "genericName": "",
+      "baseUnit": "Dynewell syrp",
+      "units": [
+        {
+          "label": "Dynewell syrp",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Dynewell tab (2 units)",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 38,
+      "source": "Calcium B12 suspension ghc20",
+      "name": "Calcium B12 suspension",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 39,
+      "source": "Malar 2 -tab ghc30 -suspension 30",
+      "name": "Malar 2",
+      "genericName": "",
+      "baseUnit": "Malar 2 tab",
+      "units": [
+        {
+          "label": "Malar 2 tab",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Malar 2 suspension",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 40,
+      "source": "Arfan 20/120 _44_ _4 4_ _four four_ ghc10",
+      "name": "Arfan 20/120",
+      "genericName": "44, 4 4, four four",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 41,
+      "source": "Cartef ds ghc20",
+      "name": "Cartef ds",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 42,
+      "source": "Dicnac SR 75- ghc20 _diclofenac caps_",
+      "name": "Dicnac SR 75",
+      "genericName": "diclofenac caps",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 43,
+      "source": "-Asnac 75 ghc20 -Asnac 100 ghc20",
+      "name": "Asnac",
+      "genericName": "",
+      "baseUnit": "Asnac 75",
+      "units": [
+        {
+          "label": "Asnac 75",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Asnac 100",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 44,
+      "source": "No-spa 40mg _Nospa_ ghc30",
+      "name": "No-spa 40mg",
+      "genericName": "Nospa",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 45,
+      "source": "Dicnac gel _diclofenac gel_ ghc20",
+      "name": "Dicnac gel",
+      "genericName": "diclofenac gel",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 46,
+      "source": "Mupirocine ghc65",
+      "name": "Mupirocine",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 6500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 47,
+      "source": "Pilex -ointment ghc100 -tab ghc150",
+      "name": "Pilex",
+      "genericName": "",
+      "baseUnit": "Pilex ointment",
+      "units": [
+        {
+          "label": "Pilex ointment",
+          "priceMinor": 10000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Pilex tab",
+          "priceMinor": 15000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 48,
+      "source": "Mercy ointment -large ghc50 -small ghc30 -tube ghc15",
+      "name": "Mercy ointment",
+      "genericName": "",
+      "baseUnit": "Mercy ointment large",
+      "units": [
+        {
+          "label": "Mercy ointment large",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Mercy ointment small",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        },
+        {
+          "label": "Mercy ointment tube",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 2
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 49,
+      "source": "Lofnac gel _diclofenac gel_ ghc20",
+      "name": "Lofnac gel",
+      "genericName": "diclofenac gel",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 50,
+      "source": "Ketazol -shampoo  ghc60 -cream ghc30",
+      "name": "Ketazol",
+      "genericName": "",
+      "baseUnit": "Ketazol shampoo",
+      "units": [
+        {
+          "label": "Ketazol shampoo",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Ketazol cream",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 51,
+      "source": "Blue Polar ice gel ghc50",
+      "name": "Blue Polar ice gel",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 52,
+      "source": "Ronak balm ghc20",
+      "name": "Ronak balm",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 53,
+      "source": "Savlon small ghc35 medium ghc50 large ghc110",
+      "name": "Savlon",
+      "genericName": "",
+      "baseUnit": "Savlon small",
+      "units": [
+        {
+          "label": "Savlon small",
+          "priceMinor": 3500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Savlon medium",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        },
+        {
+          "label": "Savlon large",
+          "priceMinor": 11000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 2
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 54,
+      "source": "Camel small ghc20 medium ghc35 large ghc50",
+      "name": "Camel",
+      "genericName": "",
+      "baseUnit": "Camel small",
+      "units": [
+        {
+          "label": "Camel small",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "Camel medium",
+          "priceMinor": 3500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        },
+        {
+          "label": "Camel large",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 2
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 55,
+      "source": "Silver bird ghc70",
+      "name": "Silver bird",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 7000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 56,
+      "source": "Mr. Q ghc15",
+      "name": "Mr. Q",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 57,
+      "source": "Milzol plus cream ghc15",
+      "name": "Milzol plus cream",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 58,
+      "source": "Menota blister ghc30",
+      "name": "Menota blister",
+      "genericName": "",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": {
+        "names": [
+          "MENOTA"
+        ],
+        "reason": "Existing MENOTA; do not change its name, unit or price."
+      }
+    },
+    {
+      "sourceLine": 59,
+      "source": "Fisherman’s friend pack ghc30",
+      "name": "Fisherman’s friend pack",
+      "genericName": "",
+      "baseUnit": "pack",
+      "units": [
+        {
+          "label": "pack",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": {
+        "names": [
+          "FISHERMAN'S FRIEND"
+        ],
+        "reason": "Existing FISHERMAN’S FRIEND; preserve its packet and price."
+      }
+    },
+    {
+      "sourceLine": 60,
+      "source": "Diofen 50 _diclofenac tab_ ghc5",
+      "name": "Diofen 50",
+      "genericName": "diclofenac tab",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": {
+        "names": [
+          "DIOFEN 50"
+        ],
+        "reason": "Existing DIOFEN 50; leave its price and other names unchanged."
+      }
+    },
+    {
+      "sourceLine": 61,
+      "source": "Efpac _fpac_ ghc5",
+      "name": "Efpac",
+      "genericName": "fpac",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 62,
+      "source": "keffen caps ghc10",
+      "name": "keffen caps",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 63,
+      "source": "andydol forte ghc10",
+      "name": "andydol forte",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 64,
+      "source": "redsun(oral gel) pack-ghc5 box-ghc20",
+      "name": "redsun (oral gel)",
+      "genericName": "",
+      "baseUnit": "pack",
+      "units": [
+        {
+          "label": "pack",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "box",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 65,
+      "source": "redsun caps ghc25",
+      "name": "redsun caps",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 66,
+      "source": "amciclox ghc5",
+      "name": "amciclox",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 67,
+      "source": "letacam ghc5",
+      "name": "letacam",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 68,
+      "source": "habigal ghc15",
+      "name": "habigal",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 69,
+      "source": "CPM 4mg 2=ghc5",
+      "name": "CPM 4mg",
+      "genericName": "",
+      "baseUnit": "2 units",
+      "units": [
+        {
+          "label": "2 units",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 70,
+      "source": "prednisolone 5mg _piritin_ 2=ghc5",
+      "name": "prednisolone 5mg",
+      "genericName": "piritin",
+      "baseUnit": "2 units",
+      "units": [
+        {
+          "label": "2 units",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 71,
+      "source": "Enamycin 250mg _erythromycine_ ghc10",
+      "name": "Enamycin 250mg",
+      "genericName": "erythromycine",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 72,
+      "source": "panacin ghc10",
+      "name": "panacin",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 73,
+      "source": "snuf -green ghc7 -yellow ghc7 -shamor ghc10 -hajia ghc15",
+      "name": "snuf",
+      "genericName": "",
+      "baseUnit": "snuf green",
+      "units": [
+        {
+          "label": "snuf green",
+          "priceMinor": 700,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "snuf yellow",
+          "priceMinor": 700,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        },
+        {
+          "label": "snuf shamor",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 2
+        },
+        {
+          "label": "snuf hajia",
+          "priceMinor": 1500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 3
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 74,
+      "source": "strobin _streptol_ ghc5",
+      "name": "strobin",
+      "genericName": "streptol",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 75,
+      "source": "\"O-formin\" _metformin_ ghc5=strip ghc50=box",
+      "name": "O-formin",
+      "genericName": "metformin",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "box",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 76,
+      "source": "enaphage 500 _metformin_ ghc5",
+      "name": "enaphage 500",
+      "genericName": "metformin",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 77,
+      "source": "Metformin Denk 500 strip=ghc20 box=ghc200",
+      "name": "Metformin Denk 500",
+      "genericName": "",
+      "baseUnit": "strip",
+      "units": [
+        {
+          "label": "strip",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "box",
+          "priceMinor": 20000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 78,
+      "source": "Metformin Denk 1000 ghc130",
+      "name": "Metformin Denk 1000",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 13000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 79,
+      "source": "ciprolex ghc40",
+      "name": "ciprolex",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": {
+        "names": [
+          "CIPROFLOXACIN TABLET CIPROLEX"
+        ],
+        "reason": "Owner confirmed ciprolex is this existing tablet entry; eye drops remain a different new entry."
+      }
+    },
+    {
+      "sourceLine": 80,
+      "source": "ezipen ghc5",
+      "name": "ezipen",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 81,
+      "source": "menstak ghc20",
+      "name": "menstak",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 82,
+      "source": "phopain _forpain_ 2=5",
+      "name": "phopain",
+      "genericName": "forpain",
+      "baseUnit": "2 units",
+      "units": [
+        {
+          "label": "2 units",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 83,
+      "source": "-flucor day ghc50 -flucor night ghc50",
+      "name": "flucor",
+      "genericName": "",
+      "baseUnit": "flucor day",
+      "units": [
+        {
+          "label": "flucor day",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "flucor night",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": {
+        "names": [
+          "FLUCOR DAY",
+          "FLUCOR NIGHT"
+        ],
+        "reason": "Both versions already exist as separate medicines; leave both unchanged."
+      }
+    },
+    {
+      "sourceLine": 84,
+      "source": "tothema -full 150 -half ghc75",
+      "name": "tothema",
+      "genericName": "",
+      "baseUnit": "tothema full",
+      "units": [
+        {
+          "label": "tothema full",
+          "priceMinor": 15000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "tothema half",
+          "priceMinor": 7500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 85,
+      "source": "ebony _condom_ ghc10",
+      "name": "ebony",
+      "genericName": "condom",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 86,
+      "source": "kiss -condom ghc10 -lubricant ghc45",
+      "name": "kiss",
+      "genericName": "",
+      "baseUnit": "kiss condom",
+      "units": [
+        {
+          "label": "kiss condom",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "kiss lubricant",
+          "priceMinor": 4500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 87,
+      "source": "fiesta -condom ghc10 -lubricant ghc45",
+      "name": "fiesta",
+      "genericName": "",
+      "baseUnit": "fiesta condom",
+      "units": [
+        {
+          "label": "fiesta condom",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "fiesta lubricant",
+          "priceMinor": 4500,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 88,
+      "source": "levon 2 -lubricant ghc40 -contraceptive ghc20",
+      "name": "levon 2",
+      "genericName": "",
+      "baseUnit": "levon 2 lubricant",
+      "units": [
+        {
+          "label": "levon 2 lubricant",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "levon 2 contraceptive",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 89,
+      "source": "lydia ghc20",
+      "name": "lydia",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 90,
+      "source": "secure ghc30=box strip=10",
+      "name": "secure",
+      "genericName": "",
+      "baseUnit": "box",
+      "units": [
+        {
+          "label": "box",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "strip",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 91,
+      "source": "contra 72 ghc20",
+      "name": "contra 72",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 92,
+      "source": "rough rider ghc30",
+      "name": "rough rider",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 93,
+      "source": "condom box -big ghc150 -small ghc120",
+      "name": "condom box",
+      "genericName": "",
+      "baseUnit": "condom box big",
+      "units": [
+        {
+          "label": "condom box big",
+          "priceMinor": 15000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "condom box small",
+          "priceMinor": 12000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 94,
+      "source": "teeda syrp ghc20",
+      "name": "teeda syrp",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 2000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 95,
+      "source": "FoliVit plus _folic acid syrp_ ghc150",
+      "name": "FoliVit plus",
+      "genericName": "folic acid syrp",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 15000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 96,
+      "source": "kidivite _multivitamin syrup_ ghc50",
+      "name": "kidivite",
+      "genericName": "multivitamin syrup",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 97,
+      "source": "tobvital _multivitamin syrup_ ghc30",
+      "name": "tobvital",
+      "genericName": "multivitamin syrup",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 3000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 98,
+      "source": "kidicare ghc50",
+      "name": "kidicare",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 5000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 99,
+      "source": "letavit",
+      "name": "letavit",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 100,
+      "source": "budex",
+      "name": "budex",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 101,
+      "source": "kristen _dexamethasone_",
+      "name": "kristen",
+      "genericName": "dexamethasone",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 102,
+      "source": "pregnancy test kit ghc5",
+      "name": "pregnancy test kit",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 103,
+      "source": "gogynax",
+      "name": "gogynax",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 104,
+      "source": "viginax",
+      "name": "viginax",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 105,
+      "source": "gyno micolex",
+      "name": "gyno micolex",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 106,
+      "source": "polygynax",
+      "name": "polygynax",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 107,
+      "source": "dermiron plus",
+      "name": "dermiron plus",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 108,
+      "source": "Rifabon _rifampicin caps_ ghc40",
+      "name": "Rifabon",
+      "genericName": "rifampicin caps",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 4000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 109,
+      "source": "eskypan",
+      "name": "eskypan",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 0,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 110,
+      "source": "dragon -spray ghc65 -tablet ghc 60",
+      "name": "dragon",
+      "genericName": "",
+      "baseUnit": "dragon spray",
+      "units": [
+        {
+          "label": "dragon spray",
+          "priceMinor": 6500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        },
+        {
+          "label": "dragon tablet",
+          "priceMinor": 6000,
+          "baseQuantity": 1,
+          "variation": true,
+          "displayOrder": 1
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 111,
+      "source": "hiegra _tiger_ ghc10",
+      "name": "hiegra",
+      "genericName": "tiger",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 112,
+      "source": "vegera ghc10",
+      "name": "vegera",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 1000,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    },
+    {
+      "sourceLine": 113,
+      "source": "postinor 2 ghc5",
+      "name": "postinor 2",
+      "genericName": "",
+      "baseUnit": "unit",
+      "units": [
+        {
+          "label": "Default",
+          "priceMinor": 500,
+          "baseQuantity": 1,
+          "variation": false,
+          "displayOrder": 0
+        }
+      ],
+      "skip": null
+    }
+  ]
+}

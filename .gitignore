@@ -11,3 +11,8 @@ playwright-report/
 test-results/
 .data/
 *.dump
+
+# Private database exports and cutover backups
+*.private.sql
+*.private.sql.json
+backups/

@@ -83,7 +83,7 @@ test('Sprint 3 catalogue, shared prices, and migration upgrade', async t => {
     assert.equal((await app.inject({ method: 'PUT', url: priceUrl(), headers: { ...write, cookie: admin.cookie }, payload: { priceMinor: 2, expectedVersion: 1, reason: 'Missing CSRF token' } })).statusCode, 403);
   });
   await t.test('rejects fractional/negative prices, invalid packs, duplicate identities and barcodes atomically', async () => {
-    for (const priceMinor of [0, -1, 1.25, 100000001, '125']) {
+    for (const priceMinor of [-1, 1.25, 100000001, '125']) {
       assert.equal((await app.inject({ method: 'PUT', url: priceUrl(), headers: admin, payload: { priceMinor, expectedVersion: 1, reason: 'Invalid input check' } })).statusCode, 400);
     }
     assert.equal((await app.inject({ method: 'POST', url: base, headers: admin, payload: sample })).statusCode, 409);
@@ -133,8 +133,8 @@ test('Sprint 3 catalogue, shared prices, and migration upgrade', async t => {
     assert.equal((await app.inject({ method: 'PUT', url: `${base}/units/${unitId}/availability`, headers: admin, payload: { available: true, expectedVersion: 1, reason: 'Stale availability request' } })).statusCode, 409);
     await assert.rejects(db.query('UPDATE price_history SET price_minor=1'), /append-only/);
     await assert.rejects(db.query('DELETE FROM price_history'), /append-only/);
-    await assert.rejects(db.query('UPDATE selling_units SET base_quantity=15 WHERE id=$1', [boxId]), /immutable/);
-    await assert.rejects(db.query('UPDATE products SET strength=$1 WHERE id=$2', ['250 mg', productId]), /immutable/);
+    await assert.rejects(db.query("UPDATE selling_units SET id='00000000-0000-4000-8000-000000000001' WHERE id=$1", [boxId]), /immutable/);
+    await assert.rejects(db.query('DELETE FROM products WHERE id=$1', [productId]), /archiving/);
   });
   await t.test('revocation blocks further changes without requiring employee logout', async () => {
     await app.inject({ method: 'PUT', url: `/api/admin/users/${staffId}/access`, headers: admin, payload: { memberships: [{ shopId: shop1, canChangePrices: false }], sharedStorageAccess: false } });
@@ -152,6 +152,48 @@ test('Sprint 3 catalogue, shared prices, and migration upgrade', async t => {
     assert.equal((await listing(base, staff, 'PARA-BOX14')).products[0].id, productId);
     assert.equal((await listing(base, staff, "%' OR 1=1 --")).total, 0);
     assert.equal((await listing(base, staff, 'paracetmol 550 mg')).total, 0);
+  });
+  await t.test('admin medicine edits and removal preserve history and reject stale or employee changes', async () => {
+    const product=(await listing()).products.find((p:{id:string})=>p.id===productId);
+    const url=base+'/products/'+productId;
+    const payload={expectedVersion:product.revision,name:'Corrected Paracetamol',genericName:'Acetaminophen',baseUnit:'unit',units:product.units.map((u:{id:string;label:string;baseQuantity:number;barcode:string|null})=>({id:u.id,label:u.baseQuantity===1?'unit':u.label,baseQuantity:u.baseQuantity===1?1:20,barcode:u.barcode??''}))};
+    assert.equal((await app.inject({method:'PUT',url,headers:staff,payload})).statusCode,403);
+    let response=await app.inject({method:'PUT',url,headers:admin,payload});assert.equal(response.statusCode,200,response.body);
+    assert.equal((await app.inject({method:'PUT',url,headers:admin,payload})).statusCode,409);
+    const changed=(await listing(secondBase)).products.find((p:{id:string})=>p.id===productId);assert.equal(changed.name,payload.name);assert.equal(changed.baseUnit,'unit');assert.equal(changed.units.find((u:{id:string})=>u.id===boxId).baseQuantity,20);
+    const batch=randomUUID();await db.query("INSERT INTO stock_batches(id,product_id,batch_number,expiry) VALUES($1,$2,'EDIT-TEST','2099-12-31')",[batch,productId]);
+    response=await app.inject({method:'PUT',url,headers:admin,payload:{...payload,expectedVersion:changed.revision,units:payload.units.map((u:any)=>({...u,baseQuantity:u.baseQuantity===1?1:25}))}});assert.equal(response.statusCode,409,response.body);
+    const room=(await db.query<{id:string}>("SELECT id FROM locations WHERE kind='storeroom' LIMIT 1")).rows[0].id;await db.query('INSERT INTO stock_balances(location_id,batch_id,quantity) VALUES($1,$2,2)',[room,batch]);
+    const removal={expectedVersion:changed.revision,removed:true};assert.equal((await app.inject({method:'PUT',url:url+'/removal',headers:admin,payload:removal})).statusCode,409);
+    await db.query('UPDATE stock_balances SET quantity=0 WHERE batch_id=$1',[batch]);
+    response=await app.inject({method:'PUT',url:url+'/removal',headers:admin,payload:removal});assert.equal(response.statusCode,200,response.body);
+    assert.ok(!(await listing()).products.some((p:{id:string})=>p.id===productId));assert.ok(!(await listing(secondBase)).products.some((p:{id:string})=>p.id===productId));
+    assert.equal((await app.inject({url:base+'?includeArchived=true',headers:staff})).statusCode,403);
+    const removed=(await app.inject({url:base+'?includeArchived=true',headers:admin})).json().products.find((p:{id:string})=>p.id===productId);assert.equal(removed.archived,true);
+    assert.equal((await app.inject({method:'PUT',url:priceUrl(),headers:admin,payload:{expectedVersion:removed.units[0].priceVersion,priceMinor:100,reason:'Test'}})).statusCode,409);
+    response=await app.inject({method:'PUT',url:url+'/removal',headers:admin,payload:{expectedVersion:removed.revision,removed:false}});assert.equal(response.statusCode,200,response.body);
+    assert.ok((await listing()).products.some((p:{id:string})=>p.id===productId));
+    assert.ok((await db.query("SELECT 1 FROM audit_events WHERE action='catalogue.medicine_edited'")).rows.length);
+  });
+  await t.test('new selling units can be added to used medicines with independent shared prices',async()=>{
+    const product=(await listing()).products.find((p:{id:string})=>p.id===productId);
+    const url=base+'/products/'+productId;
+    const payload={expectedVersion:product.revision,name:product.name,genericName:product.genericName,baseUnit:product.baseUnit,units:product.units.map((u:any)=>({id:u.id,label:u.label,baseQuantity:u.baseQuantity,barcode:u.barcode??''}))};
+    const addition={label:'strip',baseQuantity:10,barcode:'NEW-STRIP',priceMinor:900};
+    const save=(headers:typeof admin,units:any[])=>app.inject({method:'PUT',url,headers,payload:{...payload,units}});
+    assert.equal((await save(staff,[...payload.units,addition])).statusCode,403);
+    assert.equal((await save(admin,[...payload.units,{...addition,priceMinor:undefined}])).statusCode,400);
+    assert.equal((await save(admin,[...payload.units,{...addition,label:payload.units[0].label}])).statusCode,400);
+    assert.equal((await save(admin,[...payload.units,{...addition,barcode:payload.units[0].barcode}])).statusCode,409);
+    assert.equal((await save(admin,[...payload.units,{...addition,id:randomUUID()}])).statusCode,400);
+    const response=await save(admin,[...payload.units,addition]);assert.equal(response.statusCode,200,response.body);
+    assert.equal((await save(admin,[...payload.units,addition])).statusCode,409);
+    const changed=(await listing(secondBase)).products.find((p:{id:string})=>p.id===productId);
+    const unit=changed.units.find((u:any)=>u.label==='strip');assert.equal(unit.baseQuantity,10);assert.equal(unit.priceMinor,900);assert.equal(unit.priceVersion,1);assert.equal(unit.available,true);
+    assert.equal(changed.units.length,product.units.length+1);
+    for(const old of product.units)assert.equal(changed.units.find((u:any)=>u.id===old.id).priceMinor,old.priceMinor);
+    assert.equal((await db.query('SELECT * FROM price_history WHERE unit_id=$1',[unit.id])).rows.length,1);
+    assert.equal((await db.query("SELECT * FROM medicine_notifications WHERE unit_id=$1 AND kind='added'",[unit.id])).rows.length,1);
   });
 });
 

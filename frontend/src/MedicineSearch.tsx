@@ -1,6 +1,7 @@
+import {Sheet} from './Sheet';
 import { useEffect, useRef, useState } from 'react';
 import { api, ApiError, messageOf } from './api';
-import { money, type CatalogueResult, type CatalogueUnit, type Product } from './catalogue-model';
+import { money, parseMoney, type CatalogueResult, type CatalogueUnit, type Product } from './catalogue-model';
 
 function Highlight({ text, query }: { text: string; query: string }) {
   const words = query.trim().split(/\s+/).filter(Boolean).slice(0, 12);
@@ -14,6 +15,9 @@ export function MedicineSearch({ shopId, shopName, ticketOpen, disabled, revisio
   onChoose: (product: Product, unit: CatalogueUnit) => boolean; onExpired: () => void;
 }) {
   const input = useRef<HTMLInputElement>(null);
+  const [editingPrice,setEditingPrice]=useState<CatalogueUnit|null>(null),[priceInput,setPriceInput]=useState('');
+  async function savePrice(){if(!editingPrice)return;setSaving(true);setError('');try{await api(`/shops/${shopId}/catalogue/units/${editingPrice.id}/price`,{method:'PUT',csrf,body:{priceMinor:parseMoney(priceInput,true),expectedVersion:editingPrice.priceVersion}});setEditingPrice(null);setRetry(n=>n+1);onChanged();}catch(e){setError(messageOf(e));}finally{setSaving(false);}}
+
   const [unavailable,setUnavailable]=useState(false),[exporting,setExporting]=useState(false);
   const [saving, setSaving] = useState(false);
   async function toggle(unit: CatalogueUnit) { setSaving(true); setError(''); try { await api(`/shops/${shopId}/catalogue/units/${unit.id}/availability`, { method: 'PUT', csrf, body: { available: !unit.available, expectedVersion: unit.listingVersion, reason: unit.available ? 'Shelf medicine marked unavailable by staff' : 'Shelf medicine replenished; remove unavailable mark' } }); setRetry(n => n + 1); onChanged(); } catch (e) { setError(messageOf(e)); } finally { setSaving(false); } }
@@ -46,12 +50,13 @@ export function MedicineSearch({ shopId, shopName, ticketOpen, disabled, revisio
         {product.match === 'suggestion' && <p className="spelling-note">Spelling suggestion · check the medicine</p>}
         <header><h2><Highlight text={product.name} query={query} /></h2>{[product.strength,product.dosageForm,product.genericName.toLowerCase() !== product.name.toLowerCase() ? product.genericName : ''].filter(Boolean).length > 0 && <p><Highlight text={[product.strength,product.dosageForm,product.genericName.toLowerCase() !== product.name.toLowerCase() ? product.genericName : ''].filter(Boolean).join(' ? ')} query={query} /></p>}</header>
         <div className="medicine-units">{product.units.map(unit => <div key={unit.id}><div className="medicine-price">
-          <div><span className="pack-name">{unit.label}</span>{unit.baseQuantity > 1 && <small>{unit.baseQuantity} {product.baseUnit}(s)</small>}{!unit.available && <small>Unavailable on shelf</small>}</div>
-          <strong className="price-number">{money(unit.priceMinor)}</strong>
-          {ticketOpen && <button className="add-medicine" disabled={disabled || saving || !availableUnits.has(unit.id)} onClick={() => { if (onChoose(product, unit)) { setQuery(''); setPage(1); setResult(null); input.current?.focus(); } }} aria-label={`Add ${product.name} ${unit.label} to ticket`}>{!availableUnits.has(unit.id) ? 'Unavailable' : '+ Add'}</button>}
-        </div><div className="shelf-availability">{!unit.available && <p>{unit.storerooms?.length ? 'In storeroom: '+unit.storerooms.join(', ')+'. Shelf remains marked unavailable.' : 'No available stock recorded in the pharmacy storeroom or the main storerooms.'}</p>}{!ticketOpen && <button className="text-button" disabled={disabled || saving} onClick={() => void toggle(unit)}>{unit.available ? 'Mark '+unit.label+' unavailable' : 'Remove '+unit.label+' unavailable mark'}</button>}</div></div>)}</div>
+          <div><span className="pack-name">{unit.label}</span>{!unit.variation && unit.baseQuantity > 1 && <small>{unit.baseQuantity} {product.baseUnit}(s)</small>}{!unit.available && <small>Unavailable on shelf</small>}</div>
+          <strong className="price-number">{money(unit.priceMinor)}{unit.priceMinor===0&&<small>Price needed</small>}</strong>
+          {ticketOpen && <button className="add-medicine" disabled={disabled || saving || unit.priceMinor===0 || !availableUnits.has(unit.id)} onClick={() => { if (onChoose(product, unit)) { setQuery(''); setPage(1); setResult(null); input.current?.focus(); } }} aria-label={`Add ${product.name} ${unit.label} to ticket`}>{unit.priceMinor===0?'Price needed':!availableUnits.has(unit.id) ? 'Unavailable' : '+ Add'}</button>}
+        </div><div className="shelf-availability">{!ticketOpen&&result.canChangePrices&&<button className="text-button" disabled={saving||!!result.offline} onClick={()=>{setEditingPrice(unit);setPriceInput((unit.priceMinor/100).toFixed(2));setError('');}}>Edit price</button>}{!unit.available && <p>{unit.storerooms?.length ? 'In storeroom: '+unit.storerooms.join(', ')+'. Shelf remains marked unavailable.' : 'No available stock recorded in the pharmacy storeroom or the main storerooms.'}</p>}{!ticketOpen && <button className="text-button" disabled={disabled || saving} onClick={() => void toggle(unit)}>{unit.available ? 'Mark '+unit.label+' unavailable' : 'Remove '+unit.label+' unavailable mark'}</button>}</div></div>)}</div>
       </article>)}</div>
       {result.total > result.pageSize && <nav className="counter-pagination" aria-label="Medicine pages"><button disabled={page === 1} onClick={() => setPage(n => n - 1)}>Previous</button><span>{page} / {Math.ceil(result.total / result.pageSize)}</span><button disabled={page * result.pageSize >= result.total} onClick={() => setPage(n => n + 1)}>Next</button></nav>}
     </>}
+    {editingPrice&&<Sheet title="Edit price" onClose={()=>{if(!saving)setEditingPrice(null);}}><form onSubmit={e=>{e.preventDefault();void savePrice();}}><p>Shared price for {editingPrice.label} at both shops.</p>{error&&<p className="error-message" role="alert">{error}</p>}<label>Price (GHS)<input autoFocus inputMode="decimal" required value={priceInput} onChange={e=>setPriceInput(e.target.value)}/></label><button className="primary-button" disabled={saving}>Save price</button></form></Sheet>}
   </section>;
 }

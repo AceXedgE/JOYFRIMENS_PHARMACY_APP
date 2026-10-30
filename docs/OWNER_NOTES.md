@@ -185,3 +185,32 @@ Owner storeroom clarification, 2026-10-23 (supersedes older shelf-stock assumpti
 - Manual additions into authorised storerooms are required, without inventing a supplier receipt. Preserve medicine, batch/expiry, pack conversion, quantity, actor and time. Main-room duplication still requires explicit confirmation.
 - Supplier prices are not needed. Suppliers need a separate page for entering medicines they intend to deliver, including pack sizes and quantities. Staff check actual arrivals and choose allocations before any stock is posted.
 - Initial supplier-page implementation uses private, revocable, single-delivery links created by admins for an authorised receiving room. Links expire after 30 days. Suppliers cannot see stock, prices, sales, staff or other suppliers' deliveries. Submitted quantities are immutable; discrepancies are recorded on arrival.
+
+Owner price-list import, 2026-10-24:
+- Replace existing business data with the supplied TOMJOY PHARMACY PRICE LIST.docx catalogue; preserve accounts, passwords, permissions and shop/room structure. Import shelf availability only, without physical stock quantities or categories.
+- Combine parent medicine names with dosage/form variants. Missing prices are zero and editable after searching. Zero means price still needed, not a free sale.
+- Unspecified quantities such as 1=GHS5 and 3=GHS10 mean generic units; do not infer tablet/strip contents. Preserve each listed quantity deal as a selectable selling option.
+- A blister means strip and is included in the medicine name. Explicit 1 tab entries include (1 tablet) in the name.
+- CELECOXIB strip and box are separate entries because the strips-per-box conversion is unknown; this was confirmed by the owner.
+- Exact repeated names are merged, retaining a stated price over a blank duplicate. Triple-asterisk medicines and source ambiguities are listed in TOMJOY_IMPORT_REVIEW.md. Counter search allows authorised staff to edit shared prices directly.
+
+
+### Medicine corrections and removal (24 October 2026)
+
+In Account > Manage medicines, admins can correct a medicine name, optional other names, base unit, selling-option labels and barcodes. Shared details apply to both shops. Unused pack conversions can be corrected; conversions already used by sales or stock must retain their original meaning. Employees with price permission can still change prices but cannot rename or remove medicines.
+
+Remove medicine hides it from active catalogue, sales and receiving choices, retaining its history. Remaining storeroom stock or goods in transit must be resolved first. Admins can use Include removed medicines to restore an entry. Changes record the acting admin and notify staff, without asking for a reason. Historical sales and stock documents retain their original medicine descriptions.
+
+Admins can also add selling units while editing an existing medicine, including medicines already used in stock or sales. Each new unit has a name, number of base units, independent GHS price and optional barcode, and is listed at both pharmacies. Existing unit prices and historical conversions remain protected. Unsaved new units can be removed before saving.
+
+### Variations (26 October 2026)
+
+Add/edit medicine includes a Variation checkbox for additional selling options. Checked options (e.g. syrup alongside inhaler) have independent stock and prices, counted as one of that option per sale, without a base-unit comparison. Unchecked packs retain their base-unit conversion. Receiving, manual additions, transfers, sales, refunds and main-storeroom duplicate checks keep variation batches separate. Shelf availability remains specific to each selling option. Existing options can be corrected before stock or sales records depend on their interpretation; recorded history is not silently reassigned. Existing options are not guessed or automatically reclassified: mark the intended options in Manage medicines.
+
+### Named options and catalogue editing
+
+A medicine can have a main option called Green and an independent variation called Blue, without entering a common unit or conversion. Stock-unit details are shown only for actual packs. The main option and price appear first; Show first changes display order without merging stock. Edit medicine includes all option prices, while quick price editing remains available outside. Price-version checks prevent an older editor overwriting a quick price update. Delete option removes a variation or pack from active use; Delete medicine removes the whole medicine from both shops. Unavailable only flags the shop shelf and leaves the option searchable. Deletion preserves historical records and checks remaining stock and transfers before removing their last active stock option.
+
+### New medicine list and hosting (30 October 2026)
+
+Import docs/newdrugs.md additively, leaving existing entries unchanged. Oxynic, klovinal and amovulin are deferred. All Luex options are GHS 40, but Luex/LEUX COUGH SYRUPS is an existing match and is skipped. Owner confirmed Aptizooom/APITIZOOM, Amoksiklav capsules/AMOSKICLAV 1g and 625mg, and ciprolex/CIPROFLOXACIN TABLET CIPROLEX are existing matches to skip. Distinct suspensions and eye drops may be added. Underscored names become comma-separated other names; explicit variations and named sizes retain separate stock. No box/strip quantity conversion is inferred. Missing prices remain zero. Keep a complete report of problems, skipped records and handling. Prepare for Render hosting; publication is a separate step.

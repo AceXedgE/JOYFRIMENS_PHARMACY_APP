@@ -1,8 +1,8 @@
-import { readLocal, writeLocal } from './offline-store';
+import { readLocal, writeLocal, acceptDataset } from './offline-store';
 import { rankProduct } from './offline-search';
 import type { CatalogueResult } from './catalogue-model';
 export interface User { id: string; username: string; name: string; role: 'admin' | 'employee'; active: boolean; sharedStorageAccess: boolean; }
-export interface Session { user: User; csrfToken: string; }
+export interface Session { user: User; csrfToken: string; datasetRevision?:string; }
 export interface Shop { id: string; name: string; currency: string | null; timezone: string | null; can_change_prices: boolean; can_count_cash:boolean; }
 export interface Location { id: string; name: string; kind: string; shop_id: string | null; }
 export interface Member { shopId: string; canChangePrices: boolean;canCountCash?:boolean; }
@@ -45,6 +45,7 @@ export async function api<T>(path: string, options: { method?: string; body?: un
     typeof data === 'object' && data !== null && 'message' in data && typeof data.message === 'string' ? data.message : 'Request failed.');
   if(path==='/auth/login'||path==='/auth/me'){
     const session=data as Session;
+    await acceptDataset(session.datasetRevision??'initial');
     await writeLocal([['active-user',session.user.id],['cache:'+session.user.id+':/auth/me',session]]);
   }else if(path==='/auth/logout'||path==='/auth/password'){await writeLocal([],['active-user']);}
   if(!options.method&&cacheable(path)){

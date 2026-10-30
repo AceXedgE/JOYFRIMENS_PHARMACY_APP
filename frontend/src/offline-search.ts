@@ -16,7 +16,7 @@ function near(a: string, b: string): boolean {
   return row[b.length] <= limit;
 }
 export type Match = 'exact' | 'prefix' | 'contains' | 'suggestion';
-export function rankProduct(product: { name: string; genericName: string; strength: string; dosageForm: string; barcodes: string[] }, query: string): { score: number; match: Match } | null {
+function rankIdentity(product: { name: string; genericName: string; strength: string; dosageForm: string; barcodes: string[] }, query: string): { score: number; match: Match } | null {
   const q = normalize(query);
   if (!q) return { score: 0, match: 'contains' };
   const names = [product.name, product.genericName].map(normalize);
@@ -31,4 +31,10 @@ export function rankProduct(product: { name: string; genericName: string; streng
   if (tokens.every(token => candidates.some(candidate => direct(token, candidate)))) return { score: 2, match: 'contains' };
   if (tokens.every(token => candidates.some(candidate => direct(token, candidate) || near(token, candidate)))) return { score: 3, match: 'suggestion' };
   return null;
+}
+
+// Search each option separately so variant strengths cannot be combined into a false match.
+export function rankProduct(product:{name:string;genericName:string;strength:string;dosageForm:string;barcodes:string[];units?:{label:string}[]},query:string):{score:number;match:Match}|null{
+ const matches=[rankIdentity(product,query),...(product.units??[]).map(unit=>rankIdentity({...product,name:normalize(unit.label).startsWith(normalize(product.name))?unit.label:product.name+' '+unit.label},query))].filter((match):match is {score:number;match:Match}=>match!==null);
+ return matches.sort((a,b)=>a.score-b.score)[0]??null;
 }
