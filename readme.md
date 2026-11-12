@@ -157,7 +157,7 @@ Protected routes require sign-in. State-changing requests require the applicatio
 
 ## Mobile and offline strategy
 
-The catalogue and inventory screens are mobile-first: touch-sized controls, stacked cards/forms, and a persistent active-shop selector. Browser tests cover 390px and 320px viewports. Physical iPhone/Android testing is still required. App-shell caching and queued offline transactions are implemented; install prompts and physical-device validation remain Sprint 7 work. An installed PWA can provide a shared phone/desktop experience, but iOS and browser background execution must not be treated as guaranteed. Sales retry while the app is open, on reconnect and when reopening the app. A missed 8:30 p.m. warning will be shown on resume.
+The catalogue and inventory screens are mobile-first: touch-sized controls, stacked cards/forms, and a persistent active-shop selector. Browser tests cover 390px and 320px viewports. The production app includes an installable manifest, home-screen icons, an Install app control with iOS guidance, app-shell caching, and queued offline transactions. See [installation and offline operation](docs/OFFLINE_SALES.md). Physical iPhone/Android testing is still required. An installed PWA can provide a shared phone/desktop experience, but iOS and browser background execution must not be treated as guaranteed. Sales retry while the app is open, on reconnect and when reopening the app. A missed 8:30 p.m. warning will be shown on resume.
 
 See [architecture and platform decisions](docs/ARCHITECTURE.md) for the tradeoffs, references, and native-client option.
 

@@ -2,6 +2,18 @@
 
 Open the app and sign in online first on each selling device. Opening the counter saves that user's accessible shop data and a complete medicine catalogue on that device. The app shell is cached by a service worker; deployment requires HTTPS (localhost works for development).
 
+## Install the app
+
+Use the production build (`npm run build`), served over HTTPS, or test locally with `npm run preview -w frontend`. The Vite development server does not register the production service worker.
+
+- Chrome/Edge on Android or desktop: select **Install app** when the browser makes installation available, or use its install menu.
+- iPhone/iPad: open the app in Safari, select **Share > Add to Home Screen**, and confirm. The page's **Install app** help also explains this.
+- Installed windows open in standalone mode. The install control is hidden once installed in that window or when launched standalone.
+
+The worker precaches the complete build, manifest, and icons. A new build waits until all open app windows/tabs have closed before activating; reopen the app to use the update. No automatic reload interrupts a sale. Shell caches contain only public build files; the existing user-scoped IndexedDB layer handles offline sales data. Installing does not make online-only operations available offline.
+
+After building, run `npm run test:pwa` for production-server manifest/icon checks, Chromium installability, install controls, worker updates, and offline shell reload. `node scripts/test-sales.mjs` covers prepared offline sales and synchronization. Physical Android/iOS installation still needs device validation.
+
 After preparation, the counter can reload without internet, search cached medicines with the same spelling ranking, open tickets, hold or close tickets, and confirm multiple sales. Tickets retain their original shop and seller. IndexedDB stores queued requests before acknowledging them; request keys prevent duplicate sales when a response is lost. Never clear browser/site data while unsynced tickets remain. Browser storage is device-local and cannot survive a lost or reset device.
 
 While the app is open, it retries at reconnect, on returning to the app, and every 15 seconds. Sync now is also available. An expired session requires the original employee to sign in again. Signing in as someone else never sends another employee's queue. Do not rely on the browser running background work while closed, particularly on iOS. The 8:30pm GMT warning is displayed while the app is running, not as a guaranteed closed-app notification.

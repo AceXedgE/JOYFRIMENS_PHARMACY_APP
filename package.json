@@ -16,6 +16,7 @@
     "test": "npm run test -w backend",
     "smoke": "node scripts/smoke.mjs",
     "test:e2e": "playwright test",
+    "test:pwa": "node scripts/test-pwa.mjs",
     "setup:dev": "npm run setup:dev -w backend",
     "check": "npm run typecheck && npm test && npm run build && npm run smoke"
   },

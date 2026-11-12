@@ -1,0 +1,7 @@
+.install-app{padding:8px 16px;background:#fff;border-bottom:1px solid #dde1e7;color:#303741;font-size:13px}
+.install-app>details,.install-app>p{max-width:1088px;margin:0 auto}
+.install-app summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:#215cc3;font-weight:650;width:fit-content}
+.install-app summary:focus-visible{outline:3px solid #8ab8ff;outline-offset:2px}
+.install-app p{line-height:1.5}
+.install-app>button{display:block;margin-left:auto}
+@media print{.install-app{display:none}}
